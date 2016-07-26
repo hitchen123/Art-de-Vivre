@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="37px" height="37px" viewBox="0 0 37 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="15px" height="9px" viewBox="0 0 15 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 32</title>
+    <title>Combined Shape</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Оформление-заказа" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Корзина" transform="translate(-577.000000, -474.000000)">
-            <g id="Group-10" transform="translate(579.000000, 471.000000)">
-                <g id="Group-32" transform="translate(0.000000, 5.000000)">
-                    <polygon id="Star-1" stroke="#F68336" stroke-width="1.7" fill="#FFFFFF" points="16.4374826 30.7760381 13.8340411 32.8749651 12.0066252 30.0742592 8.88200113 31.2659498 8.00949108 28.0376177 4.66954433 28.2054208 4.83734746 24.865474 1.60901532 23.992964 2.80070589 20.8683399 5.15976151e-14 19.040924 2.09892703 16.4374826 4.97379915e-14 13.8340411 2.80070589 12.0066252 1.60901532 8.88200113 4.83734746 8.00949108 4.66954433 4.66954433 8.00949108 4.83734746 8.88200113 1.60901532 12.0066252 2.80070589 13.8340411 5.15976151e-14 16.4374826 2.09892703 19.040924 4.97379915e-14 20.8683399 2.80070589 23.992964 1.60901532 24.865474 4.83734746 28.2054208 4.66954433 28.0376177 8.00949108 31.2659498 8.88200113 30.0742592 12.0066252 32.8749651 13.8340411 30.7760381 16.4374826 32.8749651 19.040924 30.0742592 20.8683399 31.2659498 23.992964 28.0376177 24.865474 28.2054208 28.2054208 24.865474 28.0376177 23.992964 31.2659498 20.8683399 30.0742592 19.040924 32.8749651"></polygon>
-                    <text id="%" font-family="MuseoSansCyrl-500, Museo Sans Cyrl" font-size="17" font-weight="normal" fill="#F68336">
-                        <tspan x="10" y="23">%</tspan>
-                    </text>
-                </g>
-            </g>
+    <g id="Личный-кабинет" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1008.000000, -523.000000)" id="Combined-Shape" fill="#BFBFBF">
+            <path d="M1021.14214,523 L1022.14214,524 L1015.07107,531.071068 L1008,524 L1009,523 L1015.07107,529.071068 L1021.14214,523 Z" transform="translate(1015.071068, 527.035534) rotate(-180.000000) translate(-1015.071068, -527.035534) "></path>
         </g>
     </g>
 </svg>
