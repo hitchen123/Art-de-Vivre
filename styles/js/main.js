@@ -1150,6 +1150,231 @@ Modules.PremiumBanner = (function(self, $){
 		}
 }(Modules.PremiumBanner || {}, jQuery));
 
+Modules.YandexMaps = (function(self, $, ymaps){
+	
+	var _settings = {
+			mapWrapperId: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$mapWrapper: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$mapWrapper = $( _settings.mapWrapperId );
+
+			return self;
+		}
+		
+		self.mapInit = function(){
+			var myMap = new ymaps.Map(_settings.mapWrapperId, {
+			        center: [55.76, 37.64],
+			        zoom: 10
+			    }, {
+			        searchControlProvider: 'yandex#search'
+			    }),
+			    objectManager = new ymaps.ObjectManager({
+			        // Чтобы метки начали кластеризоваться, выставляем опцию.
+			        clusterize: true,
+			        // ObjectManager принимает те же опции, что и кластеризатор.
+			        gridSize: 32
+			    });
+
+			// Чтобы задать опции одиночным объектам и кластерам,
+			// обратимся к дочерним коллекциям ObjectManager.
+			objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+			objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+			myMap.geoObjects.add(objectManager);
+
+
+			// Создание макета балуна на основе Twitter Bootstrap.
+	        MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
+                    '<div class="b-contacts__map-tool-type">' +
+                    	'$[[options.contentLayout observeSize minWidth=235 maxWidth=235 maxHeight=350]]' +
+                    '</div>', {
+	                /**
+	                 * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+	                 * @function
+	                 * @name build
+	                 */
+	                build: function () {
+	                    this.constructor.superclass.build.call(this);
+
+	                    this._$element = $('.b-contacts__map-tool-type', this.getParentElement());
+
+	                    this.applyElementOffset();
+
+	                    // this._$element.find('.close')
+	                    //     .on('click', $.proxy(this.onCloseClick, this));
+	                },
+
+	                /**
+	                 * Удаляет содержимое макета из DOM.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+	                 * @function
+	                 * @name clear
+	                 */
+	                // clear: function () {
+	                //     this._$element.find('.close')
+	                //         .off('click');
+
+	                //     this.constructor.superclass.clear.call(this);
+	                // },
+
+	                /**
+	                 * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name onSublayoutSizeChange
+	                 */
+	                onSublayoutSizeChange: function () {
+	                    MyBalloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+
+	                    if(!this._isElement(this._$element)) {
+	                        return;
+	                    }
+
+	                    this.applyElementOffset();
+
+	                    this.events.fire('shapechange');
+	                },
+
+	                /**
+	                 * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name applyElementOffset
+	                 */
+	                // applyElementOffset: function () {
+	                //     this._$element.css({
+	                //         left: -(this._$element[0].offsetWidth / 2),
+	                //         top: -(this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight)
+	                //     });
+	                // },
+
+	                /**
+	                 * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name onCloseClick
+	                 */
+	                onCloseClick: function (e) {
+	                    e.preventDefault();
+
+	                    this.events.fire('userclose');
+	                },
+
+	                /**
+	                 * Используется для автопозиционирования (balloonAutoPan).
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+	                 * @function
+	                 * @name getClientBounds
+	                 * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+	                 */
+	                getShape: function () {
+	                    if(!this._isElement(this._$element)) {
+	                        return MyBalloonLayout.superclass.getShape.call(this);
+	                    }
+
+	                    var position = this._$element.position();
+
+	                    return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+	                        [position.left, position.top], [
+	                            position.left + this._$element[0].offsetWidth,
+	                            position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+	                        ]
+	                    ]));
+	                },
+
+	                /**
+	                 * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+	                 * @function
+	                 * @private
+	                 * @name _isElement
+	                 * @param {jQuery} [element] Элемент.
+	                 * @returns {Boolean} Флаг наличия.
+	                 */
+	                _isElement: function (element) {
+	                    return element && element[0] && element.find('.arrow')[0];
+	                }
+	            }),
+
+	    // Создание вложенного макета содержимого балуна.
+	        MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+	            '<h2>$[properties.balloonHeader]</h2>' +
+                '<p>$[properties.balloonContent]</p>'
+	        ),
+
+	    // Создание метки с пользовательским макетом балуна.
+	        myPlacemark = window.myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+	            // balloonHeader: 'Заголовок балуна',
+	            // balloonContent: 'Контент балуна'
+	        }, {
+	            balloonShadow: false,
+	            balloonLayout: MyBalloonLayout,
+	            balloonContentLayout: MyBalloonContentLayout,
+	            balloonPanelMaxMapArea: 0
+	            // Не скрываем иконку при открытом балуне.
+	            // hideIconOnBalloonOpen: false,
+	            // И дополнительно смещаем балун, для открытия над иконкой.
+	            // balloonOffset: [3, -40]
+	        });
+
+	        objectManager.add(
+				{
+			    "type": "FeatureCollection",
+			    "features": [
+			        {"type": "Feature", "id": 0, "geometry": {"type": "Point", "coordinates": [55.831903, 37.411961]}, "properties": {"balloonLayout": MyBalloonLayout, "balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>', "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки"}},
+			        {"type": "Feature", "id": 1, "geometry": {"type": "Point", "coordinates": [55.763338, 37.565466]}, "properties": {"balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки"}},
+			        {"type": "Feature", "id": 2, "geometry": {"type": "Point", "coordinates": [55.763338, 37.565466]}, "properties": {"balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки"}},
+			        {"type": "Feature", "id": 3, "geometry": {"type": "Point", "coordinates": [55.744522, 37.616378]}, "properties": {"balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки"}},
+			        {"type": "Feature", "id": 4, "geometry": {"type": "Point", "coordinates": [55.780898, 37.642889]}, "properties": {"balloonContent": "Содержимое балуна", "clusterCaption": "Еще одна метка", "hintContent": "Текст подсказки"}}			    ]
+				}
+			);
+
+
+
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig();
+				ymaps.ready(self.mapInit);
+
+				return self;
+			}
+		}
+}(Modules.YandexMaps || {}, jQuery, ymaps));
+
 (function($){
 	$(function(){		
 		var couponPopup = new Modules.CouponPopup.init({
@@ -1237,6 +1462,10 @@ Modules.PremiumBanner = (function(self, $){
 		var premiumBanner = new Modules.PremiumBanner.init({
 			bannerElementClass: '.b-catalog-premium__banner',
 			closeClickElementClass: '.b-catalog-premium__banner .close'
+		});
+
+		var yandexMap = new Modules.YandexMaps.init({
+			mapWrapperId: 'map'
 		});
 	});
 })(jQuery);
