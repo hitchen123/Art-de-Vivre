@@ -13,6 +13,7 @@
     <title>Art de Vivre</title>
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/structure.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/animations.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -21,14 +22,14 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line">
+                <div class="b-top__yellow-line pt-page-heightOn">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
-                            <a href="#">Да</a>
+                            <a class="b-top__yes" href="#">Да</a>
                         </dd>
                         <dd>
-                            <a href="#">Нет</a>
+                            <a class="b-top__no" href="#">Нет</a>
                         </dd>
                     </dl>
                 </div>
@@ -280,7 +281,7 @@
                             <a href="#" class="search-lnk">Поиск</a>
                         </li>
                     </ul>
-                    <div class="b-main-nav__search">
+                    <div class="b-main-nav__search pt-page-heightOff">
                         <div class="search-form cfix">
                             <form id="#">
                                 <input type="text" name="search" />
@@ -322,7 +323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="b-main-nav__bag">
+                    <div class="b-main-nav__bag pt-page-heightOff">
                         <form id="#">
                             <article class="b-main-nav__bag-item cfix">
                                 <h3 class="title">
@@ -397,13 +398,13 @@
             <!--Middle-->
             <section class="b-middle b-contacts">
                 <h1 class="b-contacts__title">Адреса магазинов в <a href="#">Москве</a></h1>
-                <div class="b-contacts__map">
-                    <img src="temp/32.png" />
+                <div id="map" class="b-contacts__map">
+                    <!-- <img src="temp/32.png" />
                     <div class="b-contacts__map-tool-type">
                         <h2>Ковры Персия</h2>
                         <p>Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a></p>
                         
-                    </div>
+                    </div> -->
                 </div>
                 <div class="b-contacts-i">
                     <article class="b-contacts__item">
@@ -651,5 +652,30 @@
         </footer>
         <!--/Bottom-->
     </div>
+    <div class="b-overlay"></div>
+    <div class="b-city-pop-up">
+       <h2 class="title">Выберите город доставки</h2>
+       <ul class="cfix">
+           <li>
+               <a href="#">Москва</a>
+           </li>
+           <li>
+               <a href="#">Ростов-на-Дону</a>
+           </li>
+           <li>
+               <a href="#">Любой другой город РФ</a>
+           </li>
+           <li>
+               <a href="#">Санкт-Петербург</a>
+           </li>
+           <li>
+               <a href="#">Вильнюс</a>
+           </li>
+       </ul>
+       <a href="#" class="close">Закрыть</a>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="styles/js/main.js"></script>
 </body>
 </html>
