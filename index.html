@@ -55,7 +55,7 @@
                                 <li>
                                     <a href="#">О доставке</a>
                                 </li>
-                                <li>
+                                <li class="private-office">
                                     <span>Здравствуйте, Александр!</span>
                                     <a href="#">Личный кабинет</a>
                                     <div class="b-user-from">
@@ -90,7 +90,7 @@
                         <li>
                             <a href="#">Пастельных цветов</a>
                         </li>
-                        <li>
+                        <li class="b-main-nav-dropdown">
                             <a href="#">Премиум ковры ручной работы</a>
                             <div class="b-main-nav__catalog">
                                 <div class="b-main-nav__catalog-i cfix">
@@ -179,7 +179,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="b-main-nav-dropdown">
                             <a href="#">Все ковры</a>
                             <div class="b-main-nav__catalog">
                                 <div class="b-main-nav__catalog-i cfix">
@@ -816,7 +816,151 @@
         </footer>
         <!--/Bottom-->
     </div>
+    <div class="b-overlay-menu"></div>
     <div class="b-overlay"></div>
+    <div class="b-profile">
+        <header class="b-profile__top cfix">
+            <h1 class="title">Личный кабинет</h1>
+            <p>Есть вопросы? Звоните +7 (495) 123-45-67</p>
+        </header>
+        <ul class="b-tabs b-profile__tabs">
+            <li class="active">
+                <a href="#">Мои заказы</a>
+            </li>
+            <li>
+                <a href="#">Личные данные</a>
+            </li>
+        </ul>
+        <div class="b-profile-i">
+            <div class="b-profile__tab active b-profile__orders">
+                <div class="item">
+                    <div class="item-top cfix">
+                        <span>13 января 2016</span>
+                        <span class="c-999">№12343-23</span>
+                        <a href="#">Развернуть</a>
+                        <span class="fl-r">42 034 р.</span>
+                    </div>
+                    <div class="item-middle">
+                        <h3 class="item-title">ВАШ ЗАКАЗ:</h3>
+                        <article class="b-main-nav__bag-item cfix">
+                            <div class="img">
+                                <span>
+                                    <img src="temp/1.jpg">
+                                </span>   
+                            </div>
+                            <h3 class="title">
+                                <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                            </h3>
+                            <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                            <div class="count">1 шт.</div>
+                            <div class="sum">
+                                <strike>13 400</strike>   
+                                <span>10 430 р.</span>
+                            </div>
+                        </article>
+                        <div class="item-i cfix">
+                            <dl>
+                                <dt>АДРЕС ДОСТАВКИ</dt>
+                                <dd>Москва, ул. Лублина 23, кв.12</dd>
+                                <dt>ОПЛАТА</dt>
+                                <dd>Наличными курьеру</dd>
+                                <dt>ДОСТАВКА</dt>
+                                <dd>Бесплатно</dd>
+                            </dl>
+                            <dl>
+                                <dt>ИТОГО</dt>
+                                <dd><strike>13 400</strike> 10 430 р.</dd>
+                            </dl>
+                        </div>
+                    </div>    
+                </div>
+                <div class="item">
+                    <div class="item-top cfix">
+                        <span>13 января 2016</span>
+                        <span class="c-999">№12343-23</span>
+                        <a href="#">Развернуть</a>
+                        <span class="fl-r">42 034 р.</span>
+                    </div>
+                    <div class="item-middle">
+                        <h3 class="item-title">ВАШ ЗАКАЗ:</h3>
+                        <article class="b-main-nav__bag-item cfix">
+                            <div class="img">
+                                <span>
+                                    <img src="temp/1.jpg">
+                                </span>   
+                            </div>
+                            <h3 class="title">
+                                <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                            </h3>
+                            <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                            <div class="count">1 шт.</div>
+                            <div class="sum">
+                                <strike>13 400</strike>   
+                                <span>10 430 р.</span>
+                            </div>
+                        </article>
+                        <div class="item-i cfix">
+                            <dl>
+                                <dt>АДРЕС ДОСТАВКИ</dt>
+                                <dd>Москва, ул. Лублина 23, кв.12</dd>
+                                <dt>ОПЛАТА</dt>
+                                <dd>Наличными курьеру</dd>
+                                <dt>ДОСТАВКА</dt>
+                                <dd>Бесплатно</dd>
+                            </dl>
+                            <dl>
+                                <dt>ИТОГО</dt>
+                                <dd><strike>13 400</strike> 10 430 р.</dd>
+                            </dl>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="b-profile__tab b-profile__account">
+                <div class="b-profile__account-i">
+                    <form id="#">
+                        <h2 class="title">Контактная информация</h2>
+                        <ul class="cfix">
+                            <li>
+                                <label>Представьтесь</label>
+                                <input type="text" name="" />
+                            </li>
+                            <li>
+                                <label>Ваш телефон</label>
+                                <input type="text" name="" />
+                            </li>
+                            <li class="w-100">
+                                <label>Электронная почта</label>
+                                <input type="text" name="" />
+                            </li>
+                        </ul>
+                        <button>
+                            <span>Сохранить</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="b-profile__account-i">
+                    <form id="#">
+                        <h2 class="title">Изменить пароль</h2>
+                        <ul class="cfix">
+                            <li>
+                                <label>Новый пароль</label>
+                                <input type="text" name="" />
+                            </li>
+                            <li>
+                                <label>Пароль еще раз</label>
+                                <input type="text" name="" />
+                            </li>
+                        </ul>
+                        <button>
+                            <span>Изменить пароль</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="close">Закрыть</a>
+    </div>
     <div class="b-coupon-pop-up">
         <h2 class="title">Купон на скидку 5 000 руб в наших магазинах</h2>
         <p>Оставьте свой email и мы вышлем вам сертификат на скидку в размере 5 000 рублей (но не более 20% от стоимости ковра)</p>

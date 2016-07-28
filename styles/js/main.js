@@ -1150,248 +1150,935 @@ Modules.PremiumBanner = (function(self, $){
 		}
 }(Modules.PremiumBanner || {}, jQuery));
 
-// Modules.YandexMaps = (function(self, $, ymaps){
+Modules.YandexMaps = (function(self, $, ymaps){
 	
-// 	var _settings = {
-// 			mapWrapperId: '',
-// 			ajaxUrl: ''
-// 		},
-// 		_data = {
-// 			$mapWrapper: '',
-// 			tooltips: {}
-// 		}
+	var _settings = {
+			mapWrapperId: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$mapWrapper: '',
+			tooltips: {}
+		}
 			
-// 		self.setSettings = function(params){
-// 			$.extend(_settings, params);
+		self.setSettings = function(params){
+			$.extend(_settings, params);
 
-// 			_data.tooltips = [
-// 				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
-// 				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
-// 				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
-// 				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
-// 				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}}
-// 			];
+			_data.tooltips = [
+				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
+				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
+				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
+				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}},
+				{"coordinates": [55.76, 37.64], "properties": {"balloonHeader": "Ковры Персия", "balloonContent": 'Ленинский проспект д.95<br/>Телефон: +7 (499) 131-28-89<br/>Режим работы: 10:00 - 20:00<br/><a href="#">Подробнее ›</a>'}}
+			];
 
-// 			return self;
-// 		}
+			return self;
+		}
 		
-// 		self.setConfig = function(){
-// 			_data.$mapWrapper = $( _settings.mapWrapperId );
+		self.setConfig = function(){
+			_data.$mapWrapper = $( _settings.mapWrapperId );
 
-// 			return self;
-// 		}
+			return self;
+		}
 		
-// 		self.mapInit = function(){
-// 			var myMap = new ymaps.Map(_settings.mapWrapperId, {
-// 			        center: [55.76, 37.64],
-// 			        zoom: 9,
-//             		behaviors: ['default', 'scrollZoom']
-// 			    }, {
-// 			        searchControlProvider: 'yandex#search'
-// 			    }),
-// 			    objectManager = new ymaps.ObjectManager({
-// 			        // Чтобы метки начали кластеризоваться, выставляем опцию.
-// 			        clusterize: true,
-// 			        // ObjectManager принимает те же опции, что и кластеризатор.
-// 			        gridSize: 32
-// 			    });
+		self.mapInit = function(){
+			var myMap = new ymaps.Map(_settings.mapWrapperId, {
+			        center: [55.76, 37.64],
+			        zoom: 9,
+            		behaviors: ['default', 'scrollZoom']
+			    }, {
+			        searchControlProvider: 'yandex#search'
+			    }),
+			    objectManager = new ymaps.ObjectManager({
+			        // Чтобы метки начали кластеризоваться, выставляем опцию.
+			        clusterize: true,
+			        // ObjectManager принимает те же опции, что и кластеризатор.
+			        gridSize: 32
+			    });
 
-// 			// Чтобы задать опции одиночным объектам и кластерам,
-// 			// обратимся к дочерним коллекциям ObjectManager.
-// 			objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-// 			objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-// 			myMap.geoObjects.add(objectManager);
+			// Чтобы задать опции одиночным объектам и кластерам,
+			// обратимся к дочерним коллекциям ObjectManager.
+			objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+			objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+			myMap.geoObjects.add(objectManager);
 
 
-// 			// Создание макета балуна на основе Twitter Bootstrap.
-// 	        MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
-//                     '<div class="b-contacts__map-tool-type">' +
-//                     	'$[[options.contentLayout observeSize minWidth=235 maxWidth=235 maxHeight=350]]' +
-//                     '</div>', {
-// 	                /**
-// 	                 * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
-// 	                 * @function
-// 	                 * @name build
-// 	                 */
-// 	                build: function () {
-// 	                    this.constructor.superclass.build.call(this);
+			// Создание макета балуна на основе Twitter Bootstrap.
+	        MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
+                    '<div class="b-contacts__map-tool-type">' +
+                    	'$[[options.contentLayout observeSize minWidth=235 maxWidth=235 maxHeight=350]]' +
+                    '</div>', {
+	                /**
+	                 * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+	                 * @function
+	                 * @name build
+	                 */
+	                build: function () {
+	                    this.constructor.superclass.build.call(this);
 
-// 	                    this._$element = $('.b-contacts__map-tool-type', this.getParentElement());
+	                    this._$element = $('.b-contacts__map-tool-type', this.getParentElement());
 
-// 	                    this.applyElementOffset();
+	                    this.applyElementOffset();
 
-// 	                    // this._$element.find('.close')
-// 	                    //     .on('click', $.proxy(this.onCloseClick, this));
-// 	                },
+	                    // this._$element.find('.close')
+	                    //     .on('click', $.proxy(this.onCloseClick, this));
+	                },
 
-// 	                /**
-// 	                 * Удаляет содержимое макета из DOM.
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
-// 	                 * @function
-// 	                 * @name clear
-// 	                 */
-// 	                // clear: function () {
-// 	                //     this._$element.find('.close')
-// 	                //         .off('click');
+	                /**
+	                 * Удаляет содержимое макета из DOM.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+	                 * @function
+	                 * @name clear
+	                 */
+	                // clear: function () {
+	                //     this._$element.find('.close')
+	                //         .off('click');
 
-// 	                //     this.constructor.superclass.clear.call(this);
-// 	                // },
+	                //     this.constructor.superclass.clear.call(this);
+	                // },
 
-// 	                /**
-// 	                 * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
-// 	                 * @function
-// 	                 * @name onSublayoutSizeChange
-// 	                 */
-// 	                onSublayoutSizeChange: function () {
-// 	                    MyBalloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+	                /**
+	                 * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name onSublayoutSizeChange
+	                 */
+	                onSublayoutSizeChange: function () {
+	                    MyBalloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
 
-// 	                    if(!this._isElement(this._$element)) {
-// 	                        return;
-// 	                    }
+	                    if(!this._isElement(this._$element)) {
+	                        return;
+	                    }
 
-// 	                    this.applyElementOffset();
+	                    this.applyElementOffset();
 
-// 	                    this.events.fire('shapechange');
-// 	                },
+	                    this.events.fire('shapechange');
+	                },
 
-// 	                /**
-// 	                 * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
-// 	                 * @function
-// 	                 * @name applyElementOffset
-// 	                 */
-// 	                applyElementOffset: function () {
-// 	                    this._$element.css({
-// 	                        left: -(this._$element[0].offsetWidth / 2),
-// 	                        top: -(this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight)
-// 	                    });
-// 	                },
+	                /**
+	                 * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name applyElementOffset
+	                 */
+	                applyElementOffset: function () {
+	                    this._$element.css({
+	                        left: -(this._$element[0].offsetWidth / 2),
+	                        top: -(this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight)
+	                    });
+	                },
 
-// 	                /**
-// 	                 * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
-// 	                 * @function
-// 	                 * @name onCloseClick
-// 	                 */
-// 	                // onCloseClick: function (e) {
-// 	                //     e.preventDefault();
+	                /**
+	                 * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+	                 * @function
+	                 * @name onCloseClick
+	                 */
+	                // onCloseClick: function (e) {
+	                //     e.preventDefault();
 
-// 	                //     this.events.fire('userclose');
-// 	                // },
+	                //     this.events.fire('userclose');
+	                // },
 
-// 	                /**
-// 	                 * Используется для автопозиционирования (balloonAutoPan).
-// 	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
-// 	                 * @function
-// 	                 * @name getClientBounds
-// 	                 * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
-// 	                 */
-// 	                getShape: function () {
-// 	                    if(!this._isElement(this._$element)) {
-// 	                        return MyBalloonLayout.superclass.getShape.call(this);
-// 	                    }
+	                /**
+	                 * Используется для автопозиционирования (balloonAutoPan).
+	                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+	                 * @function
+	                 * @name getClientBounds
+	                 * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+	                 */
+	                getShape: function () {
+	                	console.log(position);
+	                    if(!this._isElement(this._$element)) {
+	                        return MyBalloonLayout.superclass.getShape.call(this);
+	                    }
 
-// 	                    var position = this._$element.position();
+	                    var position = this._$element.position();
+	                    console.log(position);
 
-// 	                    return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
-// 	                        [position.left, position.top], [
-// 	                            position.left + this._$element[0].offsetWidth,
-// 	                            position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
-// 	                        ]
-// 	                    ]));
-// 	                },
+	                    return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+	                        [position.left, position.top], [
+	                            position.left + this._$element[0].offsetWidth,
+	                            position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+	                        ]
+	                    ]));
+	                },
 
-// 	                /**
-// 	                 * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
-// 	                 * @function
-// 	                 * @private
-// 	                 * @name _isElement
-// 	                 * @param {jQuery} [element] Элемент.
-// 	                 * @returns {Boolean} Флаг наличия.
-// 	                 */
-// 	                _isElement: function (element) {
-// 	                    return element && element[0] && element.find('.arrow')[0];
-// 	                }
-// 	            }),
+	                /**
+	                 * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+	                 * @function
+	                 * @private
+	                 * @name _isElement
+	                 * @param {jQuery} [element] Элемент.
+	                 * @returns {Boolean} Флаг наличия.
+	                 */
+	                _isElement: function (element) {
+	                    return element && element[0] && $(element.attr('class') + ' after');
+	                }
+	            }),
 
-// 	    	// Создание вложенного макета содержимого балуна.
-// 	        MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-// 	            '<h2>$[properties.balloonHeader]</h2>' +
-//                 '<p>$[properties.balloonContent]</p>'
-// 	        ),
+	    	// Создание вложенного макета содержимого балуна.
+	        MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+	            '<h2>$[properties.balloonHeader]</h2>' +
+                '<p>$[properties.balloonContent]</p>'
+	        ),
 
-// 		    // Создание метки с пользовательским макетом балуна.
-// 		    $.each(_data.tooltips, function( index, value ) {
-// 		    	console.log(value.coordinates);
-// 		    	console.log(value);
-// 		        myMap.geoObjects.add(new ymaps.Placemark(value.coordinates, {
-// 			            balloonHeader: value.properties.balloonHeader,
-// 			            balloonContent: value.properties.balloonContent
-// 			        }, {
-// 			            balloonShadow: false,
-// 			            balloonLayout: MyBalloonLayout,
-// 			            balloonContentLayout: MyBalloonContentLayout,
-// 			            balloonPanelMaxMapArea: 0
-// 			            // Не скрываем иконку при открытом балуне.
-// 			            // hideIconOnBalloonOpen: false,
-// 			            // И дополнительно смещаем балун, для открытия над иконкой.
-// 			            // balloonOffset: [3, -40]
-// 			        })
-// 		        )
-// 		    });
+		    // Создание метки с пользовательским макетом балуна.
+		    $.each(_data.tooltips, function( index, value ) {
+		        myMap.geoObjects.add(new ymaps.Placemark(value.coordinates, {
+			            balloonHeader: value.properties.balloonHeader,
+			            balloonContent: value.properties.balloonContent
+			        }, {
+			            balloonShadow: false,
+			            balloonLayout: MyBalloonLayout,
+			            balloonContentLayout: MyBalloonContentLayout,
+			            balloonPanelMaxMapArea: 0
+			            // Не скрываем иконку при открытом балуне.
+			            // hideIconOnBalloonOpen: false,
+			            // И дополнительно смещаем балун, для открытия над иконкой.
+			            // balloonOffset: [3, -40]
+			        })
+		        )
+		    });
 
-// 			return self;
-// 		}
+			return self;
+		}
 		
-// 		self.sendAjax = function(){
-// 			$.ajax({
-// 				type : "post",
-// 				url : _settings.ajaxUrl,
-// 				data : {data: {}}	
-// 			}).done(function(data){
-// 				if(data){
-// 					var response = $.parseJSON(data);
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
 					
-// 				}
-// 			}).fail(function(){
+				}
+			}).fail(function(){
 
-// 			}).error(function(jqXHR, status, errorThrown){
-// 				console.log(jqXHR);
-// 				console.log(status);
-// 				console.log(errorThrown);
-// 			});
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
 
-// 			return false;
-// 		}
+			return false;
+		}
 		
-// 		return {
-// 			init: function(params){
-// 				self.setSettings(params).setConfig();
-// 				ymaps.ready(self.mapInit);
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig();
+				if(ymaps != null)
+					ymaps.ready(self.mapInit);
 
-// 				return self;
-// 			}
-// 		}
-// }(Modules.YandexMaps || {}, jQuery, ymaps}));
+				return self;
+			}
+		}
+}(Modules.YandexMaps || {}, jQuery, typeof ymaps != "undefined" ? ymaps : null));
+
+Modules.MenuShadow = (function(self, $){
+	
+	var _settings = {
+			menuItemClass: '',
+			popupOverlayClass: ''
+		},
+		_data = {
+			$menuItem: '',
+			$popupOverlay: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$menuItem = $( _settings.menuItemClass );
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+
+			return self;
+		}
+
+		self.hoverEvent = function(){
+			$(document).on('mouseenter', _settings.menuItemClass, function(e){
+				_data.$popupOverlay.css('top', $('header').height());
+
+				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+				}, 600);
+
+				return false;
+			});
+		
+			return self;
+		}
+
+		self.hoverOutEvent = function(){
+			$(document).on('mouseleave', _settings.menuItemClass, function(){
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 600);
+
+				return false;
+			});
+		
+			return self;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().hoverEvent().hoverOutEvent();
+
+				return self;
+			}
+		}
+}(Modules.MenuShadow || {}, jQuery));
+
+Modules.SignInPopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+				_data.$popupElement.addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(){
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					_data.$popupElement.removeClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.SignInPopup || {}, jQuery));
+
+Modules.SignUpPopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+				_data.$popupElement.addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(){
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					_data.$popupElement.removeClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.SignUpPopup || {}, jQuery));
+
+Modules.DesignerProfileTabs = (function(self, $){
+	
+	var _settings = {
+			tabsWrapperClass: '',
+			tabsContentWrapperClass: '',
+			tabElementClass: '',
+			tabContentElementClass: '',
+			classPrefix: ''
+		},
+		_data = {
+			$tabsWrapper: '',
+			$tabsContentWrapper: '',
+			$tabElement: '',
+			$tabContentElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			
+			_data.$tabsWrapper = $( _settings.tabsWrapperClass );
+			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
+			_data.$tabElement = $( _settings.tabElementClass );
+			_data.$tabContentElement = $( _settings.tabContentElementClass );
+			
+			_data.$tabElement.eq(0).addClass('active');
+			_data.$tabContentElement.eq(0).addClass('active');
+			
+			self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(0));
+
+			return self;
+		}
+		
+		self.fixHeight = function(wrapper, inner){
+			wrapper.height(inner.outerHeight());
+
+			return self;
+		}
+		
+		self.onClickEvent = function(){
+			$(document).on('click', _settings.tabElementClass, function(){
+				var obj = $(this);
+
+				_data.$tabElement.removeClass('active');
+
+				obj.addClass('active');
+				_data.$tabContentElement.removeClass('active').eq( obj.index() ).addClass('active');
+				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(obj.index()));
+
+				return false;
+			});
+
+			return self;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().onClickEvent();
+
+				return self;
+			}
+		}
+}(Modules.DesignerProfileTabs || {}, jQuery));
+
+
+Modules.ProfileTabs = (function(self, $){
+	
+	var _settings = {
+			tabsWrapperClass: '',
+			tabsContentWrapperClass: '',
+			tabElementClass: '',
+			tabContentElementClass: '',
+			classPrefix: ''
+		},
+		_data = {
+			$tabsWrapper: '',
+			$tabsContentWrapper: '',
+			$tabElement: '',
+			$tabContentElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			
+			_data.$tabsWrapper = $( _settings.tabsWrapperClass );
+			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
+			_data.$tabElement = $( _settings.tabElementClass );
+			_data.$tabContentElement = $( _settings.tabContentElementClass );
+			
+			_data.$tabElement.eq(0).addClass('active');
+			_data.$tabContentElement.eq(0).addClass('active');
+			
+			self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(0));
+
+			return self;
+		}
+		
+		self.fixHeight = function(wrapper, inner){
+			wrapper.height(inner.outerHeight());
+
+			return self;
+		}
+		
+		self.onClickEvent = function(){
+			$(document).on('click', _settings.tabElementClass, function(){
+				var obj = $(this);
+
+				_data.$tabElement.removeClass('active');
+
+				obj.addClass('active');
+				_data.$tabContentElement.removeClass('active').eq( obj.index() ).addClass('active');
+				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(obj.index()));
+
+				return false;
+			});
+
+			return self;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().onClickEvent();
+
+				return self;
+			}
+		}
+}(Modules.ProfileTabs || {}, jQuery));
+
+Modules.LoadMoreButton = (function(self, $){
+	
+	var _settings = {
+			itemsWrapperClass: '',
+			buttonLoadClass: '',
+			tabsContentWrapperClass: '',
+			tabContentElementClass: '',
+			count: 4,
+			ajaxUrl: ''
+		},
+		_data = {
+			$itemsWrapper: '',
+			$buttonLoad: '',
+			$tabsContentWrapper: '',
+			$tabContentElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$itemsWrapper = $( _settings.itemsWrapperClass );
+			_data.$buttonLoad = $( _settings.buttonLoadClass );
+			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
+			_data.$tabContentElement = $( _settings.tabContentElementClass );
+
+			return self;
+		}
+
+		self.fixHeight = function(wrapper, inner){
+			wrapper.height(inner.outerHeight());
+
+			return self;
+		}
+		
+		self.onClickEvent = function(){
+			$(document).on('click', _settings.buttonLoadClass, function(){
+				var html = '';
+
+				for (var i = 0; i < _settings.count; i++) {
+				   html += '<tr>' +
+	                            '<td class="col-1">' +
+	                                '<span>02.10.2016</span>' +
+	                            '</td>' +
+	                            '<td class="col-2">' +
+	                                '<span>12343534-УВ</span>'+
+	                            '</td>' +
+	                            '<td class="col-3">' +
+	                                '<span>' +
+	                                    '<img src="temp/39.png">' +
+	                                '</span>' +
+	                            '</td>' +
+	                            '<td class="col-4">' +
+	                                '<b>540 000 р.</b>' +
+	                            '</td>' +
+	                        '</tr>';
+				}
+
+				_data.$itemsWrapper.append(html);
+				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq($(this).index()));
+
+				return false;
+			});
+
+			return self;
+		}
+
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().onClickEvent();
+
+				return self;
+			}
+		}
+}(Modules.LoadMoreButton || {}, jQuery));
+
+
+Modules.ProfilePopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+				_data.$popupElement.addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(){
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					_data.$popupElement.removeClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 600);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.ProfilePopup || {}, jQuery));
+
+Modules.ProfileOrdersPopup = (function(self, $){
+	
+	var _settings = {
+			popupElementClass: '',
+			popupElementWrapperClass: '',
+			openClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupElement: '',
+			$popupElementWrapper: '',
+			$openClickElement: '',
+			trigger: false
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$popupElementWrapper = $( _settings.popupElementWrapperClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+
+			return self;
+		}
+
+		self.fixHeight = function(wrapper, inner){
+			wrapper.height(inner.outerHeight());
+
+			return self;
+		}
+		
+		self.openClosePopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				if(_data.trigger == false){
+					// _data.$popupElement.removeClass('pt-page-heightOff');
+					// _data.$popupElement.addClass('pt-page-heightOn');
+					_data.$popupElement.removeClass('active');
+					$(this).parent().addClass('active');
+
+					self.fixHeight(_data.$popupElementWrapper, _data.$popupElement.parent());
+					_data.trigger = true;
+				} else {
+					// _data.$popupElement.addClass('pt-page-heightOff');
+					// _data.$popupElement.removeClass('pt-page-heightOn');
+					_data.$popupElement.removeClass('active');
+
+					self.fixHeight(_data.$popupElementWrapper, _data.$popupElement.parent());
+					_data.trigger = false;
+				}
+				return false;
+			});
+
+			
+		
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openClosePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.ProfileOrdersPopup || {}, jQuery));
 
 (function($){
-	$(function(){		
+	$(function(){
+		var menuShadow = new Modules.MenuShadow.init({
+			menuItemClass: '.b-main-nav-dropdown',
+			popupOverlayClass: '.b-overlay-menu'
+		});
+
 		var couponPopup = new Modules.CouponPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupElementClass: '.b-coupon-pop-up',
-			openClickElementClass: '.b-middle-store__img a',
+			openClickElementClass: '.b-middle-store__img a, .b-contacts__promo a',
 			closeClickElementClass: '.b-coupon-pop-up .close',
+			ajaxUrl: ''
+		});
+
+		var signInPopup = new Modules.SignInPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupElementClass: '.b-designer__pop-up-signin',
+			openClickElementClass: '.login .signin',
+			closeClickElementClass: '.b-designer__pop-up-signin .close',
+			ajaxUrl: ''
+		});
+
+		var signUpPopup = new Modules.SignUpPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupElementClass: '.b-designer__pop-up-signup',
+			openClickElementClass: '.login .signup',
+			closeClickElementClass: '.b-designer__pop-up-signup .close',
 			ajaxUrl: ''
 		});
 
 		var cityPopup = new Modules.СityPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupElementClass: '.b-city-pop-up',
-			openClickElementClass: '.b-top__reg-i a, .b-top__no',
+			openClickElementClass: '.b-top__reg-i a, .b-top__no, .b-contacts__title a',
 			closeClickElementClass: '.b-city-pop-up .close',
-			cityElementClass: '.b-top__reg-i a',
+			cityElementClass: '.b-top__reg-i a, .b-contacts__title a',
 			topLineClass: '.b-top__yellow-line',
 			topLineCloseClass: '.b-top__yes',
 			ajaxUrl: ''
@@ -1465,10 +2152,46 @@ Modules.PremiumBanner = (function(self, $){
 			closeClickElementClass: '.b-catalog-premium__banner .close'
 		});
 
-		// if (typeof ymaps != "undefined") {
-		// 	var yandexMap = new Modules.YandexMaps.init({
-		// 		mapWrapperId: 'map'
-		// 	});
-		// }
+		var yandexMap = new Modules.YandexMaps.init({
+			mapWrapperId: 'map'
+		});
+
+		var designerProfileTabs = new Modules.DesignerProfileTabs.init({
+			tabsWrapperClass: '.b-tabs',
+			tabsContentWrapperClass: '.b-designer-profile-i',
+			tabElementClass: '.b-tabs > li',
+			tabContentElementClass: '.b-designer-profile-i > div'
+		});
+
+		var profileTabs = new Modules.ProfileTabs.init({
+			tabsWrapperClass: '.b-tabs',
+			tabsContentWrapperClass: '.b-profile-i',
+			tabElementClass: '.b-tabs > li',
+			tabContentElementClass: '.b-profile-i > div'
+		});
+
+		var loadMoreButton = new Modules.LoadMoreButton.init({
+			itemsWrapperClass: '.b-profile__tab.item-2 table',
+			buttonLoadClass: '.b-profile__tab.item-2 .load-more',
+			count: 4,
+			tabsContentWrapperClass: '.b-designer-profile-i',
+			tabContentElementClass: '.b-designer-profile-i > div',
+			ajaxUrl: ''
+		});
+
+		var couponPopup = new Modules.CouponPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupElementClass: '.b-profile',
+			openClickElementClass: '.private-office a',
+			closeClickElementClass: '.b-profile .close',
+			ajaxUrl: ''
+		});
+
+		var profileOrdersPopup = new Modules.ProfileOrdersPopup.init({
+			popupElementClass: '.b-profile__orders .item',
+			popupElementWrapperClass: '.b-profile-i',
+			openClickElementClass: '.b-profile__orders .item-top',
+			ajaxUrl: ''
+		});
 	});
 })(jQuery);
