@@ -13,6 +13,7 @@
     <title>Art de Vivre</title>
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/structure.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/animations.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -280,7 +281,7 @@
                             <a href="#" class="search-lnk">Поиск</a>
                         </li>
                     </ul>
-                    <div class="b-main-nav__search">
+                    <div class="b-main-nav__search pt-page-heightOff">
                         <div class="search-form cfix">
                             <form id="#">
                                 <input type="text" name="search" />
@@ -322,7 +323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="b-main-nav__bag">
+                    <div class="b-main-nav__bag pt-page-heightOff">
                         <form id="#">
                             <article class="b-main-nav__bag-item cfix">
                                 <h3 class="title">
@@ -393,6 +394,139 @@
                 </nav>
             </header>
             <!--/Top-->
+
+            <!--Mobile-Top-->
+            <header class="b-mobile-nav cfix">
+                <div class="b-mobile-nav__logo">
+                    <a href="#">
+                        <img src="styles/images/logo.svg" />
+                    </a>
+                </div>
+                <div class="b-mobile-nav-i cfix">
+                    <a href="#" class="tgl-lnk">
+                        <span>МЕНЮ</span>
+                        <i></i>
+                    </a>
+                    <div class="b-mobile-nav__list">
+                        <div class="b-mobile-nav__list-i">
+                            <div class="search">
+                                <input type="text" name="" />
+                            </div>
+                            <ul class="main-list">
+                                <li>
+                                    <a href="#" class="c-999">Яркие ковры</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">Пастельных цветов</a>
+                                </li>
+                                <li>
+                                    <a href="#">Премиум ковры ручной работы</a>
+                                    <ul class="inner-list">
+                                        <li>
+                                            <a href="#">Современные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Детские</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Дизайнерские</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Современная классика</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Винтажные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Европейское искусство</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Традиционные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Этнические</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Все ковры</a>
+                                    <ul class="inner-list">
+                                        <li>
+                                            <a href="#">Современные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Детские</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Дизайнерские</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Современная классика</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Винтажные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Европейское искусство</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Традиционные</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Этнические</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-D0021B">% Распродажа</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">Адреса магазинов</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">Дизайнерам интерьеров</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tel"> +7 (495) 266-46-91</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="bag-lnk">КОРЗИНА</a>
+                                </li>
+                                <li>
+                                    <a href="#">ВАШ РЕГИОН:<span>МОСКВА</span></a>
+                                    <ul class="inner-list">
+                                        <li>
+                                            <a href="#">Москва</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Ростов-на-Дону</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Санкт-Петербург</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Вильнюс</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Любой другой город РФ</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">АКЦИИ И РАСПРОДАЖИ</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">ДОСТАВКА И ОПЛАТА</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="c-999">ЛИЧНЫЙ КАБИНЕТ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!--/Mobile-Top-->
 
             <!--Middle-->
             <section class="b-middle b-order-sum">
@@ -657,5 +791,7 @@
         </footer>
         <!--/Bottom-->
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="styles/js/main.js"></script>
 </body>
 </html>
