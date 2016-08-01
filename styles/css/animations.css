@@ -1,6 +1,10 @@
 .pt-page-current{
 	visibility: visible;
-	z-index: 10;
+	z-index: 200;
+}
+
+.pt-page-visible{
+	opacity: 1;
 }
 
 .pt-width-height{
@@ -11,15 +15,13 @@
 }
 
 .pt-page-heightOn {
-    max-height: 1000px;
-    transition: max-height .15s ease-in;
+    max-height: 3000px;
+    transition: max-height .2s ease-in;
+    overflow: hidden;
 }
 
 .pt-page-heightOff {
     max-height: 0;
-    margin:0;
-    padding:0;
-    border:none;
     overflow: hidden;
 	transition: max-height .15s ease-out;
 }
@@ -52,6 +54,26 @@
 .pt-page-moveToRight {
 	-webkit-animation: moveToRight .6s ease both;
 	animation: moveToRight .6s ease both;
+}
+
+.pt-page-moveFromLeft-Menu {
+	-webkit-animation: moveFromLeftMenu .6s ease both;
+	animation: moveFromLeftMenu .6s ease both;
+}
+
+.pt-page-moveToLeft-Menu {
+	-webkit-animation: moveToLeftMenu .6s ease both;
+	animation: moveToLeftMenu .6s ease both;
+}
+
+.pt-page-moveFromRight-Menu {
+	-webkit-animation: moveFromRightMenu .6s ease both;
+	animation: moveFromRightMenu .6s ease both;
+}
+
+.pt-page-moveToRight-Menu {
+	-webkit-animation: moveToRightMenu .6s ease both;
+	animation: moveToRightMenu .6s ease both;
 }
 
 .pt-page-moveFromRight {
@@ -153,11 +175,11 @@
 
 @-webkit-keyframes moveToLeft {
 	from { }
-	to { -webkit-transform: translateX(-200%); }
+	to { -webkit-transform: translateX(0); }
 }
 @keyframes moveToLeft {
 	from { }
-	to { -webkit-transform: translateX(-200%); transform: translateX(-200%); }
+	to { -webkit-transform: translateX(0); transform: translateX(0); }
 }
 
 @-webkit-keyframes moveFromLeft {
@@ -175,6 +197,47 @@
 	from { }
 	to { -webkit-transform: translateX(200%); transform: translateX(200%); }
 }
+
+
+
+
+
+
+
+@-webkit-keyframes moveFromLeftMenu {
+	from { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeftMenu {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveToLeftMenu {
+	from { }
+	to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveToLeftMenu {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveFromRightMenu { 
+	from { -webkit-transform: translateX(0); }
+}
+@keyframes moveFromRightMenu { 
+	from { -webkit-transform: translateX(0); transform: translateX(0); }
+}
+
+@-webkit-keyframes moveToRightMenu { 
+	from { }
+	to { -webkit-transform: translateX(0); }
+}
+@keyframes moveToRightMenu { 
+	from { }
+	to { -webkit-transform: translateX(0); transform: translateX(0); }
+}
+
+
+
 
 @-webkit-keyframes moveFromRight {
 	from { -webkit-transform: translateX(200%); }
