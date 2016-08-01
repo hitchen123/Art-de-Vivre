@@ -35,7 +35,7 @@ Modules.CouponPopup = (function(self, $){
 		self.openPopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+				_data.$popupElement.addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
 
 				setTimeout(function(){
 					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
@@ -53,7 +53,7 @@ Modules.CouponPopup = (function(self, $){
 				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 
 				setTimeout(function(){
-					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupElement.removeClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
 					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
 				}, 600);
 				return false;
@@ -91,75 +91,6 @@ Modules.CouponPopup = (function(self, $){
 			}
 		}
 }(Modules.CouponPopup || {}, jQuery));
-
-Modules.MobileMenu = (function(self, $){
-	
-	var _settings = {
-			menuOverlayClass: '',
-			menuElementClass: '',
-			openClickElementClass: '',
-			closeClickElementClass: ''
-		},
-		_data = {
-			$menuOverlay: '',
-			$menuElement: '',
-			$openClickElement: '',
-			$closeClickElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$menuOverlay = $( _settings.menuOverlayClass );
-			_data.$menuElement = $( _settings.menuElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-			_data.$closeClickElement = $( _settings.closeClickElementClass );
-
-			return self;
-		}
-		
-		self.openMenuEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				_data.$menuOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$menuElement.addClass('pt-page-current pt-page-visible pt-page-moveFromLeft-Menu');
-
-				setTimeout(function(){
-					_data.$menuOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					_data.$menuElement.removeClass('pt-page-moveFromLeft-Menu');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.closeMenuEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
-				_data.$menuElement.addClass('pt-page-moveToLeft-Menu');
-				_data.$menuOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
-
-				setTimeout(function(){
-					_data.$menuElement.removeClass('pt-page-current pt-page-visible pt-page-moveToLeft-Menu');
-					_data.$menuOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openMenuEvent().closeMenuEvent();
-
-				return self;
-			}
-		}
-}(Modules.MobileMenu || {}, jQuery));
 
 Modules.СityPopup = (function(self, $){
 	
@@ -204,7 +135,7 @@ Modules.СityPopup = (function(self, $){
 		self.openPopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+				_data.$popupElement.addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
 
 				setTimeout(function(){
 					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
@@ -221,7 +152,7 @@ Modules.СityPopup = (function(self, $){
 			_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 
 			setTimeout(function(){
-				_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupElement.removeClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
 				_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
 			}, 600);
 		
@@ -528,7 +459,7 @@ Modules.CarpetType = (function(self, $){
 			_data.$hoverElement = $( _settings.hoverElementClass );
 			_data.$imageElement = $( _settings.imageElementClass );
 
-			_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+			_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
 			_data.$hoverElement.eq(0).addClass('active');
 
 			return self;
@@ -538,9 +469,9 @@ Modules.CarpetType = (function(self, $){
 			$(document).on('mouseover', _settings.hoverElementClass, function(){
 					var old = _data.$blockElement.find('.active');
 					_data.$hoverElement.removeClass('active');
-					old.children().find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					old.children().find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
 
-					$(this).find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+					$(this).find(_settings.imageElementClass).addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
 					$(this).addClass('active');
 				return false;
 			});
@@ -552,9 +483,9 @@ Modules.CarpetType = (function(self, $){
 			$(document).on('mouseleave', _settings.blockElementClass, function(){
 				var old = _data.$blockElement.find('.active');
 				_data.$hoverElement.removeClass('active');
-				old.find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				old.find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-moveToRight pt-page-moveFromLeft');
 
-				_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+				_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-moveToLeft pt-page-moveFromRight');
 				_data.$hoverElement.eq(0).addClass('active');
 				return false;
 			});
@@ -634,10 +565,10 @@ Modules.CatalogFiltersPopup = (function(self, $){
 					tempOld.siblings(_data.$popupElement).addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 
 					obj.addClass('active');
-					obj.siblings(_data.$popupElement).addClass('pt-page-current pt-page-visible pt-page-moveToTopFade pt-page-moveFromBottomFade');					
+					obj.siblings(_data.$popupElement).addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');					
 
 					setTimeout(function(){
-						tempOld.siblings(_data.$popupElement).removeClass('pt-page-current pt-page-visible pt-page-moveToBottomFade pt-page-moveFromTopFade');
+						tempOld.siblings(_data.$popupElement).removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
 						obj.siblings(_data.$popupElement).removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
 					}, 600);
 
@@ -647,7 +578,7 @@ Modules.CatalogFiltersPopup = (function(self, $){
 				}else{
 					if(_data.trigger == false){
 						obj.addClass('active');
-						obj.siblings(_data.$popupElement).addClass('pt-page-current pt-page-visible pt-page-moveToTopFade pt-page-moveFromBottomFade');
+						obj.siblings(_data.$popupElement).addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
 
 						setTimeout(function(){
 							obj.siblings(_data.$popupElement).removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
@@ -659,7 +590,7 @@ Modules.CatalogFiltersPopup = (function(self, $){
 						
 
 						setTimeout(function(){
-							obj.siblings(_data.$popupElement).removeClass('pt-page-current pt-page-visible pt-page-moveToBottomFade pt-page-moveFromTopFade');
+							obj.siblings(_data.$popupElement).removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
 						}, 600);
 
 						_data.trigger = false;
@@ -693,10 +624,13 @@ Modules.CatalogFiltersPopup = (function(self, $){
 		self.filterItemElementClickEvent = function(){
 			$(document).on('click', _settings.filterItemElementClass + ' > input[type="checkbox"]', function(event){
 				event.stopPropagation();
+				console.log($(this).prop('checked'))
 				if($(this).prop('checked') == true){
 					$('.b-catalog__sub-nav').show();
+					console.log($(this).prop('checked'));
 					$('.tags-list dt').after('<dd class="tags-list__filter" id="' + $(this).parent().attr('class') + '"><span>' + $(this).parent().data('name') + '</span><a href="#" class="del">Удалить</a></dd>');
 				} else{
+					console.log($(this).attr('name'))
 					$('#' + $(this).parent().attr('class')).remove();
 
 					if($(_settings.bottomFilterDeleteClass).length == 0)
@@ -747,7 +681,7 @@ Modules.CatalogFiltersPopup = (function(self, $){
 					_data.trigger = false;
 
 					setTimeout(function(){
-						_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToBottomFade pt-page-moveFromTopFade');
+						_data.$popupElement.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
 					}, 600);
 
 				    return false;
@@ -786,235 +720,6 @@ Modules.CatalogFiltersPopup = (function(self, $){
 			}
 		}
 }(Modules.CatalogFiltersPopup || {}, jQuery));
-
-Modules.MobileMenuItem = (function(self, $){
-	
-	var _settings = {
-			popupElementClass: '',
-			openClickElementClass: '',
-			cityElementClass: '',
-			cityMenuItemClass: ''
-		},
-		_data = {
-			$popupElement: '',
-			$openClickElement: '',
-			$lastClickedElement: null,
-			$cityElement: null,
-			$cityMenuItem: null,
-			trigger: false
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-			_data.$cityElement = $( _settings.cityElementClass );
-			_data.$cityMenuItem = $( _settings.cityMenuItemClass );
-
-			return self;
-		}
-		
-		self.openClosePopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				var obj = $(this);
-
-				if(_data.$lastClickedElement == null){
-					_data.$lastClickedElement = obj;
-				}
-
-				if(_data.$lastClickedElement.get(0) != obj.get(0)){
-					var tempOld = _data.$lastClickedElement;
-
-					tempOld.siblings(_data.$popupElement).removeClass('pt-page-heightOn active').addClass('pt-page-heightOff');
-
-					obj.siblings(_data.$popupElement).removeClass('pt-page-heightOff').addClass('pt-page-heightOn active');
-
-					_data.trigger = true;
-
-					_data.$lastClickedElement = obj;
-				}else{
-					if(_data.trigger == false){
-						$(this).siblings(_data.$popupElement).removeClass('pt-page-heightOff');
-						$(this).siblings(_data.$popupElement).addClass('pt-page-heightOn active');
-						_data.trigger = true;
-					} else {
-						$(this).siblings(_data.$popupElement).addClass('pt-page-heightOff');
-						$(this).siblings(_data.$popupElement).removeClass('pt-page-heightOn active');
-						_data.trigger = false;
-					}
-
-						_data.$lastClickedElement = obj;
-					}
-
-				return false;
-			});
-		
-			return self;
-		}
-
-		self.chooseCityEvent = function(){
-			$(document).on('click', _settings.cityMenuItemClass, function(){
-				_data.$cityElement.text($(this).text());
-
-				return false;
-			});
-			
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openClosePopupEvent().chooseCityEvent();
-
-				return self;
-			}
-		}
-}(Modules.MobileMenuItem || {}, jQuery));
-
-Modules.ItemMobileTabs = (function(self, $){
-	
-	var _settings = {
-			popupElementClass: '',
-			openClickElementClass: ''
-		},
-		_data = {
-			$popupElement: '',
-			$openClickElement: '',
-			$lastClickedElement: null,
-			trigger: false
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-
-			return self;
-		}
-		
-		self.openClosePopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				var obj = $(this);
-
-				_data.$openClickElement.removeClass('active');
-
-				if(_data.$lastClickedElement == null){
-					_data.$lastClickedElement = obj;
-				}
-
-				if(_data.$lastClickedElement.get(0) != obj.get(0)){
-					var tempOld = _data.$lastClickedElement;
-
-					tempOld.siblings(_data.$popupElement).removeClass('pt-page-heightOn active').addClass('pt-page-heightOff');
-
-					obj.siblings(_data.$popupElement).removeClass('pt-page-heightOff').addClass('pt-page-heightOn active');
-
-					$(this).addClass('active');
-
-					_data.trigger = true;
-
-					_data.$lastClickedElement = obj;
-				}else{
-					if(_data.trigger == false){
-						$(this).siblings(_data.$popupElement).removeClass('pt-page-heightOff');
-						$(this).siblings(_data.$popupElement).addClass('pt-page-heightOn active');
-						$(this).addClass('active');
-
-						_data.trigger = true;
-					} else {
-						$(this).siblings(_data.$popupElement).addClass('pt-page-heightOff');
-						$(this).siblings(_data.$popupElement).removeClass('pt-page-heightOn active');
-						_data.trigger = false;
-					}
-
-						_data.$lastClickedElement = obj;
-					}
-
-				return false;
-			});
-		
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openClosePopupEvent();
-
-				return self;
-			}
-		}
-}(Modules.ItemMobileTabs || {}, jQuery));
-
-Modules.FixedButton = (function(self, $){
-	
-	var _settings = {
-			buttonElementClass: ''
-		},
-		_data = {
-			$buttonElement: '',
-			$offset: 0
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$buttonElement = $( _settings.buttonElementClass );
-
-			var offset = _data.$buttonElement.offset();
-			_data.$offset = offset.top;
-
-			return self;
-		}
-		
-		self.scrollEvent = function(){
-			$(window).on('scroll', function(e){
-				e.preventDefault();
-
-			    if ($(window).scrollTop() > _data.$offset && $(window).scrollTop() < $('footer').offset().top - _data.$buttonElement.outerHeight()){
-			      _data.$buttonElement.css({
-			        'position': 'fixed',
-			        'top': '0px',
-			        'z-index': '150'
-			      });
-			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
-			      _data.$buttonElement.css({
-			        'position': 'absolute',
-			        'top': $('footer').offset().top - _data.$buttonElement.outerHeight() + 'px',
-			        'z-index': '150'
-			      });
-				} else {
-					_data.$buttonElement.css({
-				        'position': 'relative',
-				        'top': 'auto'
-				      });
-				}
-			});
-		
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().scrollEvent();
-
-				return self;
-			}
-		}
-}(Modules.FixedButton || {}, jQuery));
 
 Modules.ProductImageFilter = (function(self, $){
 	
@@ -1293,79 +998,6 @@ Modules.ProductAdd = (function(self, $){
 			}
 		}
 }(Modules.ProductAdd || {}, jQuery));
-
-Modules.ProductItemAdd = (function(self, $){
-	
-	var _settings = {
-			basketElementClass: '',
-			addButtonElementClass: '',
-			productImageClass: '',
-			productItemClass: ''
-		},
-		_data = {
-			$basketElement: '',
-			$addButtonElement: '',
-			$productImage: '',
-			$productItem: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$basketElement = $( _settings.basketElementClass );
-			_data.$addButtonElement = $( _settings.addButtonElementClass );
-			_data.$productItem = $( _settings.productItemClass );
-
-			return self;
-		}
-		
-		self.addBasketClickEvent = function(){
-			$(document).on('click', _settings.addButtonElementClass, function(){
-			    var divider = 3;
-			    _data.$productImage = $(this).closest(_data.$productItem).find(_settings.productImageClass);
-			    var flyerClone = _data.$productImage.clone();
-
-			    $(flyerClone).css({position: 'absolute', top: _data.$productImage.offset().top + "px", left: _data.$productImage.offset().left + "px", opacity: 1, 'z-index': 1000});
-			    $('body').append($(flyerClone));
-
-			    var gotoX = _data.$basketElement.offset().left + (_data.$basketElement.width() / 2) - (_data.$productImage.width()/divider)/2;
-			    var gotoY = _data.$basketElement.offset().top + (_data.$basketElement.height() / 2) - (_data.$productImage.height()/divider)/2;
-			     
-			    $(flyerClone).animate({
-			        opacity: 0.4,
-			        left: gotoX,
-			        top: gotoY,
-			        width: _data.$productImage.width()/divider,
-			        height: _data.$productImage.height()/divider
-			    }, 700,
-			    function () {
-			        _data.$basketElement.fadeOut('fast', function () {
-			            _data.$basketElement.fadeIn('fast', function () {
-			                $(flyerClone).fadeOut('fast', function () {
-			                    $(flyerClone).remove();
-			                });
-			            });
-			        });
-			    });
-
-				return false;
-			});
-		
-			return self;
-		}
-
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().addBasketClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.ProductItemAdd || {}, jQuery));
 
 Modules.TopBottomButton = (function(self, $){
 	
@@ -1657,11 +1289,13 @@ Modules.YandexMaps = (function(self, $, ymaps){
 	                 * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
 	                 */
 	                getShape: function () {
+	                	console.log(position);
 	                    if(!this._isElement(this._$element)) {
 	                        return MyBalloonLayout.superclass.getShape.call(this);
 	                    }
 
 	                    var position = this._$element.position();
+	                    console.log(position);
 
 	                    return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
 	                        [position.left, position.top], [
@@ -1680,7 +1314,7 @@ Modules.YandexMaps = (function(self, $, ymaps){
 	                 * @returns {Boolean} Флаг наличия.
 	                 */
 	                _isElement: function (element) {
-	                    return element && element[0] && $(element.attr('class') + ' after');
+	                    return element && element[0] && element.find('.arrow')[0];
 	                }
 	            }),
 
@@ -1743,815 +1377,22 @@ Modules.YandexMaps = (function(self, $, ymaps){
 		}
 }(Modules.YandexMaps || {}, jQuery, typeof ymaps != "undefined" ? ymaps : null));
 
-Modules.MenuShadow = (function(self, $){
-	
-	var _settings = {
-			menuItemClass: '',
-			popupOverlayClass: ''
-		},
-		_data = {
-			$menuItem: '',
-			$popupOverlay: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$menuItem = $( _settings.menuItemClass );
-			_data.$popupOverlay = $( _settings.popupOverlayClass );
-
-			return self;
-		}
-
-		self.hoverEvent = function(){
-			$(document).on('mouseenter', _settings.menuItemClass, function(e){
-				_data.$popupOverlay.css('top', $('header').height());
-
-				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-
-				setTimeout(function(){
-					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				}, 600);
-
-				return false;
-			});
-		
-			return self;
-		}
-
-		self.hoverOutEvent = function(){
-			$(document).on('mouseleave', _settings.menuItemClass, function(){
-				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
-
-				setTimeout(function(){
-					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-				}, 600);
-
-				return false;
-			});
-		
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().hoverEvent().hoverOutEvent();
-
-				return self;
-			}
-		}
-}(Modules.MenuShadow || {}, jQuery));
-
-Modules.SignInPopup = (function(self, $){
-	
-	var _settings = {
-			popupOverlayClass: '',
-			popupElementClass: '',
-			openClickElementClass: '',
-			closeClickElementClass: '',
-			ajaxUrl: ''
-		},
-		_data = {
-			$popupOverlay: '',
-			$popupElement: '',
-			$openClickElement: '',
-			$closeClickElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupOverlay = $( _settings.popupOverlayClass );
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-			_data.$closeClickElement = $( _settings.closeClickElementClass );
-
-			return self;
-		}
-		
-		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-
-				setTimeout(function(){
-					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.closePopupEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
-				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
-				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
-
-				setTimeout(function(){
-					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
-					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.sendAjax = function(){
-			$.ajax({
-				type : "post",
-				url : _settings.ajaxUrl,
-				data : {data: {}}	
-			}).done(function(data){
-				if(data){
-					var response = $.parseJSON(data);
-					
-				}
-			}).fail(function(){
-
-			}).error(function(jqXHR, status, errorThrown){
-				console.log(jqXHR);
-				console.log(status);
-				console.log(errorThrown);
-			});
-
-			return false;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
-
-				return self;
-			}
-		}
-}(Modules.SignInPopup || {}, jQuery));
-
-Modules.SignUpPopup = (function(self, $){
-	
-	var _settings = {
-			popupOverlayClass: '',
-			popupElementClass: '',
-			openClickElementClass: '',
-			closeClickElementClass: '',
-			ajaxUrl: ''
-		},
-		_data = {
-			$popupOverlay: '',
-			$popupElement: '',
-			$openClickElement: '',
-			$closeClickElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupOverlay = $( _settings.popupOverlayClass );
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-			_data.$closeClickElement = $( _settings.closeClickElementClass );
-
-			return self;
-		}
-		
-		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-
-				setTimeout(function(){
-					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.closePopupEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
-				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
-				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
-
-				setTimeout(function(){
-					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
-					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.sendAjax = function(){
-			$.ajax({
-				type : "post",
-				url : _settings.ajaxUrl,
-				data : {data: {}}	
-			}).done(function(data){
-				if(data){
-					var response = $.parseJSON(data);
-					
-				}
-			}).fail(function(){
-
-			}).error(function(jqXHR, status, errorThrown){
-				console.log(jqXHR);
-				console.log(status);
-				console.log(errorThrown);
-			});
-
-			return false;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
-
-				return self;
-			}
-		}
-}(Modules.SignUpPopup || {}, jQuery));
-
-Modules.DesignerProfileTabs = (function(self, $){
-	
-	var _settings = {
-			tabsWrapperClass: '',
-			tabsContentWrapperClass: '',
-			tabElementClass: '',
-			tabContentElementClass: '',
-			classPrefix: ''
-		},
-		_data = {
-			$tabsWrapper: '',
-			$tabsContentWrapper: '',
-			$tabElement: '',
-			$tabContentElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			
-			_data.$tabsWrapper = $( _settings.tabsWrapperClass );
-			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
-			_data.$tabElement = $( _settings.tabElementClass );
-			_data.$tabContentElement = $( _settings.tabContentElementClass );
-			
-			_data.$tabElement.eq(0).addClass('active');
-			_data.$tabContentElement.eq(0).addClass('active');
-			
-			self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(0));
-
-			return self;
-		}
-		
-		self.fixHeight = function(wrapper, inner){
-			wrapper.height(inner.outerHeight());
-
-			return self;
-		}
-		
-		self.onClickEvent = function(){
-			$(document).on('click', _settings.tabElementClass, function(){
-				var obj = $(this);
-
-				_data.$tabElement.removeClass('active');
-
-				obj.addClass('active');
-				_data.$tabContentElement.removeClass('active').eq( obj.index() ).addClass('active');
-				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(obj.index()));
-
-				return false;
-			});
-
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().onClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.DesignerProfileTabs || {}, jQuery));
-
-Modules.ItemTabs = (function(self, $){
-	
-	var _settings = {
-			tabsWrapperClass: '',
-			tabsContentWrapperClass: '',
-			tabElementClass: '',
-			tabContentElementClass: '',
-			classPrefix: ''
-		},
-		_data = {
-			$tabsWrapper: '',
-			$tabsContentWrapper: '',
-			$tabElement: '',
-			$tabContentElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			
-			_data.$tabsWrapper = $( _settings.tabsWrapperClass );
-			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
-			_data.$tabElement = $( _settings.tabElementClass );
-			_data.$tabContentElement = $( _settings.tabContentElementClass );
-			
-			_data.$tabElement.eq(0).addClass('active');
-			_data.$tabContentElement.eq(0).addClass('active');
-			
-			self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(0));
-
-			return self;
-		}
-		
-		self.fixHeight = function(wrapper, inner){
-			wrapper.height(inner.outerHeight());
-
-			return self;
-		}
-		
-		self.onClickEvent = function(){
-			$(document).on('click', _settings.tabElementClass, function(){
-				var obj = $(this);
-
-				_data.$tabElement.removeClass('active');
-
-				obj.addClass('active');
-				_data.$tabContentElement.removeClass('active').eq( obj.index() ).addClass('active');
-				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(obj.index()));
-
-				return false;
-			});
-
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().onClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.ItemTabs || {}, jQuery));
-
-Modules.ProfileTabs = (function(self, $){
-	
-	var _settings = {
-			tabsWrapperClass: '',
-			tabsContentWrapperClass: '',
-			tabElementClass: '',
-			tabContentElementClass: '',
-			classPrefix: ''
-		},
-		_data = {
-			$tabsWrapper: '',
-			$tabsContentWrapper: '',
-			$tabElement: '',
-			$tabContentElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			
-			_data.$tabsWrapper = $( _settings.tabsWrapperClass );
-			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
-			_data.$tabElement = $( _settings.tabElementClass );
-			_data.$tabContentElement = $( _settings.tabContentElementClass );
-			
-			_data.$tabElement.eq(0).addClass('active');
-			_data.$tabContentElement.eq(0).addClass('active');
-			
-			self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(0));
-
-			return self;
-		}
-		
-		self.fixHeight = function(wrapper, inner){
-			wrapper.height(inner.outerHeight());
-
-			return self;
-		}
-		
-		self.onClickEvent = function(){
-			$(document).on('click', _settings.tabElementClass, function(){
-				var obj = $(this);
-
-				_data.$tabElement.removeClass('active');
-
-				obj.addClass('active');
-				_data.$tabContentElement.removeClass('active').eq( obj.index() ).addClass('active');
-				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq(obj.index()));
-
-				return false;
-			});
-
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().onClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.ProfileTabs || {}, jQuery));
-
-Modules.LoadMoreButton = (function(self, $){
-	
-	var _settings = {
-			itemsWrapperClass: '',
-			buttonLoadClass: '',
-			tabsContentWrapperClass: '',
-			tabContentElementClass: '',
-			count: 4,
-			ajaxUrl: ''
-		},
-		_data = {
-			$itemsWrapper: '',
-			$buttonLoad: '',
-			$tabsContentWrapper: '',
-			$tabContentElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$itemsWrapper = $( _settings.itemsWrapperClass );
-			_data.$buttonLoad = $( _settings.buttonLoadClass );
-			_data.$tabsContentWrapper = $( _settings.tabsContentWrapperClass );
-			_data.$tabContentElement = $( _settings.tabContentElementClass );
-
-			return self;
-		}
-
-		self.fixHeight = function(wrapper, inner){
-			wrapper.height(inner.outerHeight());
-
-			return self;
-		}
-		
-		self.onClickEvent = function(){
-			$(document).on('click', _settings.buttonLoadClass, function(){
-				var html = '';
-
-				for (var i = 0; i < _settings.count; i++) {
-				   html += '<tr>' +
-	                            '<td class="col-1">' +
-	                                '<span>02.10.2016</span>' +
-	                            '</td>' +
-	                            '<td class="col-2">' +
-	                                '<span>12343534-УВ</span>'+
-	                            '</td>' +
-	                            '<td class="col-3">' +
-	                                '<span>' +
-	                                    '<img src="temp/39.png">' +
-	                                '</span>' +
-	                            '</td>' +
-	                            '<td class="col-4">' +
-	                                '<b>540 000 р.</b>' +
-	                            '</td>' +
-	                        '</tr>';
-				}
-
-				_data.$itemsWrapper.append(html);
-				self.fixHeight(_data.$tabsContentWrapper, _data.$tabContentElement.eq($(this).index()));
-
-				return false;
-			});
-
-			return self;
-		}
-
-		self.sendAjax = function(){
-			$.ajax({
-				type : "post",
-				url : _settings.ajaxUrl,
-				data : {data: {}}	
-			}).done(function(data){
-				if(data){
-					var response = $.parseJSON(data);
-					
-				}
-			}).fail(function(){
-
-			}).error(function(jqXHR, status, errorThrown){
-				console.log(jqXHR);
-				console.log(status);
-				console.log(errorThrown);
-			});
-
-			return false;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().onClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.LoadMoreButton || {}, jQuery));
-
-
-Modules.ProfilePopup = (function(self, $){
-	
-	var _settings = {
-			popupOverlayClass: '',
-			popupElementClass: '',
-			openClickElementClass: '',
-			closeClickElementClass: '',
-			ajaxUrl: ''
-		},
-		_data = {
-			$popupOverlay: '',
-			$popupElement: '',
-			$openClickElement: '',
-			$closeClickElement: ''
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupOverlay = $( _settings.popupOverlayClass );
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-			_data.$closeClickElement = $( _settings.closeClickElementClass );
-
-			return self;
-		}
-		
-		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-
-				setTimeout(function(){
-					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.closePopupEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
-				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
-				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
-
-				setTimeout(function(){
-					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
-					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-				}, 600);
-				return false;
-			});
-			
-			return self;
-		}
-		
-		self.sendAjax = function(){
-			$.ajax({
-				type : "post",
-				url : _settings.ajaxUrl,
-				data : {data: {}}	
-			}).done(function(data){
-				if(data){
-					var response = $.parseJSON(data);
-					
-				}
-			}).fail(function(){
-
-			}).error(function(jqXHR, status, errorThrown){
-				console.log(jqXHR);
-				console.log(status);
-				console.log(errorThrown);
-			});
-
-			return false;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
-
-				return self;
-			}
-		}
-}(Modules.ProfilePopup || {}, jQuery));
-
-Modules.ProfileOrdersPopup = (function(self, $){
-	
-	var _settings = {
-			popupElementClass: '',
-			popupElementWrapperClass: '',
-			openClickElementClass: '',
-			ajaxUrl: ''
-		},
-		_data = {
-			$popupElement: '',
-			$popupElementWrapper: '',
-			$openClickElement: '',
-			trigger: false
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$popupElement = $( _settings.popupElementClass );
-			_data.$popupElementWrapper = $( _settings.popupElementWrapperClass );
-			_data.$openClickElement = $( _settings.openClickElementClass );
-
-			return self;
-		}
-
-		self.fixHeight = function(wrapper, inner){
-			wrapper.height(inner.outerHeight());
-
-			return self;
-		}
-		
-		self.openClosePopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				if(_data.trigger == false){
-					// _data.$popupElement.removeClass('pt-page-heightOff');
-					// _data.$popupElement.addClass('pt-page-heightOn');
-					_data.$popupElement.removeClass('active');
-					$(this).parent().addClass('active');
-
-					self.fixHeight(_data.$popupElementWrapper, _data.$popupElement.parent());
-					_data.trigger = true;
-				} else {
-					// _data.$popupElement.addClass('pt-page-heightOff');
-					// _data.$popupElement.removeClass('pt-page-heightOn');
-					_data.$popupElement.removeClass('active');
-
-					self.fixHeight(_data.$popupElementWrapper, _data.$popupElement.parent());
-					_data.trigger = false;
-				}
-				return false;
-			});
-
-			
-		
-			return self;
-		}
-		
-		self.sendAjax = function(){
-			$.ajax({
-				type : "post",
-				url : _settings.ajaxUrl,
-				data : {data: {}}	
-			}).done(function(data){
-				if(data){
-					var response = $.parseJSON(data);
-					
-				}
-			}).fail(function(){
-
-			}).error(function(jqXHR, status, errorThrown){
-				console.log(jqXHR);
-				console.log(status);
-				console.log(errorThrown);
-			});
-
-			return false;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().openClosePopupEvent();
-
-				return self;
-			}
-		}
-}(Modules.ProfileOrdersPopup || {}, jQuery));
-
-Modules.SizeProductButton = (function(self, $){
-	
-	var _settings = {
-			sizeButtonClass: ''
-		},
-		_data = {
-		}
-			
-		self.setSettings = function(params){
-			$.extend(_settings, params);
-
-			return self;
-		}
-		
-		self.setConfig = function(){
-			_data.$sizeButton = $( _settings.sizeButtonClass );
-
-			return self;
-		}
-
-		self.sizeButtonClickEvent = function(){
-			$(document).on('click', _settings.sizeButtonClass, function(e){
-				_data.$sizeButton.removeClass('active');
-				$(this).addClass('active');
-
-				return false;
-			});
-
-			return self;
-		}
-		
-		return {
-			init: function(params){
-				self.setSettings(params).setConfig().sizeButtonClickEvent();
-
-				return self;
-			}
-		}
-}(Modules.SizeProductButton || {}, jQuery));
-
 (function($){
-	$(function(){
-		var menuShadow = new Modules.MenuShadow.init({
-			menuItemClass: '.b-main-nav-dropdown',
-			popupOverlayClass: '.b-overlay-menu'
-		});
-
+	$(function(){		
 		var couponPopup = new Modules.CouponPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupElementClass: '.b-coupon-pop-up',
-			openClickElementClass: '.b-middle-store__img a, .b-contacts__promo a',
+			openClickElementClass: '.b-middle-store__img a',
 			closeClickElementClass: '.b-coupon-pop-up .close',
-			ajaxUrl: ''
-		});
-
-		var signInPopup = new Modules.SignInPopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupElementClass: '.b-designer__pop-up-signin',
-			openClickElementClass: '.login .signin',
-			closeClickElementClass: '.b-designer__pop-up-signin .close',
-			ajaxUrl: ''
-		});
-
-		var signUpPopup = new Modules.SignUpPopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupElementClass: '.b-designer__pop-up-signup',
-			openClickElementClass: '.login .signup',
-			closeClickElementClass: '.b-designer__pop-up-signup .close',
 			ajaxUrl: ''
 		});
 
 		var cityPopup = new Modules.СityPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupElementClass: '.b-city-pop-up',
-			openClickElementClass: '.b-top__reg-i a, .b-top__no, .b-contacts__title a, .b-item__r-c .title-2 a',
+			openClickElementClass: '.b-top__reg-i a, .b-top__no',
 			closeClickElementClass: '.b-city-pop-up .close',
-			cityElementClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a',
+			cityElementClass: '.b-top__reg-i a',
 			topLineClass: '.b-top__yellow-line',
 			topLineCloseClass: '.b-top__yes',
 			ajaxUrl: ''
@@ -2562,18 +1403,6 @@ Modules.SizeProductButton = (function(self, $){
 			openClickElementClass: '.search-lnk',
 			clearElementClass: '.b-main-nav__search .del',
 			ajaxUrl: ''
-		});
-
-		var mobileMenuItem = new Modules.MobileMenuItem.init({
-			popupElementClass: '.inner-list',
-			openClickElementClass: '.open-close-menu-item > a',
-			cityElementClass: '.mobile-menu-city-name',
-			cityMenuItemClass: '.mobile-menu-city li a'
-		});
-
-		var itemMobileTabs = new Modules.ItemMobileTabs.init({
-			popupElementClass: '.b-item-mob__tab',
-			openClickElementClass: '.b-item-mob-tabs li > a'
 		});
 
 		var basketPopup = new Modules.BasketPopup.init({
@@ -2629,13 +1458,6 @@ Modules.SizeProductButton = (function(self, $){
 			productItemClass: '.b-catalog__item'
 		});
 
-		var productItemAdd = new Modules.ProductItemAdd.init({
-			basketElementClass: '.fl-r',
-			addButtonElementClass: '.add-item-lnk',
-			productImageClass: '.b-item__gallery img:eq(0), .b-item__middle-i .r-c img:eq(0)',
-			productItemClass: '.b-item__top, .b-item__middle'
-		});
-
 		var topBottomButton = new Modules.TopBottomButton.init({
 		});
 
@@ -2647,86 +1469,5 @@ Modules.SizeProductButton = (function(self, $){
 		var yandexMap = new Modules.YandexMaps.init({
 			mapWrapperId: 'map'
 		});
-
-		var profileTabs = new Modules.ProfileTabs.init({
-			tabsWrapperClass: '.b-profile__tabs',
-			tabsContentWrapperClass: '.b-profile-i',
-			tabElementClass: '.b-profile__tabs > li',
-			tabContentElementClass: '.b-profile-i > div'
-		});
-
-		var designerProfileTabs = new Modules.DesignerProfileTabs.init({
-			tabsWrapperClass: '.b-designer-profile-tabs',
-			tabsContentWrapperClass: '.b-designer-profile-i',
-			tabElementClass: '.b-designer-profile-tabs > li',
-			tabContentElementClass: '.b-designer-profile-i > div'
-		});
-
-		var itemTabs = new Modules.ItemTabs.init({
-			tabsWrapperClass: '.b-item-tabs',
-			tabsContentWrapperClass: '.b-item__middle',
-			tabElementClass: '.b-item-tabs > li',
-			tabContentElementClass: '.b-item__middle .b-item__tab'
-		});
-
-		var loadMoreButton = new Modules.LoadMoreButton.init({
-			itemsWrapperClass: '.b-profile__tab.item-2 table',
-			buttonLoadClass: '.b-profile__tab.item-2 .load-more',
-			count: 4,
-			tabsContentWrapperClass: '.b-designer-profile-i',
-			tabContentElementClass: '.b-designer-profile-i > div',
-			ajaxUrl: ''
-		});
-
-		var profilePopup = new Modules.ProfilePopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupElementClass: '.b-profile',
-			openClickElementClass: '.private-office a',
-			closeClickElementClass: '.b-profile .close',
-			ajaxUrl: ''
-		});
-
-		var profileOrdersPopup = new Modules.ProfileOrdersPopup.init({
-			popupElementClass: '.b-profile__orders .item',
-			popupElementWrapperClass: '.b-profile-i',
-			openClickElementClass: '.b-profile__orders .item-top',
-			ajaxUrl: ''
-		});
-
-		var sizeProductButton = new Modules.SizeProductButton.init({
-			sizeButtonClass: '.b-item__r-c .size dd'
-		});
-
-		var fixedButton = new Modules.FixedButton.init({
-			buttonElementClass: '.b-middle .b-back-lnk'
-		});
-
-		if($('.owl-carousel').length > 0){
-			$('.owl-carousel').owlCarousel({
-			    loop:true,
-			    margin:10,
-			    nav:true,
-			    responsive:{
-			        0:{
-			            items:1
-			        },
-			        600:{
-			            items:3
-			        },
-			        1000:{
-			            items:5
-			        }
-			    }
-			})
-		}
-
-		if($(document).width() < 1024){
-			var mobileMenu = new Modules.MobileMenu.init({
-				menuOverlayClass: '.b-overlay-mobile-menu',
-				menuElementClass: '.b-mobile-nav__list',
-				openClickElementClass: '.mobile-menu-link',
-				closeClickElementClass: '.b-overlay-mobile-menu'
-			});
-		}
 	});
 })(jQuery);
