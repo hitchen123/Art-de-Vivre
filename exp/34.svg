@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="8px" height="6px" viewBox="0 0 8 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="13px" height="6px" viewBox="0 0 13 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 39 (31667) - http://www.bohemiancoding.com/sketch -->
-    <title>Group</title>
+    <title>Combined Shape</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Каталог" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Каталог-#mobile" transform="translate(-100.000000, -233.000000)" fill="#4A4A4A">
-            <g id="Group-2" transform="translate(35.000000, 229.000000)">
-                <g id="Group" transform="translate(68.535534, 5.535534) rotate(-45.000000) translate(-68.535534, -5.535534) translate(66.035534, 3.035534)">
-                    <rect id="Rectangle-60" x="5.68434189e-14" y="5.68434189e-14" width="1" height="5"></rect>
-                    <rect id="Rectangle-60-Copy" transform="translate(2.500000, 4.500000) rotate(-90.000000) translate(-2.500000, -4.500000) " x="2" y="2" width="1" height="5"></rect>
-                </g>
+        <g id="Каталог-#UI2" transform="translate(-77.000000, -3452.000000)" fill="#BFBFBF">
+            <g id="Group-35" transform="translate(61.000000, 3452.000000)">
+                <path d="M28.8273051,6 L23.1213757,0.294070597 C22.728054,-0.0992510422 22.0967941,-0.0967940982 21.7059294,0.294070597 L16,6 L28.8273051,6 Z" id="Combined-Shape"></path>
             </g>
         </g>
     </g>
