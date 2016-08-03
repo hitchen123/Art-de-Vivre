@@ -1,6 +1,13 @@
 .pt-page-current{
 	visibility: visible;
-	z-index: 10;
+}
+
+.pt-page-current-wrapper{
+	overflow-y:scroll;overflow-x:hidden
+}
+
+.pt-page-visible{
+	opacity: 1;
 }
 
 .pt-width-height{
@@ -11,15 +18,13 @@
 }
 
 .pt-page-heightOn {
-    max-height: 1000px;
-    transition: max-height .15s ease-in;
+    max-height: 3000px;
+    transition: max-height .2s ease-in;
+    overflow: hidden;
 }
 
 .pt-page-heightOff {
     max-height: 0;
-    margin:0;
-    padding:0;
-    border:none;
     overflow: hidden;
 	transition: max-height .15s ease-out;
 }
@@ -28,123 +33,143 @@
     max-height: 0;
     overflow: hidden;
 	-webkit-transition: max-height .15s ease-out;
-	-webkit-transition-delay: .6s;
+	-webkit-transition-delay: .4s;
 	-o-transition: max-height .15s ease-out;
-	-o-transition-delay: .6s;
+	-o-transition-delay: .4s;
 	-moz-transition: max-height .15s ease-out;
-	-moz-transition-delay: .6s;
+	-moz-transition-delay: .4s;
 	transition: max-height .15s ease-out;
-	transition-delay: .6s;
+	transition-delay: .4s;
 }
 
 /* move from / to  */
 
 .pt-page-moveToLeft {
-	-webkit-animation: moveToLeft .6s ease both;
-	animation: moveToLeft .6s ease both;
+	-webkit-animation: moveToLeft .4s ease both;
+	animation: moveToLeft .4s ease both;
 }
 
 .pt-page-moveFromLeft {
-	-webkit-animation: moveFromLeft .6s ease both;
-	animation: moveFromLeft .6s ease both;
+	-webkit-animation: moveFromLeft .4s ease both;
+	animation: moveFromLeft .4s ease both;
 }
 
 .pt-page-moveToRight {
-	-webkit-animation: moveToRight .6s ease both;
-	animation: moveToRight .6s ease both;
+	-webkit-animation: moveToRight .4s ease both;
+	animation: moveToRight .4s ease both;
+}
+
+.pt-page-moveFromLeft-Menu {
+	-webkit-animation: moveFromLeftMenu .4s ease both;
+	animation: moveFromLeftMenu .4s ease both;
+}
+
+.pt-page-moveToLeft-Menu {
+	-webkit-animation: moveToLeftMenu .4s ease both;
+	animation: moveToLeftMenu .4s ease both;
+}
+
+.pt-page-moveFromRight-Menu {
+	-webkit-animation: moveFromRightMenu .4s ease both;
+	animation: moveFromRightMenu .4s ease both;
+}
+
+.pt-page-moveToRight-Menu {
+	-webkit-animation: moveToRightMenu .4s ease both;
+	animation: moveToRightMenu .4s ease both;
 }
 
 .pt-page-moveFromRight {
-	-webkit-animation: moveFromRight .6s ease both;
-	animation: moveFromRight .6s ease both;
+	-webkit-animation: moveFromRight .4s ease both;
+	animation: moveFromRight .4s ease both;
 }
 
 .pt-page-moveToTop {
-	-webkit-animation: moveToTop .6s ease both;
-	animation: moveToTop .6s ease both;
+	-webkit-animation: moveToTop .4s ease both;
+	animation: moveToTop .4s ease both;
 }
 
 .pt-page-moveFromTop {
-	-webkit-animation: moveFromTop .6s ease both;
-	animation: moveFromTop .6s ease both;
+	-webkit-animation: moveFromTop .4s ease both;
+	animation: moveFromTop .4s ease both;
 }
 
 .pt-page-moveToBottom {
-	-webkit-animation: moveToBottom .6s ease both;
-	animation: moveToBottom .6s ease both;
+	-webkit-animation: moveToBottom .4s ease both;
+	animation: moveToBottom .4s ease both;
 }
 
 .pt-page-moveFromBottom {
-	-webkit-animation: moveFromBottom .6s ease both;
-	animation: moveFromBottom .6s ease both;
+	-webkit-animation: moveFromBottom .4s ease both;
+	animation: moveFromBottom .4s ease both;
 }
 
 /* fade */
 
 .pt-page-fade {
-	-webkit-animation: fade .6s ease both;
-	animation: fade .6s ease both;
+	-webkit-animation: fade .4s ease both;
+	animation: fade .4s ease both;
 }
 
 /* move from / to and fade */
 
 .pt-page-moveToLeftFade {
-	-webkit-animation: moveToLeftFade .6s ease both;
-	animation: moveToLeftFade .6s ease both;
+	-webkit-animation: moveToLeftFade .4s ease both;
+	animation: moveToLeftFade .4s ease both;
 }
 
 .pt-page-moveFromLeftFade {
-	-webkit-animation: moveFromLeftFade .6s ease both;
-	animation: moveFromLeftFade .6s ease both;
+	-webkit-animation: moveFromLeftFade .4s ease both;
+	animation: moveFromLeftFade .4s ease both;
 }
 
 .pt-page-moveToRightFade {
-	-webkit-animation: moveToRightFade .6s ease both;
-	animation: moveToRightFade .6s ease both;
+	-webkit-animation: moveToRightFade .4s ease both;
+	animation: moveToRightFade .4s ease both;
 }
 
 .pt-page-moveFromRightFade {
-	-webkit-animation: moveFromRightFade .6s ease both;
-	animation: moveFromRightFade .6s ease both;
+	-webkit-animation: moveFromRightFade .4s ease both;
+	animation: moveFromRightFade .4s ease both;
 }
 
 .pt-page-moveToTopFade {
-	-webkit-animation: moveToTopFade .6s ease both;
-	animation: moveToTopFade .6s ease both;
+	-webkit-animation: moveToTopFade .4s ease both;
+	animation: moveToTopFade .4s ease both;
 }
 
 .pt-page-moveFromTopFade {
-	-webkit-animation: moveFromTopFade .6s ease both;
-	animation: moveFromTopFade .6s ease both;
+	-webkit-animation: moveFromTopFade .4s ease both;
+	animation: moveFromTopFade .4s ease both;
 }
 
 .pt-page-moveToBottomFade {
-	-webkit-animation: moveToBottomFade .6s ease both;
-	animation: moveToBottomFade .6s ease both;
+	-webkit-animation: moveToBottomFade .4s ease both;
+	animation: moveToBottomFade .4s ease both;
 }
 
 .pt-page-moveFromBottomFade {
-	-webkit-animation: moveFromBottomFade .6s ease both;
-	animation: moveFromBottomFade .6s ease both;
+	-webkit-animation: moveFromBottomFade .4s ease both;
+	animation: moveFromBottomFade .4s ease both;
 }
 
 /* move to with different easing */
 
 .pt-page-moveToLeftEasing {
-	-webkit-animation: moveToLeft .6s ease-in-out both;
-	animation: moveToLeft .6s ease-in-out both;
+	-webkit-animation: moveToLeft .4s ease-in-out both;
+	animation: moveToLeft .4s ease-in-out both;
 }
 .pt-page-moveToRightEasing {
-	-webkit-animation: moveToRight .6s ease-in-out both;
-	animation: moveToRight .6s ease-in-out both;
+	-webkit-animation: moveToRight .4s ease-in-out both;
+	animation: moveToRight .4s ease-in-out both;
 }
 .pt-page-moveToTopEasing {
-	-webkit-animation: moveToTop .6s ease-in-out both;
-	animation: moveToTop .6s ease-in-out both;
+	-webkit-animation: moveToTop .4s ease-in-out both;
+	animation: moveToTop .4s ease-in-out both;
 }
 .pt-page-moveToBottomEasing {
-	-webkit-animation: moveToBottom .6s ease-in-out both;
-	animation: moveToBottom .6s ease-in-out both;
+	-webkit-animation: moveToBottom .4s ease-in-out both;
+	animation: moveToBottom .4s ease-in-out both;
 }
 
 /********************************* keyframes **************************************/
@@ -153,35 +178,75 @@
 
 @-webkit-keyframes moveToLeft {
 	from { }
-	to { -webkit-transform: translateX(-200%); }
+	to { -webkit-transform: translateX(0); }
 }
 @keyframes moveToLeft {
 	from { }
-	to { -webkit-transform: translateX(-200%); transform: translateX(-200%); }
+	to { -webkit-transform: translateX(0); transform: translateX(0); }
 }
 
 @-webkit-keyframes moveFromLeft {
-	from { -webkit-transform: translateX(-200%); }
+	from { -webkit-transform: translateX(-300%); }
 }
 @keyframes moveFromLeft {
-	from { -webkit-transform: translateX(-200%); transform: translateX(-200%); }
+	from { -webkit-transform: translateX(-300%); transform: translateX(-300%); }
 }
 
 @-webkit-keyframes moveToRight { 
 	from { }
-	to { -webkit-transform: translateX(200%); }
+	to { -webkit-transform: translateX(300%); }
 }
 @keyframes moveToRight { 
 	from { }
-	to { -webkit-transform: translateX(200%); transform: translateX(200%); }
+	to { -webkit-transform: translateX(300%); transform: translateX(300%); }
 }
 
 @-webkit-keyframes moveFromRight {
-	from { -webkit-transform: translateX(200%); }
+	from { -webkit-transform: translateX(300%); }
 }
 @keyframes moveFromRight {
-	from { -webkit-transform: translateX(200%); transform: translateX(200%); }
+	from { -webkit-transform: translateX(300%); transform: translateX(300%); }
 }
+
+
+
+
+
+
+@-webkit-keyframes moveFromLeftMenu {
+	from { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeftMenu {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveToLeftMenu {
+	from { }
+	to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveToLeftMenu {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveFromRightMenu { 
+	from { -webkit-transform: translateX(0); }
+}
+@keyframes moveFromRightMenu { 
+	from { -webkit-transform: translateX(0); transform: translateX(0); }
+}
+
+@-webkit-keyframes moveToRightMenu { 
+	from { }
+	to { -webkit-transform: translateX(0); }
+}
+@keyframes moveToRightMenu { 
+	from { }
+	to { -webkit-transform: translateX(0); transform: translateX(0); }
+}
+
+
+
 
 @-webkit-keyframes moveToTop {
 	from { }
@@ -296,13 +361,13 @@
 /* scale and fade */
 
 .pt-page-scaleDown {
-	-webkit-animation: scaleDown .6s ease both;
-	animation: scaleDown .6s ease both;
+	-webkit-animation: scaleDown .4s ease both;
+	animation: scaleDown .4s ease both;
 }
 
 .pt-page-scaleUp {
-	-webkit-animation: scaleUp .6s ease both;
-	animation: scaleUp .6s ease both;
+	-webkit-animation: scaleUp .4s ease both;
+	animation: scaleUp .4s ease both;
 }
 
 .pt-page-scaleUpDown {
@@ -534,52 +599,52 @@
 .pt-page-rotateFoldRight {
 	-webkit-transform-origin: 0% 50%;
 	transform-origin: 0% 50%;
-	-webkit-animation: rotateFoldRight .6s both ease;
-	animation: rotateFoldRight .6s both ease;
+	-webkit-animation: rotateFoldRight .4s both ease;
+	animation: rotateFoldRight .4s both ease;
 }
 .pt-page-rotateFoldLeft {
 	-webkit-transform-origin: 100% 50%;
 	transform-origin: 100% 50%;
-	-webkit-animation: rotateFoldLeft .6s both ease;
-	animation: rotateFoldLeft .6s both ease;
+	-webkit-animation: rotateFoldLeft .4s both ease;
+	animation: rotateFoldLeft .4s both ease;
 }
 .pt-page-rotateFoldTop {
 	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
-	-webkit-animation: rotateFoldTop .6s both ease;
-	animation: rotateFoldTop .6s both ease;
+	-webkit-animation: rotateFoldTop .4s both ease;
+	animation: rotateFoldTop .4s both ease;
 }
 .pt-page-rotateFoldBottom {
 	-webkit-transform-origin: 50% 0%;
 	transform-origin: 50% 0%;
-	-webkit-animation: rotateFoldBottom .6s both ease;
-	animation: rotateFoldBottom .6s both ease;
+	-webkit-animation: rotateFoldBottom .4s both ease;
+	animation: rotateFoldBottom .4s both ease;
 }
 
 /* unfold */
 .pt-page-rotateUnfoldLeft {
 	-webkit-transform-origin: 100% 50%;
 	transform-origin: 100% 50%;
-	-webkit-animation: rotateUnfoldLeft .6s both ease;
-	animation: rotateUnfoldLeft .6s both ease;
+	-webkit-animation: rotateUnfoldLeft .4s both ease;
+	animation: rotateUnfoldLeft .4s both ease;
 }
 .pt-page-rotateUnfoldRight {
 	-webkit-transform-origin: 0% 50%;
 	transform-origin: 0% 50%;
-	-webkit-animation: rotateUnfoldRight .6s both ease;
-	animation: rotateUnfoldRight .6s both ease;
+	-webkit-animation: rotateUnfoldRight .4s both ease;
+	animation: rotateUnfoldRight .4s both ease;
 }
 .pt-page-rotateUnfoldTop {
 	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
-	-webkit-animation: rotateUnfoldTop .6s both ease;
-	animation: rotateUnfoldTop .6s both ease;
+	-webkit-animation: rotateUnfoldTop .4s both ease;
+	animation: rotateUnfoldTop .4s both ease;
 }
 .pt-page-rotateUnfoldBottom {
 	-webkit-transform-origin: 50% 0%;
 	transform-origin: 50% 0%;
-	-webkit-animation: rotateUnfoldBottom .6s both ease;
-	animation: rotateUnfoldBottom .6s both ease;
+	-webkit-animation: rotateUnfoldBottom .4s both ease;
+	animation: rotateUnfoldBottom .4s both ease;
 }
 
 /* room walls */
@@ -636,50 +701,50 @@
 .pt-page-rotateCubeLeftOut {
 	-webkit-transform-origin: 100% 50%;
 	transform-origin: 100% 50%;
-	-webkit-animation: rotateCubeLeftOut .6s both ease-in;
-	animation: rotateCubeLeftOut .6s both ease-in;
+	-webkit-animation: rotateCubeLeftOut .4s both ease-in;
+	animation: rotateCubeLeftOut .4s both ease-in;
 }
 .pt-page-rotateCubeLeftIn {
 	-webkit-transform-origin: 0% 50%;
 	transform-origin: 0% 50%;
-	-webkit-animation: rotateCubeLeftIn .6s both ease-in;
-	animation: rotateCubeLeftIn .6s both ease-in;
+	-webkit-animation: rotateCubeLeftIn .4s both ease-in;
+	animation: rotateCubeLeftIn .4s both ease-in;
 }
 .pt-page-rotateCubeRightOut {
 	-webkit-transform-origin: 0% 50%;
 	transform-origin: 0% 50%;
-	-webkit-animation: rotateCubeRightOut .6s both ease-in;
-	animation: rotateCubeRightOut .6s both ease-in;
+	-webkit-animation: rotateCubeRightOut .4s both ease-in;
+	animation: rotateCubeRightOut .4s both ease-in;
 }
 .pt-page-rotateCubeRightIn {
 	-webkit-transform-origin: 100% 50%;
 	transform-origin: 100% 50%;
-	-webkit-animation: rotateCubeRightIn .6s both ease-in;
-	animation: rotateCubeRightIn .6s both ease-in;
+	-webkit-animation: rotateCubeRightIn .4s both ease-in;
+	animation: rotateCubeRightIn .4s both ease-in;
 }
 .pt-page-rotateCubeTopOut {
 	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
-	-webkit-animation: rotateCubeTopOut .6s both ease-in;
-	animation: rotateCubeTopOut .6s both ease-in;
+	-webkit-animation: rotateCubeTopOut .4s both ease-in;
+	animation: rotateCubeTopOut .4s both ease-in;
 }
 .pt-page-rotateCubeTopIn {
 	-webkit-transform-origin: 50% 0%;
 	transform-origin: 50% 0%;
-	-webkit-animation: rotateCubeTopIn .6s both ease-in;
-	animation: rotateCubeTopIn .6s both ease-in;
+	-webkit-animation: rotateCubeTopIn .4s both ease-in;
+	animation: rotateCubeTopIn .4s both ease-in;
 }
 .pt-page-rotateCubeBottomOut {
 	-webkit-transform-origin: 50% 0%;
 	transform-origin: 50% 0%;
-	-webkit-animation: rotateCubeBottomOut .6s both ease-in;
-	animation: rotateCubeBottomOut .6s both ease-in;
+	-webkit-animation: rotateCubeBottomOut .4s both ease-in;
+	animation: rotateCubeBottomOut .4s both ease-in;
 }
 .pt-page-rotateCubeBottomIn {
 	-webkit-transform-origin: 50% 100%;
 	transform-origin: 50% 100%;
-	-webkit-animation: rotateCubeBottomIn .6s both ease-in;
-	animation: rotateCubeBottomIn .6s both ease-in;
+	-webkit-animation: rotateCubeBottomIn .4s both ease-in;
+	animation: rotateCubeBottomIn .4s both ease-in;
 }
 
 /* carousel */
@@ -1314,8 +1379,8 @@
 	animation-delay: .2s;
 }
 .pt-page-delay300 {
-	-webkit-animation-delay: .3s;
-	animation-delay: .3s;
+	-webkit-animation-delay: .4s;
+	animation-delay: .4s;
 }
 .pt-page-delay400 {
 	-webkit-animation-delay: .4s;
@@ -1326,8 +1391,8 @@
 	animation-delay: .5s;
 }
 .pt-page-delay700 {
-	-webkit-animation-delay: .6s;
-	animation-delay: .6s;
+	-webkit-animation-delay: .4s;
+	animation-delay: .4s;
 }
 .pt-page-delay1000 {
 	-webkit-animation-delay: 1s;

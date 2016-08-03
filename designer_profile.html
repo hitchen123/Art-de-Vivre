@@ -13,6 +13,8 @@
     <title>Art de Vivre</title>
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/structure.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/animations.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/selectize.default.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -21,14 +23,14 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line">
+                <div class="b-top__yellow-line pt-page-heightOn">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
-                            <a href="#">Да</a>
+                            <a class="b-top__yes" href="#">Да</a>
                         </dd>
                         <dd>
-                            <a href="#">Нет</a>
+                            <a class="b-top__no" href="#">Нет</a>
                         </dd>
                     </dl>
                 </div>
@@ -54,7 +56,7 @@
                                 <li>
                                     <a href="#">О доставке</a>
                                 </li>
-                                <li>
+                                <li class="private-office">
                                     <span>Здравствуйте, Александр!</span>
                                     <a href="#">Личный кабинет</a>
                                     <div class="b-user-from">
@@ -89,7 +91,7 @@
                         <li>
                             <a href="#">Пастельных цветов</a>
                         </li>
-                        <li>
+                        <li class="b-main-nav-dropdown">
                             <a href="#">Премиум ковры ручной работы</a>
                             <div class="b-main-nav__catalog">
                                 <div class="b-main-nav__catalog-i cfix">
@@ -178,7 +180,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="b-main-nav-dropdown">
                             <a href="#">Все ковры</a>
                             <div class="b-main-nav__catalog">
                                 <div class="b-main-nav__catalog-i cfix">
@@ -280,115 +282,119 @@
                             <a href="#" class="search-lnk">Поиск</a>
                         </li>
                     </ul>
-                    <div class="b-main-nav__search">
-                        <div class="search-form cfix">
-                            <form id="#">
-                                <input type="text" name="search" />
-                                <button>
-                                    <span>Искать</span>
-                                </button>
-                                <a href="#" class="del">Удалить</a>
-                            </form>
-                        </div>
-                        <div class="search-result">
-                            <ul class="search-result-list">
-                                <li>
-                                    <a href="#">
-                                        <div class="img">
-                                            <img src="temp/1.jpg">
-                                        </div>
-                                        <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img">
-                                            <img src="temp/1.jpg">
-                                        </div>
-                                        <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img">
-                                            <img src="temp/1.jpg">
-                                        </div>
-                                        <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="search-result-btn">
-                                <a href="#">Показать все результаты поиска <span>(6)</span></a>
+                    <div class="b-main-nav__search pt-page-heightOff">
+                        <div class="b-main-nav__search-i">
+                            <div class="search-form cfix">
+                                <form id="#">
+                                    <input type="text" name="search" />
+                                    <button>
+                                        <span>Искать</span>
+                                    </button>
+                                    <a href="#" class="del">Удалить</a>
+                                </form>
+                            </div>
+                            <div class="search-result">
+                                <ul class="search-result-list">
+                                    <li>
+                                        <a href="#">
+                                            <div class="img">
+                                                <img src="temp/1.jpg">
+                                            </div>
+                                            <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="img">
+                                                <img src="temp/1.jpg">
+                                            </div>
+                                            <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="img">
+                                                <img src="temp/1.jpg">
+                                            </div>
+                                            <h3 class="title">Ковер из коллекции "GAZNI K" KN61-BGE-GRY</h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="search-result-btn">
+                                    <a href="#">Показать все результаты поиска <span>(6)</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="b-main-nav__bag">
-                        <form id="#">
-                            <article class="b-main-nav__bag-item cfix">
-                                <h3 class="title">
-                                    <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
-                                </h3>
-                                <div class="img">
-                                    <span>
-                                        <img src="temp/1.jpg" />
-                                    </span>   
-                                </div>
-                                <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
-                                <div class="count">
-                                    <input type="text" name="number"  value="1" />
-                                    <span>шт.</span>
-                                    <a href="#" class="count-plus">
-                                        <img src="styles/images/plus.svg" />
-                                    </a>
-                                    <a href="#" class="count-minus">
-                                        <img src="styles/images/minus.svg" />
-                                    </a>
-                                </div>
-                                <div class="sum">
-                                    <strike>13 400</strike>   
+                    <div class="b-main-nav__bag pt-page-heightOff">
+                        <div class="b-main-nav__bag-i">
+                            <form id="#">
+                                <article class="b-main-nav__bag-item cfix">
+                                    <h3 class="title">
+                                        <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                                    </h3>
+                                    <div class="img">
+                                        <span>
+                                            <img src="temp/1.jpg" />
+                                        </span>   
+                                    </div>
+                                    <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                                    <div class="count">
+                                        <input type="text" name="number"  value="1" />
+                                        <span>шт.</span>
+                                        <a href="#" class="count-plus">
+                                            <img src="styles/images/plus.svg" />
+                                        </a>
+                                        <a href="#" class="count-minus">
+                                            <img src="styles/images/minus.svg" />
+                                        </a>
+                                    </div>
+                                    <div class="sum">
+                                        <strike>13 400</strike>   
+                                        <span>10 430 р.</span>
+                                    </div>
+                                    <a href="#" class="del">Удалить</a>
+                                </article>
+                                <article class="b-main-nav__bag-item cfix">
+                                    <h3 class="title">
+                                        <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                                    </h3>
+                                    <div class="img">
+                                        <span>
+                                            <img src="temp/1.jpg" />
+                                        </span>   
+                                    </div>
+                                    <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                                    <div class="count">
+                                        <input type="text" name="number"  value="1" />
+                                        <span>шт.</span>
+                                        <a href="#" class="count-plus">
+                                            <img src="styles/images/plus.svg" />
+                                        </a>
+                                        <a href="#" class="count-minus">
+                                            <img src="styles/images/minus.svg" />
+                                        </a>
+                                    </div>
+                                    <div class="sum">
+                                        <strike>13 400</strike>   
+                                        <span>10 430 р.</span>
+                                    </div>
+                                    <a href="#" class="del">Удалить</a>
+                                </article>
+                                <div class="b-main-nav__bag-sum cfix">
+                                    <span>ИТОГО</span>
                                     <span>10 430 р.</span>
+                                    <strike>13 400</strike>
                                 </div>
-                                <a href="#" class="del">Удалить</a>
-                            </article>
-                            <article class="b-main-nav__bag-item cfix">
-                                <h3 class="title">
-                                    <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
-                                </h3>
-                                <div class="img">
-                                    <span>
-                                        <img src="temp/1.jpg" />
-                                    </span>   
+                                <button>
+                                    <span>ПЕРЕЙТИ В КОРЗИНУ</span>
+                                </button>
+                                <div class="lnk">
+                                    <a href="#">КУПИТЬ В 1 КЛИК</a>
                                 </div>
-                                <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
-                                <div class="count">
-                                    <input type="text" name="number"  value="1" />
-                                    <span>шт.</span>
-                                    <a href="#" class="count-plus">
-                                        <img src="styles/images/plus.svg" />
-                                    </a>
-                                    <a href="#" class="count-minus">
-                                        <img src="styles/images/minus.svg" />
-                                    </a>
-                                </div>
-                                <div class="sum">
-                                    <strike>13 400</strike>   
-                                    <span>10 430 р.</span>
-                                </div>
-                                <a href="#" class="del">Удалить</a>
-                            </article>
-                            <div class="b-main-nav__bag-sum cfix">
-                                <span>ИТОГО</span>
-                                <span>10 430 р.</span>
-                                <strike>13 400</strike>
-                            </div>
-                            <button>
-                                <span>ПЕРЕЙТИ В КОРЗИНУ</span>
-                            </button>
-                            <div class="lnk">
-                                <a href="#">КУПИТЬ В 1 КЛИК</a>
-                            </div>
-                        </form>
-                        <div class="empty">Корзина пуста</div>
+                            </form>
+                            <div class="empty">Корзина пуста</div>
+                        </div>
                     </div>
                 </nav>
             </header>
@@ -402,10 +408,11 @@
                     </a>
                 </div>
                 <div class="b-mobile-nav-i cfix">
-                    <a href="#" class="tgl-lnk">
+                    <a href="#" class="mobile-menu-link tgl-lnk">
                         <span>МЕНЮ</span>
                         <i></i>
                     </a>
+                    <div class="b-overlay-mobile-menu"></div>
                     <div class="b-mobile-nav__list">
                         <div class="b-mobile-nav__list-i">
                             <div class="search">
@@ -418,9 +425,9 @@
                                 <li>
                                     <a href="#" class="c-999">Пастельных цветов</a>
                                 </li>
-                                <li>
+                                <li class="open-close-menu-item">
                                     <a href="#">Премиум ковры ручной работы</a>
-                                    <ul class="inner-list">
+                                    <ul class="inner-list pt-page-heightOff">
                                         <li>
                                             <a href="#">Современные</a>
                                         </li>
@@ -447,9 +454,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li class="open-close-menu-item">
                                     <a href="#">Все ковры</a>
-                                    <ul class="inner-list">
+                                    <ul class="inner-list pt-page-heightOff">
                                         <li>
                                             <a href="#">Современные</a>
                                         </li>
@@ -491,9 +498,9 @@
                                 <li>
                                     <a href="#" class="bag-lnk">КОРЗИНА</a>
                                 </li>
-                                <li>
-                                    <a href="#">ВАШ РЕГИОН:<span>МОСКВА</span></a>
-                                    <ul class="inner-list">
+                                <li class="open-close-menu-item mobile-menu-city">
+                                    <a href="#">ВАШ РЕГИОН:<span class="mobile-menu-city-name">МОСКВА</span></a>
+                                    <ul class="inner-list pt-page-heightOff">
                                         <li>
                                             <a href="#">Москва</a>
                                         </li>
@@ -530,7 +537,7 @@
             <!--Middle-->
             <section class="b-middle b-designer b-designer-profile">
                 <h1 class="title">Личный кабинет дизайнера</h1>
-                <ul class="b-tabs">
+                <ul class="b-tabs b-designer-profile-tabs">
                     <li class="active">
                         <a href="#">Акция. Поездка в париж</a>
                     </li>
@@ -544,8 +551,16 @@
                         <a href="#">Зарегистрироваться по номеру карты</a>
                     </li>
                 </ul>
+                <div class="b-designer__middle-mob-tab">
+                    <select class="b-mob-select-tabs b-designer-profile-mob-tabs">
+                        <option>Акция. Поездка в париж</option>
+                        <option>Мои сделки</option>
+                        <option>Мой аккаунт</option>
+                        <option>Зарегистрироваться по номеру карты</option>
+                    </select>
+                </div>
                 <div class="b-designer-profile-i">
-                    <div class="item-1">
+                    <div class="b-profile__tab active item-1">
                         <p class="txt">Доступ в личный кабинет дизайнера на сайте www.kover.ru с возможностью скачать имиджи хорошего качества.<br/>Примерка одного и более ковров в удобное для Вас время. Наши декораторы примут участие в подборе ковров для создаваемого Вами проекта, основываясь на знании нашего ассортимента и многолетнем опыте. Разработка ковра по Вашему индивидуальному дизайну в нашем «Ателье Ковров»</p>
                         <div class="item-1-i cfix">
                             <dl class="list">
@@ -618,7 +633,7 @@
                             </dl>
                         </div>
                     </div>
-                    <div class="item-2">
+                    <div class="b-profile__tab item-2">
                         <p class="txt">Доступ в личный кабинет дизайнера на сайте www.kover.ru с возможностью скачать имиджи хорошего качества.<br/>Примерка одного и более ковров в удобное для Вас время. Наши декораторы примут участие в подборе ковров для создаваемого Вами проекта, основываясь на знании нашего ассортимента и многолетнем опыте. Разработка ковра по Вашему индивидуальному дизайну в нашем «Ателье Ковров»</p>
                         <div class="item-2-1 cfix">
                             <div class="table">
@@ -694,7 +709,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <a href="#" class="btn">ЗАГРУЗИТЬ ЕЩЕ</a>
+                                <a href="#" class="btn load-more">ЗАГРУЗИТЬ ЕЩЕ</a>
                             </div>
                             <dl class="list-2">
                                 <dt>
@@ -706,7 +721,7 @@
                             </dl>
                         </div> 
                     </div>
-                    <div class="item-3">
+                    <div class="b-profile__tab item-3">
                         <div class="item-3-i cfix">
                             <div class="b-form-1">
                                 <h2 class="title">Личные данные</h2>
@@ -979,5 +994,224 @@
         </footer>
         <!--/Bottom-->
     </div>
+    <div class="b-overlay-menu"></div>
+    <div class="b-overlay"></div>
+
+    <div class="b-popup-wrapper__profile">
+        <div class="b-profile">
+            <header class="b-profile__top cfix">
+                <h1 class="title">Личный кабинет</h1>
+                <p>Есть вопросы? Звоните +7 (495) 123-45-67</p>
+            </header>
+            <ul class="b-tabs b-profile__tabs">
+                <li class="active">
+                    <a href="#">Мои заказы</a>
+                </li>
+                <li>
+                    <a href="#">Личные данные</a>
+                </li>
+            </ul>
+            <div class="b-profile-i">
+                <div class="b-profile__tab active b-profile__orders">
+                    <div class="item">
+                        <div class="item-top cfix">
+                            <span>13 января 2016</span>
+                            <span class="c-999">№12343-23</span>
+                            <a href="#">Развернуть</a>
+                            <span class="fl-r">42 034 р.</span>
+                        </div>
+                        <div class="item-middle">
+                            <h3 class="item-title">ВАШ ЗАКАЗ:</h3>
+                            <article class="b-main-nav__bag-item cfix">
+                                <div class="img">
+                                    <span>
+                                        <img src="temp/1.jpg">
+                                    </span>   
+                                </div>
+                                <h3 class="title">
+                                    <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                                </h3>
+                                <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                                <div class="count">1 шт.</div>
+                                <div class="sum">
+                                    <strike>13 400</strike>   
+                                    <span>10 430 р.</span>
+                                </div>
+                            </article>
+                            <div class="item-i cfix">
+                                <dl>
+                                    <dt>АДРЕС ДОСТАВКИ</dt>
+                                    <dd>Москва, ул. Лублина 23, кв.12</dd>
+                                    <dt>ОПЛАТА</dt>
+                                    <dd>Наличными курьеру</dd>
+                                    <dt>ДОСТАВКА</dt>
+                                    <dd>Бесплатно</dd>
+                                </dl>
+                                <dl>
+                                    <dt>ИТОГО</dt>
+                                    <dd><strike>13 400</strike> 10 430 р.</dd>
+                                </dl>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="item">
+                        <div class="item-top cfix">
+                            <span>13 января 2016</span>
+                            <span class="c-999">№12343-23</span>
+                            <a href="#">Развернуть</a>
+                            <span class="fl-r">42 034 р.</span>
+                        </div>
+                        <div class="item-middle">
+                            <h3 class="item-title">ВАШ ЗАКАЗ:</h3>
+                            <article class="b-main-nav__bag-item cfix">
+                                <div class="img">
+                                    <span>
+                                        <img src="temp/1.jpg">
+                                    </span>   
+                                </div>
+                                <h3 class="title">
+                                    <a href="#">Ковер Kasib Oxideys Cre K-IVR(OX+S)</a>
+                                </h3>
+                                <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
+                                <div class="count">1 шт.</div>
+                                <div class="sum">
+                                    <strike>13 400</strike>   
+                                    <span>10 430 р.</span>
+                                </div>
+                            </article>
+                            <div class="item-i cfix">
+                                <dl>
+                                    <dt>АДРЕС ДОСТАВКИ</dt>
+                                    <dd>Москва, ул. Лублина 23, кв.12</dd>
+                                    <dt>ОПЛАТА</dt>
+                                    <dd>Наличными курьеру</dd>
+                                    <dt>ДОСТАВКА</dt>
+                                    <dd>Бесплатно</dd>
+                                </dl>
+                                <dl>
+                                    <dt>ИТОГО</dt>
+                                    <dd><strike>13 400</strike> 10 430 р.</dd>
+                                </dl>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="b-profile__tab b-profile__account">
+                    <div class="b-profile__account-i">
+                        <form id="#">
+                            <h2 class="title">Контактная информация</h2>
+                            <ul class="cfix">
+                                <li>
+                                    <label>Представьтесь</label>
+                                    <input type="text" name="" />
+                                </li>
+                                <li>
+                                    <label>Ваш телефон</label>
+                                    <input type="text" name="" />
+                                </li>
+                                <li class="w-100">
+                                    <label>Электронная почта</label>
+                                    <input type="text" name="" />
+                                </li>
+                            </ul>
+                            <button>
+                                <span>Сохранить</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="b-profile__account-i">
+                        <form id="#">
+                            <h2 class="title">Изменить пароль</h2>
+                            <ul class="cfix">
+                                <li>
+                                    <label>Новый пароль</label>
+                                    <input type="text" name="" />
+                                </li>
+                                <li>
+                                    <label>Пароль еще раз</label>
+                                    <input type="text" name="" />
+                                </li>
+                            </ul>
+                            <button>
+                                <span>Изменить пароль</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="close">Закрыть</a>
+        </div>
+    </div>
+
+    <div class="b-popup-wrapper__city">
+        <div class="b-city-pop-up">
+           <h2 class="title">Выберите город доставки</h2>
+           <ul class="cfix">
+               <li>
+                   <a href="#">Москва</a>
+               </li>
+               <li>
+                   <a href="#">Ростов-на-Дону</a>
+               </li>
+               <li>
+                   <a href="#">Любой другой город РФ</a>
+               </li>
+               <li>
+                   <a href="#">Санкт-Петербург</a>
+               </li>
+               <li>
+                   <a href="#">Вильнюс</a>
+               </li>
+           </ul>
+           <a href="#" class="close">Закрыть</a>
+        </div>
+    </div>
+
+    <div class="b-popup-wrapper__basket-buy">
+        <section class="b-cart-order b-cart-order__form-buy">
+            <div class="b-cart-order-form b-cart-order__form">
+                <a href="#" class="back"><i>‹</i> Назад в корзину</a>
+                <h2 class="title">Покупка в 1 клик</h2>
+                <form id="#">
+                    <dl>
+                        <dt>
+                            <label>Представьтесь</label>
+                        </dt>
+                        <dd>
+                            <input type="text" name="" />
+                        </dd>
+                        <dt>
+                            <label>Номер телефона<ins>*</ins></label>
+                        </dt>
+                        <dd>
+                            <input type="text" name="" />
+                        </dd>
+                        <dt>
+                            <label>Электронная почта</label>
+                        </dt>
+                        <dd>
+                            <input type="text" name="" />
+                        </dd>
+                        <dt>
+                            <label>Комментарий к заказу</label>
+                        </dt>
+                        <dd>
+                            <textarea></textarea>
+                        </dd>
+                    </dl>
+                    <div class="btn">
+                        <button>
+                            <span>Оформить заказ</span>
+                        </button>    
+                    </div>
+                </form>
+                <a href="#" class="close">Закрыть</a>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="styles/js/selectize.min.js"></script>
+    <script src="styles/js/main.js"></script>
 </body>
 </html>
