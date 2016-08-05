@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="8px" height="5px" viewBox="0 0 8 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="12px" height="23px" viewBox="0 0 12 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 39 (31667) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 17</title>
+    <title>Combined Shape</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Карточка" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-1284.000000, -536.000000)" id="Group-20" fill="#EB8A1C">
-            <g transform="translate(1024.000000, 528.000000)">
-                <g id="Group-19" transform="translate(3.000000, 0.000000)">
-                    <g id="Group-17" transform="translate(257.000000, 8.000000)">
-                        <rect id="Rectangle-60" transform="translate(2.121320, 2.121320) rotate(-45.000000) translate(-2.121320, -2.121320) " x="1.62132034" y="-0.378679656" width="1" height="5"></rect>
-                        <rect id="Rectangle-60-Copy" transform="translate(5.121320, 2.121320) rotate(-135.000000) translate(-5.121320, -2.121320) " x="4.62132034" y="-0.378679656" width="1" height="5"></rect>
+        <g transform="translate(-1392.000000, -2725.000000)" id="Group-10" fill="#EB8A1C">
+            <g transform="translate(-290.000000, 2084.000000)">
+                <g id="Group-9" transform="translate(0.000000, 576.000000)">
+                    <g id="Group-3">
+                        <path d="M1681.99594,87.4878256 L1682.50406,87.9959419 L1694.00406,76.4959419 L1682.51217,65.0040581 L1682.00406,65.5121744 L1692.98783,76.4959419 L1681.99594,87.4878256 Z" id="Combined-Shape"></path>
                     </g>
                 </g>
             </g>

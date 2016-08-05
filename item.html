@@ -24,7 +24,7 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line pt-page-heightOn">
+                <div class="b-top__yellow-line pt-page-heightOn-visible">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
@@ -270,7 +270,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="coupon-menu-item">
                             <a href="#" class="c-D0021B">% Распродажа</a>
                         </li>
                         <li class="fl-r">
@@ -484,7 +484,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li class="coupon-menu-mob-item">
                                     <a href="#" class="c-D0021B">% Распродажа</a>
                                 </li>
                                 <li>
@@ -542,13 +542,13 @@
                 </div>
                 <div class="b-item__top cfix">
                     <div class="b-item__l-c">
-                        <div class="b-item__gallery fotorama" data-width="700" data-ratio="3/2" data-navposition="bottom"
-                        data-max-width="100%" data-fit="cover" data-arrows="false" data-auto="false">
-                            <img src="temp/29.png" />   
-                            <img src="temp/29.png" />   
-                            <img src="temp/29.png" />   
-                            <img src="temp/29.png" />   
-                            <img src="temp/29.png" />   
+                        <div class="b-item__gallery fotorama" data-width="100%" data-height="auto" data-navposition="left"
+                        data-max-width="600" data-fit="cover" data-arrows="false" data-auto="false" data-loop="true" data-thumbwidth="80" data-thumbheight="80">
+                            <img src="temp/46.png" />   
+                            <img src="temp/46.png" />   
+                            <img src="temp/46.png" />   
+                            <img src="temp/46.png" />   
+                            <img src="temp/46.png" />   
                         </div>
                         <ul class="tags-1">
                             <li class="i-1">Ручная работа</li>
@@ -610,11 +610,11 @@
                 <div class="b-catalog__middle-banner-2 cfix">
                     <div class="wrap cfix">
                         <div class="img">
-                            <img src="temp/22.png" width="138" height="167">    
+                            <img src="temp/44.png" width="138" height="222">    
                         </div>
                         <h2 class="title-1">Не знаете какой ковер выбрать? Звоните!<br/>+7 (495) 123-45-67</h2>
                         <p class="txt">Наши опытные декораторы помогают не ошибиться<br/> и правильно сочетать ковер с Вашим интерьером.</p>
-                        <div class="btn">
+                        <div class="btn consult-btn">
                             <a href="#">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</a>     
                         </div>
                     </div>
@@ -781,40 +781,28 @@
                         <h2 class="title">Еще ковры из коллекции <span>«Kasib»</span></h2>
                         <div class="b-small-gallery__list owl-carousel">
                             <div class="item">
-                                <img src="temp/16.png">
+                                <img src="temp/47.png">
                             </div>
                             <div class="item">
-                                <img src="temp/17.png">
+                                <img src="temp/48.png">
                             </div>
                             <div class="item">
-                                <img src="temp/18.png">
+                                <img src="temp/49.png">
                             </div>
                             <div class="item">
-                                <img src="temp/16.png">
+                                <img src="temp/50.png">
                             </div>
                             <div class="item">
-                                <img src="temp/17.png">
+                                <img src="temp/47.png">
                             </div>
                             <div class="item">
-                                <img src="temp/18.png">
+                                <img src="temp/48.png">
                             </div>
                             <div class="item">
-                                <img src="temp/16.png">
+                                <img src="temp/49.png">
                             </div>
                             <div class="item">
-                                <img src="temp/17.png">
-                            </div>
-                            <div class="item">
-                                <img src="temp/18.png">
-                            </div>
-                            <div class="item">
-                                <img src="temp/16.png">
-                            </div>
-                            <div class="item">
-                                <img src="temp/17.png">
-                            </div>
-                            <div class="item">
-                                <img src="temp/18.png">
+                                <img src="temp/50.png">
                             </div>
                         </div>
                     </div>
@@ -1199,6 +1187,29 @@
                 <ul class="cfix">
                     <li>
                         <label>Ваш email</label>
+                        <input type="text" name="" />
+                    </li>
+                    <li>
+                        <label>Номер телефона</label>
+                        <input type="text" name="" />
+                    </li>
+                </ul>
+                <button>
+                    <span>Получить купон</span>
+                </button>
+                <a href="#" class="close">Закрыть</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="b-popup-wrapper__consult">
+        <div class="b-coupon-pop-up">
+            <h2 class="title">Купон на скидку 5 000 руб в наших магазинах</h2>
+            <p>Оставьте свой email и мы вышлем вам сертификат на скидку в размере 5 000 рублей (но не более 20% от стоимости ковра)</p>
+            <form id="#">
+                <ul class="cfix">
+                    <li>
+                        <label>Ваше имя</label>
                         <input type="text" name="" />
                     </li>
                     <li>

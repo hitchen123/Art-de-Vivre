@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="styles/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/structure.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/animations.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/fotorama.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -22,7 +23,7 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line pt-page-heightOn">
+                <div class="b-top__yellow-line pt-page-heightOn-visible">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
@@ -268,7 +269,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="coupon-menu-item">
                             <a href="#" class="c-D0021B">% Распродажа</a>
                         </li>
                         <li class="fl-r">
@@ -482,7 +483,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li class="coupon-menu-mob-item">
                                     <a href="#" class="c-D0021B">% Распродажа</a>
                                 </li>
                                 <li>
@@ -536,10 +537,10 @@
             <!--Middle-->
             <section class="b-middle">
                 <div class="b-main-gallery">
-                    <div class="b-main-gallery-i fotorama" data-width="100%" data-height="100%" data-loop="true" data-nav="false" data-margin="0">
-                        <div class="big-slide" style="background-image:url(temp/big_img_1.jpg)"></div>
-                        <div class="big-slide" style="background-image:url(temp/big_img_2.jpg)"></div>
-                        <div class="big-slide" style="background-image:url(temp/big_img_3.jpg)"></div>
+                    <div class="b-main-gallery-i fotorama" data-max-width="100%" data-width="100%" data-height="auto" data-loop="true" data-margin="0" data-arrows="false">
+                        <img src="temp/51.png" />
+                        <img src="temp/51.png" />
+                        <img src="temp/51.png" />
                     </div>
                 </div>
                 <div class="b-middle-nav">
@@ -564,7 +565,7 @@
                             <div class="b-middle-nav__list-1 cfix">
                                 <dl>
                                     <dt>По стилю</dt>
-                                    <dd class="active">
+                                    <dd class="default-item active">
                                         <span>
                                             <a href="#">Традиционные</a>
                                             <i class="b-middle-nav__list-i" style="background-image:url(temp/3.png)"></i>
@@ -1188,12 +1189,13 @@
                         </button>    
                     </div>
                 </form>
-                <a href="#" class="close">Закрыть</a>
+                <a href="#" class="b-cart-order-buy-close close">Закрыть</a>
             </div>
         </section>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="styles/js/fotorama.js"></script>
     <script src="styles/js/main.js"></script>
 </body>
 </html>
