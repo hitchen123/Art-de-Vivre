@@ -432,7 +432,8 @@ body.main{background:#fff}
 .b-cart-order__form-buy,
 .b-cart-order__form-result,
 .b-catalog__item-pop-up,
-.b-mobile-nav__list{
+.b-mobile-nav__list,
+.b-main-nav__bag{
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -464,7 +465,8 @@ body.main{background:#fff}
 .b-cart-order-basket,
 .b-cart-order__form-buy,
 .b-cart-order__form-result,
-.b-mobile-nav__list{opacity:0}
+.b-mobile-nav__list,
+.b-main-nav__bag{opacity:0}
 
 .b-coupon-pop-up,
 .b-city-pop-up,
