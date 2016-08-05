@@ -405,13 +405,14 @@ body.main{background:#fff}
 /*Overlay*/
 .b-overlay,
 .b-overlay-menu,
-.b-overlay-mobile-menu{min-height:100%;height:100%;width:100%;background:#4A4A4A;position:fixed;top:0;left:0;z-index:200;zoom:1}	
+.b-overlay-mobile-menu{min-height:100%;height:100%;width:100%;background:#4A4A4A;position:fixed;top:0;left:0;z-index:200;zoom:1;opacity:.6;}	
 
 .b-overlay,
 .b-overlay-menu,
 .b-overlay-mobile-menu,
 .b-popup-wrapper__basket,
 .b-popup-wrapper__basket-buy,
+.b-popup-wrapper__basket-buy-i,
 .b-popup-wrapper__basket-result,
 .b-popup-wrapper__catalog,
 .b-popup-wrapper__coupon,
@@ -487,6 +488,7 @@ body.main{background:#fff}
 
 .b-popup-wrapper__basket,
 .b-popup-wrapper__basket-buy,
+.b-popup-wrapper__basket-buy-i,
 .b-popup-wrapper__basket-result,
 .b-popup-wrapper__catalog,
 .b-popup-wrapper__coupon,
