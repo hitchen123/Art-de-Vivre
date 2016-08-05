@@ -105,6 +105,237 @@ Modules.CouponPopup = (function(self, $){
 		}
 }(Modules.CouponPopup || {}, jQuery));
 
+Modules.ConsultPopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupWrapperClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupWrapper: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupWrapper = $( _settings.popupWrapperClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				if(_data.$popupElement.height() < $(window).height())
+					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
+				else _data.$popupElement.css({'top': '0px'});
+
+				$('body').width($('body').width());
+				$('body').addClass('html_noscroll');
+				_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+				_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
+				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(){
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					$('body').removeClass('html_noscroll');
+					$('body').width('auto');
+					_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.ConsultPopup || {}, jQuery));
+
+Modules.CouponMobMenuPopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupWrapperClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			menuOverlayClass: '',
+			menuElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupWrapper: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: '',
+			menuOverlay: '',
+			menuElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupWrapper = $( _settings.popupWrapperClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+			_data.$menuOverlay = $( _settings.menuOverlayClass );
+			_data.$menuElement = $( _settings.menuElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				self.closeMenuEvent();
+
+				setTimeout(function(){
+					if(_data.$popupElement.height() < $(window).height())
+						_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
+					else _data.$popupElement.css({'top': '0px'});
+
+					$('body').width($('body').width());
+					$('body').addClass('html_noscroll');
+					_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+					setTimeout(function(){
+						_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+						_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				}, 400);
+
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(){
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+				setTimeout(function(){
+					$('body').removeClass('html_noscroll');
+					$('body').width('auto');
+					_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+
+		self.closeMenuEvent = function(){
+			_data.$menuElement.addClass('pt-page-moveToLeft-Menu');
+			_data.$menuOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+
+			setTimeout(function(){
+				_data.$menuElement.removeClass('pt-page-current pt-page-visible pt-page-moveToLeft-Menu');
+				_data.$menuOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+			}, 400);
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().closeMenuEvent();
+
+				return self;
+			}
+		}
+}(Modules.CouponMobMenuPopup || {}, jQuery));
+
 Modules.CatalogItemPopup = (function(self, $){
 	
 	var _settings = {
@@ -186,7 +417,12 @@ Modules.CatalogItemPopup = (function(self, $){
 		}
 		
 		self.closePopupEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
+			$(document).on('click', _settings.closeClickElementClass, function(e){
+				console.log(_settings.closeClickElementClass);
+				console.log(e.target);
+				console.log(this);
+				if(e.target != this) return;
+
 				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
 				_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 
@@ -456,7 +692,6 @@ Modules.FullBasketPopup = (function(self, $){
 
 		self.chooseDeliveryEvent = function(){
 			$(document).on('click', _settings.deliveryElementClass, function(){
-				console.log('testing...');
 				if($(this).data('additional'))
 					_data.$popupElement.find($('.' + $(this).data('additional'))).show();
 				else {
@@ -616,9 +851,7 @@ Modules.FullBasketBuyPopup = (function(self, $){
 		}
 		
 		self.openPopupEvent = function(){
-			console.log(_settings.openClickElementBuyClass);
 			$(document).on('click', _settings.openClickElementBuyClass, function(){
-				console.log(_settings.openClickElementBuyClass);
 				if(_data.$popupElementBuy.height() < $(window).height())
 					_data.$popupElementBuy.css({'margin-top': '-' + (_data.$popupElementBuy.height() / 2) + 'px'});
 				else _data.$popupElementBuy.css({'top': '0px'});
@@ -1125,12 +1358,16 @@ Modules.CarpetType = (function(self, $){
 	var _settings = {
 			blockElementClass: '',
 			hoverElementClass: '',
+			hoverElementWrapperClass: '',
 			imageElementClass: ''
 		},
 		_data = {
 			$blockElement: '',
+			$hoverElementWrapper: '',
 			$hoverElement: '',
-			$imageElement: ''
+			$imageElement: '',
+			firstTime: true,
+			trigger: true
 		}
 			
 		self.setSettings = function(params){
@@ -1141,23 +1378,43 @@ Modules.CarpetType = (function(self, $){
 		
 		self.setConfig = function(){
 			_data.$blockElement = $( _settings.blockElementClass );
+			_data.$hoverElementWrapper = $( _settings.hoverElementWrapperClass );
 			_data.$hoverElement = $( _settings.hoverElementClass );
 			_data.$imageElement = $( _settings.imageElementClass );
 
-			_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-			_data.$hoverElement.eq(0).addClass('active');
+			_data.$blockElement.find('.default-item').find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+			_data.$blockElement.find('.default-item').addClass('active');
+
+			setTimeout(function(){
+				_data.$blockElement.find('.default-item').find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+			}, 400);
 
 			return self;
 		}
 		
 		self.hoverEvent = function(){
-			$(document).on('mouseover', _settings.hoverElementClass, function(){
-					var old = _data.$blockElement.find('.active');
-					_data.$hoverElement.removeClass('active');
-					old.children().find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+			$(document).on('mouseenter', _settings.hoverElementClass, function(e){
+				e.stopPropagation();
 
-					$(this).find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-					$(this).addClass('active');
+				var obj = $(this);
+				var old = _data.$blockElement.find('.active');
+				_data.trigger = true;
+
+				if($(this).closest('dd') != old){
+					_data.$hoverElement.closest('dd').removeClass('active');
+
+					old.parent().find(_settings.imageElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+					old.parent().find(_settings.imageElementClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					
+					obj.closest('dd').find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+					obj.closest('dd').addClass('active');
+
+					setTimeout(function(){
+						obj.closest('dd').find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				}
+				
 				return false;
 			});
 		
@@ -1165,13 +1422,28 @@ Modules.CarpetType = (function(self, $){
 		}
 
 		self.hoverOutEvent = function(){
-			$(document).on('mouseleave', _settings.blockElementClass, function(){
-				var old = _data.$blockElement.find('.active');
-				_data.$hoverElement.removeClass('active');
-				old.find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight').addClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+			$(document).on('mouseleave', _settings.hoverElementWrapperClass, function(e){
+				e.stopPropagation();
 
-				_data.$hoverElement.eq(0).children().find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
-				_data.$hoverElement.eq(0).addClass('active');
+				var old = _data.$blockElement.find('.active');
+
+				old.parent().find(_settings.imageElementClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				
+				_data.$blockElement.find('.default-item').find(_settings.imageElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+				_data.$blockElement.find('.default-item').addClass('active');
+
+				setTimeout(function(){
+					_data.$blockElement.find('.default-item').find(_settings.imageElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 400);
+		
+				return false;
+			});
+		
+			return self;
+		}
+
+		self.hoverOutEventFix = function(){
+			$(document).on('mouseleave', _settings.hoverElementWrapperClass + ' i', function(e){
 				return false;
 			});
 		
@@ -1180,7 +1452,7 @@ Modules.CarpetType = (function(self, $){
 		
 		return {
 			init: function(params){
-				self.setSettings(params).setConfig().hoverEvent().hoverOutEvent();
+				self.setSettings(params).setConfig().hoverEvent().hoverOutEvent().hoverOutEventFix();
 
 				return self;
 			}
@@ -1922,6 +2194,59 @@ Modules.CatalogBannerFirstPopup = (function(self, $){
 		}
 }(Modules.CatalogBannerFirstPopup || {}, jQuery));
 
+Modules.BookmarkBannerPopup = (function(self, $){
+	
+	var _settings = {
+			popupElementClass: '',
+			openCloseClickElementClass: ''
+		},
+		_data = {
+			$popupElement: '',
+			$openCloseClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openCloseClickElement = $( _settings.openCloseClickElementClass );
+
+			_data.$popupElement.addClass('pt-page-heightOff');
+
+			return self;
+		}
+		
+		self.openClosePopupClickEvent = function(){
+			$(document).on('click', _settings.openCloseClickElementClass, function(){
+				if(_data.$openCloseClickElement.attr('class') != 'active'){
+					_data.$popupElement.removeClass('pt-page-heightOff');
+					_data.$popupElement.addClass('pt-page-heightOn');
+					_data.$openCloseClickElement.addClass('active');
+				} else {
+					_data.$openCloseClickElement.removeClass('active');
+					_data.$popupElement.addClass('pt-page-heightOff');
+					_data.$popupElement.removeClass('pt-page-heightOn');
+				}
+					
+				return false;
+			});
+		
+			return self;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openClosePopupClickEvent();
+
+				return self;
+			}
+		}
+}(Modules.BookmarkBannerPopup || {}, jQuery));
+
 Modules.CatalogBannerSecondPopup = (function(self, $){
 	
 	var _settings = {
@@ -2156,7 +2481,7 @@ Modules.TopBottomButton = (function(self, $){
 		            });
 		            // меняем кнопку
 		            _settings.flagBottom = false;
-		            $('.in_top span').html('↑ Наверх ↑');
+		            $('.in_top span').html('Наверх');
 		        }else{
 		            // если кнопка "вверх"
 		            $("body,html").animate({"scrollTop":0}, 400, function(){ 
@@ -2166,7 +2491,7 @@ Modules.TopBottomButton = (function(self, $){
 		            _settings.bottomPosition = $(window).scrollTop();
 		            // и зададим флаг, что нужно показать кнопку "назад"
 		            _settings.flagBottom = true;
-		            $('.in_top span').html('↓ Назад ');
+		            $('.in_top span').html('Назад');
 		        }
 
 		        return false;
@@ -2183,7 +2508,7 @@ Modules.TopBottomButton = (function(self, $){
 		            $('.in_top').show();
 		            if(_settings.flagBottom){
 		                _settings.flagBottom = false;
-		                $('.in_top span').html('↑ Наверх ↑');
+		                $('.in_top span').html('Наверх');
 		            }
 		        // иначе прячем кнопку, если это не кнопка "назад"
 		        }else{
@@ -2510,7 +2835,8 @@ Modules.MenuShadow = (function(self, $){
 		_data = {
 			$navMenu: '',
 			$menuItem: '',
-			$popupOverlay: ''
+			$popupOverlay: '',
+			trigger: false
 		}
 			
 		self.setSettings = function(params){
@@ -2529,16 +2855,16 @@ Modules.MenuShadow = (function(self, $){
 
 		self.hoverEvent = function(){
 			$(document).on('mouseenter', _settings.menuItemClass, function(e){
-				console.log('mouseenter');
-				console.log($(e.target).attr('class'));
-				console.log($(e.toElement).attr('class'));
 				if($(e.target).attr('class') == 'b-main-nav-dropdown' && _data.$popupOverlay.attr('class') != 'b-overlay-menu pt-page-current'){
+					_data.trigger = true;
+					console.log('trigger 1: ' + _data.trigger);
 					_data.$navMenu.css({'z-index': 1000});
 					_data.$popupOverlay.css('top', $('header').height());
-
+					_data.$popupOverlay.removeClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 					_data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
 
 					setTimeout(function(){
+						console.log('trigger 12: ' + _data.trigger);
 						_data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
 					}, 400);
 				}
@@ -2551,15 +2877,18 @@ Modules.MenuShadow = (function(self, $){
 
 		self.hoverOutEvent = function(){
 			$(document).on('mouseleave', _settings.menuItemClass, function(e){
-				console.log('mouseleave');
-				console.log($(e.toElement).attr('class'));
-
 				if($(e.toElement).attr('class') != 'b-main-nav-dropdown'){
 					_data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+					_data.trigger = false;
 
+					console.log('trigger 2: ' + _data.trigger);
 					setTimeout(function(){
-						_data.$navMenu.css({'z-index': 1});
-						_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+						console.log('trigger 3: ' + _data.trigger);
+						if(_data.trigger == false){
+							console.log('trigger 4: ' + _data.trigger);
+							_data.$navMenu.css({'z-index': 'auto'});
+							_data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+						}
 					}, 400);
 				}
 
@@ -3492,9 +3821,18 @@ Modules.SizeProductButton = (function(self, $){
 		var couponPopup = new Modules.CouponPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupWrapperClass: '.b-popup-wrapper__coupon',
-			popupElementClass: '.b-coupon-pop-up',
-			openClickElementClass: '.b-middle-store__img a, .b-contacts__promo a',
-			closeClickElementClass: '.b-coupon-pop-up .close',
+			popupElementClass: '.b-popup-wrapper__coupon .b-coupon-pop-up',
+			openClickElementClass: '.b-middle-store__img a, .b-contacts__promo a, .coupon-menu-item a',
+			closeClickElementClass: '.b-popup-wrapper__coupon .b-coupon-pop-up .close',
+			ajaxUrl: ''
+		});
+
+		var consultPopup = new Modules.ConsultPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupWrapperClass: '.b-popup-wrapper__consult',
+			popupElementClass: '.b-popup-wrapper__consult .b-coupon-pop-up',
+			openClickElementClass: '.consult-btn',
+			closeClickElementClass: '.b-popup-wrapper__consult .b-coupon-pop-up .close',
 			ajaxUrl: ''
 		});
 
@@ -3503,7 +3841,7 @@ Modules.SizeProductButton = (function(self, $){
 			popupWrapperClass: '.b-popup-wrapper__catalog',
 			popupElementClass: '.g-catalog .b-catalog__item-pop-up',
 			openClickElementClass: '.b-catalog__item-i',
-			closeClickElementClass: '.b-popup-wrapper__catalog',
+			closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i',
 			popupOverlayCityClass: '.b-overlay',
 			popupWrapperCityClass: '.b-popup-wrapper__city-item',
 			popupElementCityClass: '.b-popup-wrapper__city-item .b-city-pop-up',
@@ -3526,7 +3864,7 @@ Modules.SizeProductButton = (function(self, $){
 			popupWrapperBuyClass: '.b-popup-wrapper__basket-buy',
 			popupElementBuyClass: '.b-cart-order__form-buy',
 			openClickElementBuyClass: '.b-cart-order-basket .p-lnk',
-			closeClickElementBuyClass: '.b-cart-order__form-buy .close',
+			closeClickElementBuyClass: '.b-cart-order__form-buy .b-cart-order-close',
 			popupOverlayResultClass: '.b-overlay',
 			popupWrapperResultClass: '.b-popup-wrapper__basket-result',
 			popupElementResultClass: '.b-cart-order__form-result',
@@ -3540,7 +3878,7 @@ Modules.SizeProductButton = (function(self, $){
 			popupWrapperBuyClass: '.b-popup-wrapper__basket-buy',
 			popupElementBuyClass: '.b-cart-order__form-buy',
 			openClickElementBuyClass: '.b-main-nav__bag-i .lnk a',
-			closeClickElementBuyClass: '.b-cart-order__form-buy .close',
+			closeClickElementBuyClass: '.b-cart-order__form-buy .b-cart-order-buy-close',
 			ajaxUrl: ''
 		});
 
@@ -3566,9 +3904,9 @@ Modules.SizeProductButton = (function(self, $){
 			popupOverlayClass: '.b-overlay',
 			popupWrapperClass: '.b-popup-wrapper__city',
 			popupElementClass: '.b-popup-wrapper__city .b-city-pop-up',
-			openClickElementClass: '.g-container-outer .b-top__reg-i a, .g-container-outer .b-top__no, .g-container-outer .b-contacts__title a, .g-container-outer .b-item__r-c .title-2 a',
+			openClickElementClass: '.g-container-outer .b-top__reg-i a, .g-container-outer .b-top__no, .g-container-outer .b-contacts__title a, .g-container-outer .b-item__r-c .title-2 a, .b-order-l-col .title-2 a',
 			closeClickElementClass: '.b-popup-wrapper__city .b-city-pop-up .close',
-			cityElementClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a',
+			cityElementClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a, .b-order-l-col .title-2 a',
 			topLineClass: '.b-top__yellow-line',
 			topLineCloseClass: '.b-top__yes',
 			ajaxUrl: ''
@@ -3605,7 +3943,8 @@ Modules.SizeProductButton = (function(self, $){
 
 		var carpetType = new Modules.CarpetType.init({
 			blockElementClass: '.b-middle-nav__list-1',
-			hoverElementClass: '.b-middle-nav__list-1 dd',
+			hoverElementWrapperClass: '.b-middle-nav__list-1 dl',
+			hoverElementClass: '.b-middle-nav__list-1 dd a',
 			imageElementClass: '.b-middle-nav__list-i'
 		});
 
@@ -3635,6 +3974,11 @@ Modules.SizeProductButton = (function(self, $){
 			popupElementClass: '.b-catalog__middle-banner-1 .b-catalog__middle-banner-popup',
 			openClickElementClass: '.b-catalog__middle-banner-1 .open',
 			closeClickElementClass: '.b-catalog__middle-banner-1 .close'
+		});
+
+		var bookmarkBannerPopup = new Modules.BookmarkBannerPopup.init({
+			popupElementClass: '.b-bookmark__banner .content',
+			openCloseClickElementClass: '.b-bookmark__banner .title a'
 		});
 
 		var catalogBannerSecondPopup = new Modules.CatalogBannerSecondPopup.init({
@@ -3677,13 +4021,6 @@ Modules.SizeProductButton = (function(self, $){
 			tabsContentWrapperClass: '.b-designer-profile-i',
 			tabElementClass: '.b-designer-profile-tabs > li',
 			tabContentElementClass: '.b-designer-profile-i > div'
-		});
-
-		var itemTabs = new Modules.ItemTabs.init({
-			tabsWrapperClass: '.b-item-tabs',
-			tabsContentWrapperClass: '.b-item__middle',
-			tabElementClass: '.b-item-tabs > li',
-			tabContentElementClass: '.b-item__middle .b-item__tab'
 		});
 
 		var loadMoreButton = new Modules.LoadMoreButton.init({
@@ -3739,35 +4076,9 @@ Modules.SizeProductButton = (function(self, $){
 				});
 			}
 		}
-			
-		if($('.owl-carousel').length > 0){
-			$('.owl-carousel').owlCarousel({
-			    loop:true,
-			    margin:10,
-			    nav:true,
-			    responsive:{
-			        0:{
-			            items:1
-			        },
-			        600:{
-			            items:3
-			        },
-			        1000:{
-			            items:5
-			        }
-			    }
-			})
-		}
 
-		if ($.fn.selectize) {
-		    $('select').selectize({
-			    create: true,
-			    sortField: {
-			        field: 'text',
-			        direction: 'asc'
-			    },
-			    dropdownParent: 'body'
-			});
+		if ($.fn.niceSelect) {
+		    $('select').niceSelect();
 		}
 
 		if($(document).width() < 1024){
@@ -3790,6 +4101,29 @@ Modules.SizeProductButton = (function(self, $){
 				itemElementClass: '.mobile-filter span',
 				productWrapperClass: '.b-catalog__middle'
 			});
+
+			if($('.b-viewed').length > 0){
+				if ($.fn.owlCarousel) {
+					$('.b-viewed dl').owlCarousel({
+					    loop:true,
+					    nav:true,
+					    items : 4,
+					    itemsDesktop : [1023,3],
+					    itemsDesktopSmall : [320,3]
+					})
+				}
+			}
+
+			var couponMobMenuPopup = new Modules.CouponMobMenuPopup.init({
+				menuOverlayClass: '.b-overlay-mobile-menu',
+				menuElementClass: '.b-mobile-nav__list',
+				popupOverlayClass: '.b-overlay',
+				popupWrapperClass: '.b-popup-wrapper__coupon',
+				popupElementClass: '.b-coupon-pop-up',
+				openClickElementClass: '.coupon-menu-mob-item',
+				closeClickElementClass: '.b-coupon-pop-up .close',
+				ajaxUrl: ''
+			});
 		} else {
 			var topBottomButton = new Modules.TopBottomButton.init({
 			});
@@ -3799,6 +4133,25 @@ Modules.SizeProductButton = (function(self, $){
 				tabsContentWrapperClass: '.b-designer-profile-i',
 				tabElementClass: '.b-designer-profile-tabs > li',
 				tabContentElementClass: '.b-designer-profile-i > div'
+			});
+
+			if($('.owl-carousel').length > 0){
+				if ($.fn.owlCarousel) {
+					$('.owl-carousel').owlCarousel({
+					    loop:true,
+					    nav:true,
+					    items : 4,
+					    itemsDesktop : [1320,3],
+					    itemsDesktopSmall : [1024,3]
+					})
+				}
+			}
+
+			var itemTabs = new Modules.ItemTabs.init({
+				tabsWrapperClass: '.b-item-tabs',
+				tabsContentWrapperClass: '.b-item__middle',
+				tabElementClass: '.b-item-tabs > li',
+				tabContentElementClass: '.b-item__middle .b-item__tab'
 			});
 		}
 	});
