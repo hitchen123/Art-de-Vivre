@@ -1262,19 +1262,20 @@ Modules.BasketPopup = (function(self, $){
 		self.openClosePopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				if(_data.trigger == false){
-					_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElement.addClass('pt-page-current pt-page-visible');
 					_data.trigger = true;
 
-					setTimeout(function(){
-						_data.$popupElement.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					}, 400);
+					// setTimeout(function(){
+					// 	_data.$popupElement.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					// }, 400);
 				} else {
-					_data.$popupElement.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+					// _data.$popupElement.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 					_data.trigger = false;
+					_data.$popupElement.removeClass('pt-page-current pt-page-visible');
 
-					setTimeout(function(){
-						_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToBottomFade pt-page-moveFromTopFade');
-					}, 400);
+					// setTimeout(function(){
+					// 	_data.$popupElement.removeClass('pt-page-current pt-page-visible');
+					// }, 400);
 				}
 				return false;
 			});
@@ -1953,7 +1954,8 @@ Modules.FixedButton = (function(self, $){
 		},
 		_data = {
 			$buttonElement: '',
-			$offset: 0
+			$offset: 0,
+			$offsetleft: 0
 		}
 			
 		self.setSettings = function(params){
@@ -1967,6 +1969,7 @@ Modules.FixedButton = (function(self, $){
 
 			var offset = _data.$buttonElement.offset();
 			_data.$offset = offset.top - parseInt(_data.$buttonElement.css('padding-top'));
+			_data.$offsetLeft = offset.left;
 
 			return self;
 		}
@@ -1979,18 +1982,21 @@ Modules.FixedButton = (function(self, $){
 			      _data.$buttonElement.css({
 			        'position': 'fixed',
 			        'top': '0',
+			        'left': _data.$offsetLeft,
 			        'z-index': '150'
 			      });
 			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
 			      _data.$buttonElement.css({
 			        'position': 'absolute',
 			        'top': $('footer').offset().top - _data.$buttonElement.outerHeight() + 'px',
+			        'left': _data.$offsetLeft,
 			        'z-index': '1500'
 			      });
 				} else {
 					_data.$buttonElement.css({
 				        'position': 'relative',
-				        'top': 'auto'
+				        'top': 'auto',
+				        'left': 'auto'
 				      });
 				}
 			});
