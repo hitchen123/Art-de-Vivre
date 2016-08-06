@@ -23,7 +23,7 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line pt-page-heightOn">
+                <div class="b-top__yellow-line pt-page-heightOn-visible">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
@@ -269,7 +269,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="coupon-menu-item">
                             <a href="#" class="c-D0021B">% Распродажа</a>
                         </li>
                         <li class="fl-r">
@@ -326,7 +326,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="b-main-nav__bag pt-page-heightOff">
+                    <div class="b-main-nav__bag">
                         <div class="b-main-nav__bag-i">
                             <form id="#">
                                 <article class="b-main-nav__bag-item cfix">
@@ -483,7 +483,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li class="coupon-menu-mob-item">
                                     <a href="#" class="c-D0021B">% Распродажа</a>
                                 </li>
                                 <li>
@@ -565,7 +565,7 @@
                             <div class="b-middle-nav__list-1 cfix">
                                 <dl>
                                     <dt>По стилю</dt>
-                                    <dd class="active">
+                                    <dd class="default-item active">
                                         <span>
                                             <a href="#">Традиционные</a>
                                             <i class="b-middle-nav__list-i" style="background-image:url(temp/3.png)"></i>
@@ -663,11 +663,13 @@
                             </div>
                         </div>
                         <div class="b-middle-nav-col-2">
-                            <article class="b-middle-nav__item item-2" style="background-image:url(temp/6.png)">
-                                <h3 class="title">Премиум ковры</h3>
-                                <p>Ковры ручной работы как<br/> произведения искусства</p>
-                                <a href="#">Смотреть все ковры<br/>ручной работы ›</a>
-                            </article>
+                            <a href="#">
+                                <article class="b-middle-nav__item item-2" style="background-image:url(temp/6.png)">
+                                    <h3 class="title">Премиум ковры</h3>
+                                    <p>Ковры ручной работы как<br/> произведения искусства</p>
+                                    <span>Смотреть все ковры<br/>ручной работы ›</span>
+                                </article>
+                            </a>
                             <article class="b-middle-nav__item item-1">
                                 <a href="#" style="background-image:url(temp/7.png)">
                                     <div>
@@ -1189,12 +1191,13 @@
                         </button>    
                     </div>
                 </form>
-                <a href="#" class="close">Закрыть</a>
+                <a href="#" class="b-cart-order-buy-close close">Закрыть</a>
             </div>
         </section>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="styles/js/main.js"></script>
     <script src="styles/js/fotorama.js"></script>
+    <script src="styles/js/main.js"></script>
 </body>
 </html>

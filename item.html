@@ -24,7 +24,7 @@
         <div class="g-container-outer">
             <!--Top-->
             <header class="b-top">
-                <div class="b-top__yellow-line pt-page-heightOn">
+                <div class="b-top__yellow-line pt-page-heightOn-visible">
                     <dl class="b-top__yellow-line-i">
                         <dt>Ваш регион Москва?</dt>
                         <dd>
@@ -270,7 +270,7 @@
                                 </div>
                             </div>    
                         </li>
-                        <li>
+                        <li class="coupon-menu-item">
                             <a href="#" class="c-D0021B">% Распродажа</a>
                         </li>
                         <li class="fl-r">
@@ -327,7 +327,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="b-main-nav__bag pt-page-heightOff">
+                    <div class="b-main-nav__bag">
                         <div class="b-main-nav__bag-i">
                             <form id="#">
                                 <article class="b-main-nav__bag-item cfix">
@@ -484,7 +484,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li class="coupon-menu-mob-item">
                                     <a href="#" class="c-D0021B">% Распродажа</a>
                                 </li>
                                 <li>
@@ -610,11 +610,11 @@
                 <div class="b-catalog__middle-banner-2 cfix">
                     <div class="wrap cfix">
                         <div class="img">
-                            <img src="temp/44.png" width="107" height="172">    
+                            <img src="temp/44.png" width="138" height="222">    
                         </div>
                         <h2 class="title-1">Не знаете какой ковер выбрать? Звоните!<br/>+7 (495) 123-45-67</h2>
                         <p class="txt">Наши опытные декораторы помогают не ошибиться<br/> и правильно сочетать ковер с Вашим интерьером.</p>
-                        <div class="btn">
+                        <div class="btn consult-btn">
                             <a href="#">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</a>     
                         </div>
                     </div>
@@ -1187,6 +1187,29 @@
                 <ul class="cfix">
                     <li>
                         <label>Ваш email</label>
+                        <input type="text" name="" />
+                    </li>
+                    <li>
+                        <label>Номер телефона</label>
+                        <input type="text" name="" />
+                    </li>
+                </ul>
+                <button>
+                    <span>Получить купон</span>
+                </button>
+                <a href="#" class="close">Закрыть</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="b-popup-wrapper__consult">
+        <div class="b-coupon-pop-up">
+            <h2 class="title">Купон на скидку 5 000 руб в наших магазинах</h2>
+            <p>Оставьте свой email и мы вышлем вам сертификат на скидку в размере 5 000 рублей (но не более 20% от стоимости ковра)</p>
+            <form id="#">
+                <ul class="cfix">
+                    <li>
+                        <label>Ваше имя</label>
                         <input type="text" name="" />
                     </li>
                     <li>

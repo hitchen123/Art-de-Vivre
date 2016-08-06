@@ -1,5 +1,5 @@
 .pt-page-current{
-	visibility: visible;
+	visibility: visible !important;
 }
 
 .pt-page-current-wrapper{
@@ -7,7 +7,7 @@
 }
 
 .pt-page-visible{
-	opacity: 1;
+	opacity: 1 !important;
 }
 
 .pt-width-height{
@@ -21,6 +21,11 @@
     max-height: 3000px;
     transition: max-height .2s ease-in;
     overflow: hidden;
+}
+
+.pt-page-heightOn-visible {
+	max-height: 3000px;
+    transition: max-height .2s ease-in;
 }
 
 .pt-page-heightOff {
