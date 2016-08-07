@@ -135,7 +135,7 @@ body.main{background:#fff}
 .b-main-nav__catalog .list-1 li{padding:0 0 25px;text-align:left;font-size:14px;line-height:21px}
 .b-main-nav__catalog .list-1 li a{font-size:14px;transition:color 0.2s ease;color:#1A1A1A}
 .b-main-nav__catalog .list-1 li a:hover{color:#EB8A1C}
-.b-main-nav__catalog .list-1 li a:hover + .hover-info{visibility:visible;opacity:1}
+.b-main-nav__catalog .list-1 li a.active + .hover-info{visibility:visible;opacity:1}
 .b-main-nav__catalog .list-1 li span{padding:6px 0 0;display:block;font-size:16px;color:#999}
 
 .b-main-nav__catalog .list-1 .hover-info{position:absolute;left:0;top:0;bottom:0;width:61%;background:#F5F5F5;background-position:0 50%;background-repeat:no-repeat;transition:visibility 0s, opacity 0.2s linear;visibility:hidden;opacity:0}
