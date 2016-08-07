@@ -3034,7 +3034,6 @@ Modules.DropdownMenu = (function(self, $){
 		}
 }(Modules.DropdownMenu || {}, jQuery));
 
-
 Modules.SignInPopup = (function(self, $){
 	
 	var _settings = {
