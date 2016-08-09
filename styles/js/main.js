@@ -2917,12 +2917,14 @@ Modules.YandexMaps = (function(self, $, ymaps){
 Modules.MenuShadow = (function(self, $){
 	
 	var _settings = {
+			navClass: '',
 			navMenuClass: '',
 			menuItemClass: '',
 			popupOverlayClass: '',
 			dropdownMenuItemClass: ''
 		},
 		_data = {
+			$nav: '',
 			$navMenu: '',
 			$menuItem: '',
 			$popupOverlay: '',
@@ -2937,6 +2939,7 @@ Modules.MenuShadow = (function(self, $){
 		}
 		
 		self.setConfig = function(){
+			_data.$nav = $( _settings.navClass );
 			_data.$navMenu = $( _settings.navMenuClass );
 			_data.$menuItem = $( _settings.menuItemClass );
 			_data.$dropdownMenuItem = $( _settings.dropdownMenuItemClass );
@@ -2950,7 +2953,7 @@ Modules.MenuShadow = (function(self, $){
 				if($(e.target).attr('class') == 'b-main-nav-dropdown' && _data.$popupOverlay.attr('class') != 'b-overlay-menu pt-page-current'){
 					$(e.target).find(_data.$dropdownMenuItem).eq(0).addClass('active');
 
-					_data.$navMenu.css({'z-index': 1000});
+					_data.$nav.css({'z-index': 1000});
 					_data.$popupOverlay.css('top', $('header').height());
 					_data.$popupOverlay.addClass('pt-page-current');
 				}
@@ -3940,6 +3943,7 @@ Modules.SizeProductButton = (function(self, $){
 (function($){
 	$(function(){
 		var menuShadow = new Modules.MenuShadow.init({
+			navClass: '.b-top',
 			navMenuClass: '.b-main-nav',
 			menuItemClass: '.b-main-nav-dropdown',
 			dropdownMenuItemClass: '.b-main-nav__catalog .list-1 a',
