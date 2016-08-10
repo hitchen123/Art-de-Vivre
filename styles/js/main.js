@@ -4225,6 +4225,10 @@ Modules.SizeProductButton = (function(self, $){
 		    $('select').niceSelect();
 		}
 
+		if ($.fn.zoom) {
+		    $('.b-catalog__item-i .cover').zoom();
+		}
+
 		if($(document).width() < 1024){
 			var mobileMenu = new Modules.MobileMenu.init({
 				menuOverlayClass: '.b-overlay-mobile-menu',
