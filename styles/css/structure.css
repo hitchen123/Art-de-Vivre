@@ -19,15 +19,13 @@ button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
     font-weight: normal;
     font-style: normal;
 }
-
-@font-face {
-    font-family:'MuseoSansCyrl';
-    src: url('../fonts/MuseoSansCyrl-700.eot');
-    src: url('../fonts/MuseoSansCyrl-700.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/MuseoSansCyrl-700.woff') format('woff'),
-         url('../fonts/MuseoSansCyrl-700.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+@font-face {font-family: "MuseoSansCyrl";
+  src: url("../fonts/museosanscyrl_700.eot"); /* IE9*/
+  src: url("../fonts/museosanscyrl_700.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../fonts/museosanscyrl_700.woff2") format("woff2"), /* chrome、firefox */
+  url("../fonts/museosanscyrl_700.woff") format("woff"), /* chrome、firefox */
+  url("../fonts/museosanscyrl_700.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  font-weight: bold;
 }
 
 
@@ -55,7 +53,7 @@ body.main{background:#fff}
 /*Top*/
 .b-mobile-nav{display:none}
 .b-top{margin:0 auto;z-index:11;position:relative}
-.b-top-line{background:#fff;}
+.b-top-line{background:#fff;padding: 0 22px;}
 .b-top-line-i{max-width:1320px;margin:0 auto;}
 
 .b-top__yellow-line{background:#EB8A1C;box-shadow:0px 4px 21px 0px rgba(255,223,161,0.36);text-align:center;font-size:0;line-height:0}
@@ -114,7 +112,7 @@ body.main{background:#fff}
 	.b-logo a img{}
 
 /*Main-navigation*/
-.b-main-nav{}
+.b-main-nav{padding: 0 22px}
 .b-main-nav-i{max-width:1320px;margin:0 auto;border-bottom: 2px solid #000000;text-align:center;font-size:0;line-height:0;z-index:1}
 .b-main-nav-i > li{padding: 23px;padding-bottom: 19px;letter-spacing: 0.1px;display:inline-block;font-size:15px;line-height:19px}
 .b-main-nav-i > li.fl-r{float:right;margin-left:18px;margin-right:-20px}
