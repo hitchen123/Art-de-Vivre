@@ -105,6 +105,43 @@ Modules.CouponPopup = (function(self, $){
 		}
 }(Modules.CouponPopup || {}, jQuery));
 
+Modules.PhoneMask = (function(self, $){
+	
+	var _settings = {
+			phoneInputClass: '',
+			mask: ''
+		},
+		_data = {
+			$phoneInput: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$phoneInput = $( _settings.phoneInputClass );
+
+			return self;
+		}
+
+		self.phoneOn = function(){
+			_data.$phoneInput.mask(_settings.mask);
+
+			return self;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().phoneOn();
+
+				return self;
+			}
+		}
+}(Modules.PhoneMask || {}, jQuery));
+
 Modules.ConsultPopup = (function(self, $){
 	
 	var _settings = {
@@ -1168,13 +1205,15 @@ Modules.SearchPopup = (function(self, $){
 		self.openClosePopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				if(_data.trigger == false){
-					_data.$popupElement.removeClass('pt-page-heightOff');
-					_data.$popupElement.addClass('pt-page-heightOn');
+					// _data.$popupElement.removeClass('pt-page-heightOff');
+					// _data.$popupElement.addClass('pt-page-heightOn');
+					_data.$popupElement.show();
 					_data.$popupElement.find('input').focus();
 					_data.trigger = true;
 				} else {
-					_data.$popupElement.addClass('pt-page-heightOff');
-					_data.$popupElement.removeClass('pt-page-heightOn');
+					// _data.$popupElement.addClass('pt-page-heightOff');
+					// _data.$popupElement.removeClass('pt-page-heightOn');
+					_data.$popupElement.hide();
 					_data.trigger = false;
 				}
 				return false;
@@ -2971,7 +3010,7 @@ Modules.MenuShadow = (function(self, $){
 				if(_data.$menuItem.find($(e.toElement)).length == 0){
 					_data.$menuItem.find(_data.$dropdownMenuItem).removeClass('active');
 
-					_data.$navMenu.css({'z-index': 'auto'});
+					_data.$nav.css({'z-index': 'auto'});
 					_data.$popupOverlay.removeClass('pt-page-current');
 				}
 
@@ -4226,7 +4265,14 @@ Modules.SizeProductButton = (function(self, $){
 		}
 
 		if ($.fn.zoom) {
-		    $('.b-catalog__item-i .cover').zoom();
+		    $('.b-catalog__item-i .cover, .b-item__gallery .fotorama__img').zoom();
+		}
+
+		if ($.fn.mask) {
+			var phoneMask = new Modules.PhoneMask.init({
+				phoneInputClass: '.b-type-phone',
+				mask: '+7 (999) 999-99-99'
+			});
 		}
 
 		if($(document).width() < 1024){
