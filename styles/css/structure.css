@@ -498,6 +498,7 @@ body.main{background:#fff}
     overflow:hidden;
     height:100%;
     width:100%;
+    position:relative;
 }
 
 .b-popup-wrapper__basket,

@@ -988,7 +988,7 @@ Modules.MobileMenu = (function(self, $){
 		self.openMenuEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				$('body').width($('body').width());
-				$('body').addClass('html_noscroll');
+				$('html, body').addClass('html_noscroll');
 				_data.$menuOverlay.addClass('pt-page-current');
 				_data.$menuElement.addClass('pt-page-current pt-page-current-wrapper pt-page-visible pt-page-moveFromLeft-Menu');
 
@@ -1002,12 +1002,12 @@ Modules.MobileMenu = (function(self, $){
 		}
 		
 		self.closeMenuEvent = function(){
-			$(document).on('click', _settings.closeClickElementClass, function(){
+			$(document).on('click, touchstart', _settings.closeClickElementClass, function(){
 				_data.$menuElement.addClass('pt-page-moveToLeft-Menu');
 				_data.$menuOverlay.removeClass('pt-page-current');
 
 				setTimeout(function(){
-					$('body').removeClass('html_noscroll');
+					$('html, body').removeClass('html_noscroll');
 					$('body').width('auto');
 					_data.$menuElement.removeClass('pt-page-current pt-page-current-wrapper pt-page-visible pt-page-moveToLeft-Menu');
 				}, 400);
@@ -1634,11 +1634,19 @@ Modules.CatalogFiltersPopup = (function(self, $){
 				if(_data.trigger == false){
 					_data.$filterElementList.removeClass('pt-page-heightOff');
 					_data.$filterElementList.addClass('pt-page-heightOn');
+
+					if($('.b-catalog__sub-nav .tags-list__filter').length > 0)
+						$('.b-catalog__sub-nav').show();
+
 					_data.trigger = true;
 				} else {
 					_data.$filterElementList.addClass('pt-page-heightOff');
 					_data.$filterElementList.removeClass('pt-page-heightOn');
 					_data.trigger = false;
+
+					setTimeout(function(){
+						$('.b-catalog__sub-nav').hide();
+					}, 300)
 				}
 				return false;
 			});
@@ -2024,6 +2032,10 @@ Modules.FixedButton = (function(self, $){
 			        'left': _data.$offsetLeft,
 			        'z-index': '150'
 			      });
+
+			      if($(window).width() < 1024)
+					_data.$buttonElement.children().css({'font-size': 0, 'background-position': '50%'});
+
 			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
 			      _data.$buttonElement.css({
 			        'position': 'absolute',
@@ -2037,6 +2049,9 @@ Modules.FixedButton = (function(self, $){
 				        'top': 'auto',
 				        'left': 'auto'
 				      });
+
+					if($(window).width() < 1024)
+						_data.$buttonElement.children().css({'font-size': '12px', 'background-position': '12px 50%'});
 				}
 			});
 		
@@ -4012,23 +4027,6 @@ Modules.SizeProductButton = (function(self, $){
 			ajaxUrl: ''
 		});
 
-		var catalogItemPopup = new Modules.CatalogItemPopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupWrapperClass: '.b-popup-wrapper__catalog',
-			popupElementClass: '.g-catalog .b-catalog__item-pop-up',
-			openClickElementClass: '.b-catalog__item-i',
-			closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i, .b-popup-wrapper__catalog',
-			popupOverlayCityClass: '.b-overlay',
-			popupWrapperCityClass: '.b-popup-wrapper__city-item',
-			popupElementCityClass: '.b-popup-wrapper__city-item .b-city-pop-up',
-			openClickElementCityClass: '.b-popup-wrapper__catalog .b-item__r-c .title-2 a',
-			closeClickElementCityClass: '.b-popup-wrapper__city-item .b-city-pop-up .close, .b-popup-wrapper__city-item',
-			cityElementCityClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a',
-			topLineCityClass: '.b-top__yellow-line',
-			topLineCloseCityClass: '.b-top__yes',
-			ajaxUrl: ''
-		});
-
 		var fullBasketPopup = new Modules.FullBasketPopup.init({
 			popupOverlayClass: '.b-overlay',
 			popupWrapperClass: '.b-popup-wrapper__basket',
@@ -4346,6 +4344,23 @@ Modules.SizeProductButton = (function(self, $){
 				tabsContentWrapperClass: '.b-item__middle',
 				tabElementClass: '.b-item-tabs > li',
 				tabContentElementClass: '.b-item__middle .b-item__tab'
+			});
+
+			var catalogItemPopup = new Modules.CatalogItemPopup.init({
+				popupOverlayClass: '.b-overlay',
+				popupWrapperClass: '.b-popup-wrapper__catalog',
+				popupElementClass: '.g-catalog .b-catalog__item-pop-up',
+				openClickElementClass: '.b-catalog__item-i',
+				closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i, .b-popup-wrapper__catalog',
+				popupOverlayCityClass: '.b-overlay',
+				popupWrapperCityClass: '.b-popup-wrapper__city-item',
+				popupElementCityClass: '.b-popup-wrapper__city-item .b-city-pop-up',
+				openClickElementCityClass: '.b-popup-wrapper__catalog .b-item__r-c .title-2 a',
+				closeClickElementCityClass: '.b-popup-wrapper__city-item .b-city-pop-up .close, .b-popup-wrapper__city-item',
+				cityElementCityClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a',
+				topLineCityClass: '.b-top__yellow-line',
+				topLineCloseCityClass: '.b-top__yes',
+				ajaxUrl: ''
 			});
 		}
 	});
