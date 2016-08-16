@@ -4317,6 +4317,10 @@ Modules.SizeProductButton = (function(self, $){
 				ajaxUrl: ''
 			});
 		} else {
+			var yandexMap = new Modules.YandexMaps.init({
+				mapWrapperId: 'contact-map'
+			});
+			
 			var topBottomButton = new Modules.TopBottomButton.init({
 			});
 
