@@ -4294,7 +4294,7 @@ Modules.SizeProductButton = (function(self, $){
 				productWrapperClass: '.b-catalog__middle'
 			});
 
-			if($('.b-viewed').length > 0){
+			if($('.b-viewed').length > 0 && $(window).width() < 1024){
 				if ($.fn.owlCarousel) {
 					$('.b-viewed ul').owlCarousel({
 					    loop:true,
