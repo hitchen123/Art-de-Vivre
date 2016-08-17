@@ -4296,10 +4296,10 @@ Modules.SizeProductButton = (function(self, $){
 
 			if($('.b-viewed').length > 0){
 				if ($.fn.owlCarousel) {
-					$('.b-viewed dl').owlCarousel({
+					$('.b-viewed ul').owlCarousel({
 					    loop:true,
 					    nav:true,
-					    items : 4,
+					    items : 3,
 					    itemsDesktop : [1023,3],
 					    itemsDesktopSmall : [320,3]
 					})
