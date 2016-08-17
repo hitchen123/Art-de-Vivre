@@ -2018,6 +2018,13 @@ Modules.FixedButton = (function(self, $){
 			_data.$offset = offset.top - parseInt(_data.$buttonElement.css('padding-top'));
 			_data.$offsetLeft = offset.left;
 
+			if($(window).width() < 1024){
+				_data.$buttonElement.css({
+					'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
+					'left': '50%'
+				})
+	    	}
+
 			return self;
 		}
 		
@@ -2025,34 +2032,33 @@ Modules.FixedButton = (function(self, $){
 			$(window).on('scroll', function(e){
 				e.preventDefault();
 
-			    if ($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < $('footer').offset().top - _data.$buttonElement.outerHeight()){
+			    if($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < ($('footer').offset().top - _data.$buttonElement.outerHeight())){
 			      _data.$buttonElement.css({
 			        'position': 'fixed',
 			        'top': '0',
 			        'left': _data.$offsetLeft,
-			        'z-index': '150'
+			        'z-index': '150',
+			        'margin-left': 0
 			      });
 
 			      if($(window).width() < 1024)
-					_data.$buttonElement.children().css({'font-size': 0, 'background-position': '50%'});
+					_data.$buttonElement.children().eq(0).css({'font-size': 0, 'background-position': '50%'});
 
-			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
-			      _data.$buttonElement.css({
-			        'position': 'absolute',
-			        'top': $('footer').offset().top - _data.$buttonElement.outerHeight() + 'px',
-			        'left': _data.$offsetLeft,
-			        'z-index': '1500'
-			      });
-				} else {
-					_data.$buttonElement.css({
-				        'position': 'relative',
-				        'top': 'auto',
-				        'left': 'auto'
+			    } else if( $(window).scrollTop() + _data.$buttonElement.outerHeight() > $('footer').offset().top || $(window).scrollTop() < _data.$offset) {
+			    	_data.$buttonElement.css({
+				        'position': 'absolute',
+				        'top': '0',
+				        'left': '0'
 				      });
 
-					if($(window).width() < 1024)
-						_data.$buttonElement.children().css({'font-size': '12px', 'background-position': '12px 50%'});
-				}
+			    	if($(window).width() < 1024){
+						_data.$buttonElement.children().eq(0).css({'font-size': '12px', 'background-position': '12px 50%'});
+						_data.$buttonElement.css({
+							'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
+							'left': '50%'
+						})
+			    	}
+			    }
 			});
 		
 			return self;
