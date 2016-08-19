@@ -429,7 +429,13 @@ Modules.CatalogItemPopup = (function(self, $){
 		}
 		
 		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
+			$(document).on('click', _settings.openClickElementClass, function(e){
+
+				if (e.ctrlKey || e.metaKey) {
+					//Ecли нажали с контролом, то модальное не открываем
+					return;
+				}
+
 				if(_data.$popupElement.height() < $(window).height())
 					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
 				else _data.$popupElement.css({'top': '0px'});
@@ -4360,7 +4366,7 @@ Modules.SizeProductButton = (function(self, $){
 				popupOverlayClass: '.b-overlay',
 				popupWrapperClass: '.b-popup-wrapper__catalog',
 				popupElementClass: '.g-catalog .b-catalog__item-pop-up',
-				openClickElementClass: '.b-catalog__item-i',
+				openClickElementClass: '.b-catalog__item-i .img',
 				closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i, .b-popup-wrapper__catalog',
 				popupOverlayCityClass: '.b-overlay',
 				popupWrapperCityClass: '.b-popup-wrapper__city-item',
