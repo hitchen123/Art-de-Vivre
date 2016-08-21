@@ -186,14 +186,11 @@
                             
                             <p class="txt">Артикул: <span>23431</span>Размер: <span>90 x 120</span></p>
                             <div class="count">
-                                <input type="text" name="number" value="1">
-                                <span>шт.</span>
-                                <a href="#" class="count-plus">
-                                    <img src="styles/images/plus.svg">
-                                </a>
-                                <a href="#" class="count-minus">
-                                    <img src="styles/images/minus.svg">
-                                </a>
+                                <select>
+                                    <option>1 шт.</option>
+                                    <option>2 шт.</option>
+                                    <option>3 шт.</option>
+                                </select>
                             </div>
                             <div class="size">
                                 <select>
@@ -201,7 +198,6 @@
                                     <option>Размер: 90 x 120</option>
                                     <option>Размер: 90 x 120</option>
                                 </select>
-                            
                             </div>
                             <div class="sum">
                                 <strike>13 400</strike>   
@@ -246,21 +242,31 @@
                                     </div>
                                 </dd>
                             </dl>
-                            <dl class="list-2 cfix">
-                                <dt>ИТОГО</dt>
-                                <dd>
-                                    <strike>13 400</strike>   
-                                    <span>10 430 р.</span>
-                                </dd>
-                            </dl>
-                            <div class="btn">
-                                <button>
-                                    <span>Оформить заказ</span>
-                                </button>    
+                            <div class="wrap">
+                                <dl class="list-2 cfix">
+                                    <dt>ИТОГО</dt>
+                                    <dd>
+                                        <strike>13 400</strike>   
+                                        <span>10 430 р.</span>
+                                    </dd>
+                                </dl>
+                                <div class="btn">
+                                    <button>
+                                        <span>Оформить заказ</span>
+                                    </button>    
+                                </div>
+                                <div class="promo">
+                                    <a href="#" data-additionalbuy="promo-form">Есть промокод?</a>
+                                </div>
                             </div>
-                            <div class="promo">
-                                <a href="#">Есть промокод?</a>
-                            </div>
+                            <div class="promo-form">
+                                <input type="text" name="" placeholder="Введите промокод" /> 
+                                <div class="btn lst">
+                                    <button>
+                                        <span>ПРИМЕНИТЬ ПРОМОКОД</span>
+                                    </button>    
+                                </div>  
+                            </div>    
                         </div>
                         <a href="#" class="p-lnk">КУПИТЬ В 1 КЛИК</a>
                     </div>
