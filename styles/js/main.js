@@ -429,13 +429,7 @@ Modules.CatalogItemPopup = (function(self, $){
 		}
 		
 		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(e){
-
-				if (e.ctrlKey || e.metaKey) {
-					//Ecли нажали с контролом, то модальное не открываем
-					return;
-				}
-
+			$(document).on('click', _settings.openClickElementClass, function(){
 				if(_data.$popupElement.height() < $(window).height())
 					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
 				else _data.$popupElement.css({'top': '0px'});
@@ -2024,13 +2018,6 @@ Modules.FixedButton = (function(self, $){
 			_data.$offset = offset.top - parseInt(_data.$buttonElement.css('padding-top'));
 			_data.$offsetLeft = offset.left;
 
-			if($(window).width() < 1024){
-				_data.$buttonElement.css({
-					'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
-					'left': '50%'
-				})
-	    	}
-
 			return self;
 		}
 		
@@ -2038,33 +2025,34 @@ Modules.FixedButton = (function(self, $){
 			$(window).on('scroll', function(e){
 				e.preventDefault();
 
-			    if($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < ($('footer').offset().top - _data.$buttonElement.outerHeight())){
+			    if ($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < $('footer').offset().top - _data.$buttonElement.outerHeight()){
 			      _data.$buttonElement.css({
 			        'position': 'fixed',
 			        'top': '0',
 			        'left': _data.$offsetLeft,
-			        'z-index': '150',
-			        'margin-left': 0
+			        'z-index': '150'
 			      });
 
 			      if($(window).width() < 1024)
-					_data.$buttonElement.children().eq(0).css({'font-size': 0, 'background-position': '50%'});
+					_data.$buttonElement.children().css({'font-size': 0, 'background-position': '50%'});
 
-			    } else if( $(window).scrollTop() + _data.$buttonElement.outerHeight() > $('footer').offset().top || $(window).scrollTop() < _data.$offset) {
-			    	_data.$buttonElement.css({
-				        'position': 'absolute',
-				        'top': '0',
-				        'left': '0'
+			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
+			      _data.$buttonElement.css({
+			        'position': 'absolute',
+			        'top': $('footer').offset().top - _data.$buttonElement.outerHeight() + 'px',
+			        'left': _data.$offsetLeft,
+			        'z-index': '1500'
+			      });
+				} else {
+					_data.$buttonElement.css({
+				        'position': 'relative',
+				        'top': 'auto',
+				        'left': 'auto'
 				      });
 
-			    	if($(window).width() < 1024){
-						_data.$buttonElement.children().eq(0).css({'font-size': '12px', 'background-position': '12px 50%'});
-						_data.$buttonElement.css({
-							'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
-							'left': '50%'
-						})
-			    	}
-			    }
+					if($(window).width() < 1024)
+						_data.$buttonElement.children().css({'font-size': '12px', 'background-position': '12px 50%'});
+				}
 			});
 		
 			return self;
@@ -4366,7 +4354,7 @@ Modules.SizeProductButton = (function(self, $){
 				popupOverlayClass: '.b-overlay',
 				popupWrapperClass: '.b-popup-wrapper__catalog',
 				popupElementClass: '.g-catalog .b-catalog__item-pop-up',
-				openClickElementClass: '.b-catalog__item-i .img',
+				openClickElementClass: '.b-catalog__item-i',
 				closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i, .b-popup-wrapper__catalog',
 				popupOverlayCityClass: '.b-overlay',
 				popupWrapperCityClass: '.b-popup-wrapper__city-item',
