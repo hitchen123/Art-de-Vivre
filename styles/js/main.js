@@ -429,19 +429,29 @@ Modules.CatalogItemPopup = (function(self, $){
 		}
 		
 		self.openPopupEvent = function(){
-			$(document).on('click', _settings.openClickElementClass, function(){
-				if(_data.$popupElement.height() < $(window).height())
-					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
-				else _data.$popupElement.css({'top': '0px'});
+			$(document).on('click', _settings.openClickElementClass, function(e){
+
+				if (e.ctrlKey || e.metaKey) {
+					//Ecли нажали с контролом, то модальное не открываем
+					return;
+				}
+
+				if($(_settings.popupElementClass).height() < $(window).height())
+					$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px'});
+				else $(_settings.popupElementClass).css({'top': '0px'});
+
+				var element = $('.b-catalog__item-pop-up__r-arr, .b-catalog__item-pop-up__l-arr');
+			    element.css('top', $(_settings.popupWrapperClass).scrollTop() + $(window).height()/2 - element.height()/2);
+
 
 				$('body').width($('body').width());
 				$('body').addClass('html_noscroll');
-				_data.$popupOverlay.addClass('pt-page-current');
-				_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
-				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+				$(_settings.popupOverlayClass).addClass('pt-page-current');
+				$(_settings.popupWrapperClass).addClass('pt-page-current pt-page-current-wrapper');
+				$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
 
 				setTimeout(function(){
-					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
 				}, 400);
 				return false;
 			});
@@ -453,14 +463,14 @@ Modules.CatalogItemPopup = (function(self, $){
 			$(document).on('click', _settings.closeClickElementClass, function(e){
 				if(e.target != this) return;
 
-				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
-				_data.$popupOverlay.removeClass('pt-page-current');
+				$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				$(_settings.popupOverlayClass).removeClass('pt-page-current');
 
 				setTimeout(function(){
 					$('body').removeClass('html_noscroll');
 					$('body').width('auto');
-					_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
-					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					$(_settings.popupWrapperClass).removeClass('pt-page-current pt-page-current-wrapper');
+					$(_settings.popupElementClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
 				}, 400);
 				return false;
 			});
@@ -468,23 +478,831 @@ Modules.CatalogItemPopup = (function(self, $){
 			return self;
 		}
 
+		self.closePopupKeypressEvent = function(){
+			$(document).on('keydown', function(e){
+				if ( e.keyCode == 27 ) {
+
+					$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+					$(_settings.popupOverlayClass).removeClass('pt-page-current');
+
+					setTimeout(function(){
+						$('body').removeClass('html_noscroll');
+						$('body').width('auto');
+						$(_settings.popupWrapperClass).removeClass('pt-page-current pt-page-current-wrapper');
+						$(_settings.popupElementClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					}, 400);
+
+					return false;
+				}
+			});
+			
+			return self;
+		}
+
+		self.showNextPopup = function(){
+			$(document).on('click', '.b-catalog__item-pop-up__r-arr', function(e){
+
+				var html =  '<div class="b-catalog__item-pop-up">' + 
+					            '<div class="b-catalog__item-pop-up-i">' +
+					                '<div class="b-item__top cfix">' +
+					                    '<div class="b-item__l-c">' +
+					                        '<div class="b-item__gallery app-figure">' +
+					                            '<a href="temp/46.png" class="MagicZoom" id="product" data-options="zoomPosition: inner;expand: false;variableZoom: true;"><img src="temp/46.png?scale.height=400"></a>' +
+					                            '<div class="selectors">' +
+					                                '<a data-zoom-id="product" href="temp/46.png" data-image="temp/46.png?scale.height=400">' +
+					                                    '<img src="temp/46.png" src="temp/46.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                                '<a data-zoom-id="product" href="temp/54.png" data-image="temp/54.png?scale.height=400">' +
+					                                    '<img src="temp/54.png" src="temp/54.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                                '<a data-zoom-id="product" href="temp/55.png" data-image="temp/55.png?scale.height=400">' +
+					                                    '<img src="temp/55.png" src="temp/55.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                            '</div>' +
+					                        '</div>' +
+					                        '<ul class="tags-1">' +
+					                            '<li class="i-1">Ручная работа</li>' +
+					                            '<li class="i-2">Шелк</li>' +
+					                            '<li class="i-3">Иран</li>' +
+					                        '</ul>' +
+					                    '</div>' +
+					                    '<div class="b-item__r-c">' +
+					                        '<h2 class="title">Ковер из коллекции "GAZNI K" AF06-BGE-BRN</h2>' +
+					                        '<div class="price cfix">' +
+					                            '<strong>10 340 р.</strong>' +
+					                            '<span>Арт.: 345435GNN</span>' +
+					                        '</div>' +
+					                        '<dl class="size cfix">' +
+					                            '<dt>ВЫБЕРИТЕ РАЗМЕР<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dt>' +
+					                            '<dd class="active">' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                            '<dd>' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                            '<dd>' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                        '</dl>' +
+					                        '<div class="btns cfix">' +
+					                            '<a href="#" class="btn-1 add-item-lnk">Добавть в корзину</a>' +
+					                            '<a href="#" class="btn-2">Сохранить в список</a>' +
+					                        '</div>' +
+					                        '<dl class="address">' +
+					                            '<dt>' +
+					                                '<h3 class="title-2">В наличии в магазинах в <a href="#">Москве</a></h3>' +
+					                                '<p>Зарезервируйте ковер для просмотра в магазине и получите 10% скидку при его покупке </p>' +
+					                            '</dt>' +
+					                            '<dd class="cfix">' +
+					                                '<span>Мебельный центр «Гранд»</span>' +
+					                                '<a href="#">Зарезервировать</a>' +
+					                            '</dd>' +
+					                            '<dd class="cfix">' +
+					                                '<span>Ковры Персия</span> ' +
+					                                '<a href="#">Зарезервировать</a>' +
+					                            '</dd>' +
+					                            '<dd class="lnk">' +
+					                                '<a href="#">АДРЕСА ВСЕХ 5 МАГАЗИНОВ НА КАРТЕ</a>' +
+					                            '</dd>' +
+					                        '</dl>' +
+					                        '<ul class="info cfix">' +
+					                            '<li class="i-1">' +
+					                                '<p>Привезем до 5-х ковров на примерку.</p>' +
+					                                '<a href="#">Подробнее</a>' +
+					                            '</li>' +
+					                            '<li class="i-2">' +
+					                                '<p>10% скидка при оплате ковра онлайн</p>' +
+					                                '<a href="#">Подробнее</a>' +
+					                            '</li>' +
+					                            '<li class="i-3">' +
+					                                '<a href="#">Перейти на страницу ковра ›</a>' +
+					                            '</li>' +
+					                        '</ul>' +
+					                    '</div>' +
+					                '</div>' +
+					                '<div class="b-catalog__middle-banner-2 cfix">' +
+					                    '<div class="wrap cfix">' +
+					                        '<div class="img">' +
+					                            '<img src="temp/22.png" width="138" height="167">' +
+					                        '</div>' +
+					                        '<h2 class="title-1">Не знаете какой ковер выбрать?<br />Звоните! +7 (495) 123-45-67</h2>' +
+					                        '<p class="txt"><span>Получите бесплатную консультацию<br/> опытного декоратора по телефону</span></p>' +
+					                        '<div class="btn">' +
+					                            '<a href="#">ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК</a>' +
+					                        '</div>' +
+					                    '</div>' +
+					                '</div>' +
+					                '<div class="b-item__tabs">' +
+					                    '<ul class="b-tabs b-item-tabs">' +
+					                        '<li class="active">' +
+					                            '<a href="#">Описание</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Оплата и доставка</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Уход за ковром</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Как выбрать ковер</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Почему нам доверяют</a>' +
+					                        '</li>' +
+					                    '</ul>' +
+					                '</div>' +
+					                '<div class="b-item__middle">' +
+					                    '<div class="b-item__tab active b-item__middle-i item-1 cfix">' +
+					                        '<div class="l-c">' +
+					                            '<h2 class="title">ХАРАКТЕРИСТИКИ КОВРА</h2>' +
+					                            '<dl class="list-1">' +
+					                                '<dt>Страна производства</dt>' +
+					                                '<dd>Китай<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Способ производства</dt>' +
+					                                '<dd>Ручная работа<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Материал</dt>' +
+					                                '<dd>100% шерсть<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Коллекция</dt>' +
+					                                '<dd>Kasib</dd>' +
+					                                '<dt>Стиль</dt>' +
+					                                '<dd>Современный<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                            '</dl>' +
+					                            '<dl class="list-1">' +
+					                                '<dt>Цвет</dt>' +
+					                                '<dd>Красный</dd>' +
+					                                '<dt>Форма</dt>' +
+					                                '<dd>Прямоугольный</dd>' +
+					                                '<dt>Узор</dt>' +
+					                                '<dd>Абстрактный</dd>' +
+					                                '<dt>Область применения</dt>' +
+					                                '<dd>Спальня</dd>' +
+					                            '</dl>' +
+					                            '<h2 class="title">ОПИСАНИЕ</h2>' +
+					                            '<p class="txt-1">Oxidize – дизайнерская коллекция шёлковых ковров, где каждый ковёр по сути является самостоятельным арт-объектом. Единственная коллекция в своём роде, где дизайнер начинает создавать дизайн уже после того как ковёр соткан. Секрет состоит в авторской технологии обработки ворса.</p>' +
+					                            '<ul class="tags-2 cfix">' +
+					                                '<li class="i-1"><img src="temp/tag_img_1.png" width="41" height="56">Произведен из экологически<br>чистых материалов</li>' +
+					                                '<li class="i-2"><img src="temp/tag_img_2.png" width="68" height="68">Данный ковер станет точкой<br>фокуса вашего интерьера</li>' +
+					                            '</ul>' +
+					                        '</div>' +
+					                        '<div class="r-c">' +
+					                            '<div class="img">' +
+					                                '<img src="temp/30.png">' +
+					                            '</div>' +
+					                        '</div>' +
+					                    '</div>' +
+					                    '<div class="b-item__tab item-2"></div>' +
+					                    '<div class="b-item__tab item-3"></div>' +
+					                    '<div class="b-item__tab item-4"></div>' +
+					                    '<div class="b-item__tab item-5"></div>' +
+					                '</div>' +
+					                
+					            '</div>' +
+					        '</div>';
+
+				$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+				setTimeout(function(){
+					$('.b-catalog__item-pop-up').remove();
+
+					$('.b-popup-wrapper__catalog').append(html);
+
+					if($(_settings.popupElementClass).height() < $(window).height())
+						$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px'});
+					else $(_settings.popupElementClass).css({'top': '0px'});
+
+					$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+					setTimeout(function(){
+						MagicZoom.refresh();
+						
+						Modules.ItemTabs.init({
+							tabsWrapperClass: '.b-item-tabs',
+							tabsContentWrapperClass: '.b-item__middle',
+							tabElementClass: '.b-item-tabs > li',
+							tabContentElementClass: '.b-item__middle .b-item__tab'
+						});
+
+						$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				
+				}, 400);
+
+				return false;
+			});
+
+			return self;
+		}
+
+		self.showPrevPopup = function(){
+			$(document).on('click', '.b-catalog__item-pop-up__l-arr', function(e){
+
+				var html = '<div class="b-catalog__item-pop-up">' + 
+					            '<div class="b-catalog__item-pop-up-i">' +
+					                '<div class="b-item__top cfix">' +
+					                    '<div class="b-item__l-c">' +
+					                        '<div class="b-item__gallery app-figure">' +
+					                            '<a href="temp/46.png" class="MagicZoom" id="product" data-options="zoomPosition: inner;expand: false;variableZoom: true;"><img src="temp/46.png?scale.height=400"></a>' +
+					                            '<div class="selectors">' +
+					                                '<a data-zoom-id="product" href="temp/46.png" data-image="temp/46.png?scale.height=400">' +
+					                                    '<img src="temp/46.png" src="temp/46.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                                '<a data-zoom-id="product" href="temp/54.png" data-image="temp/54.png?scale.height=400">' +
+					                                    '<img src="temp/54.png" src="temp/54.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                                '<a data-zoom-id="product" href="temp/55.png" data-image="temp/55.png?scale.height=400">' +
+					                                    '<img src="temp/55.png" src="temp/55.png?scale.width=112 2x">' +
+					                                '</a>' +
+					                            '</div>' +
+					                        '</div>' +
+					                        '<ul class="tags-1">' +
+					                            '<li class="i-1">Ручная работа</li>' +
+					                            '<li class="i-2">Шелк</li>' +
+					                            '<li class="i-3">Иран</li>' +
+					                        '</ul>' +
+					                    '</div>' +
+					                    '<div class="b-item__r-c">' +
+					                        '<h2 class="title">Ковер из коллекции "GAZNI K" AF06-BGE-BRN</h2>' +
+					                        '<div class="price cfix">' +
+					                            '<strong>10 340 р.</strong>' +
+					                            '<span>Арт.: 345435GNN</span>' +
+					                        '</div>' +
+					                        '<dl class="size cfix">' +
+					                            '<dt>ВЫБЕРИТЕ РАЗМЕР<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dt>' +
+					                            '<dd class="active">' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                            '<dd>' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                            '<dd>' +
+					                                '<a href="#">99 × 141</a>' +
+					                            '</dd>' +
+					                        '</dl>' +
+					                        '<div class="btns cfix">' +
+					                            '<a href="#" class="btn-1 add-item-lnk">Добавть в корзину</a>' +
+					                            '<a href="#" class="btn-2">Сохранить в список</a>' +
+					                        '</div>' +
+					                        '<dl class="address">' +
+					                            '<dt>' +
+					                                '<h3 class="title-2">В наличии в магазинах в <a href="#">Москве</a></h3>' +
+					                                '<p>Зарезервируйте ковер для просмотра в магазине и получите 10% скидку при его покупке </p>' +
+					                            '</dt>' +
+					                            '<dd class="cfix">' +
+					                                '<span>Мебельный центр «Гранд»</span>' +
+					                                '<a href="#">Зарезервировать</a>' +
+					                            '</dd>' +
+					                            '<dd class="cfix">' +
+					                                '<span>Ковры Персия</span> ' +
+					                                '<a href="#">Зарезервировать</a>' +
+					                            '</dd>' +
+					                            '<dd class="lnk">' +
+					                                '<a href="#">АДРЕСА ВСЕХ 5 МАГАЗИНОВ НА КАРТЕ</a>' +
+					                            '</dd>' +
+					                        '</dl>' +
+					                        '<ul class="info cfix">' +
+					                            '<li class="i-1">' +
+					                                '<p>Привезем до 5-х ковров на примерку.</p>' +
+					                                '<a href="#">Подробнее</a>' +
+					                            '</li>' +
+					                            '<li class="i-2">' +
+					                                '<p>10% скидка при оплате ковра онлайн</p>' +
+					                                '<a href="#">Подробнее</a>' +
+					                            '</li>' +
+					                            '<li class="i-3">' +
+					                                '<a href="#">Перейти на страницу ковра ›</a>' +
+					                            '</li>' +
+					                        '</ul>' +
+					                    '</div>' +
+					                '</div>' +
+					                '<div class="b-catalog__middle-banner-2 cfix">' +
+					                    '<div class="wrap cfix">' +
+					                        '<div class="img">' +
+					                            '<img src="temp/22.png" width="138" height="167">' +
+					                        '</div>' +
+					                        '<h2 class="title-1">Не знаете какой ковер выбрать?<br />Звоните! +7 (495) 123-45-67</h2>' +
+					                        '<p class="txt"><span>Получите бесплатную консультацию<br/> опытного декоратора по телефону</span></p>' +
+					                        '<div class="btn">' +
+					                            '<a href="#">ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК</a>' +
+					                        '</div>' +
+					                    '</div>' +
+					                '</div>' +
+					                '<div class="b-item__tabs">' +
+					                    '<ul class="b-tabs b-item-tabs">' +
+					                        '<li class="active">' +
+					                            '<a href="#">Описание</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Оплата и доставка</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Уход за ковром</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Как выбрать ковер</a>' +
+					                        '</li>' +
+					                        '<li>' +
+					                            '<a href="#">Почему нам доверяют</a>' +
+					                        '</li>' +
+					                    '</ul>' +
+					                '</div>' +
+					                '<div class="b-item__middle">' +
+					                    '<div class="b-item__tab active b-item__middle-i item-1 cfix">' +
+					                        '<div class="l-c">' +
+					                            '<h2 class="title">ХАРАКТЕРИСТИКИ КОВРА</h2>' +
+					                            '<dl class="list-1">' +
+					                                '<dt>Страна производства</dt>' +
+					                                '<dd>Китай<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Способ производства</dt>' +
+					                                '<dd>Ручная работа<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Материал</dt>' +
+					                                '<dd>100% шерсть<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                                '<dt>Коллекция</dt>' +
+					                                '<dd>Kasib</dd>' +
+					                                '<dt>Стиль</dt>' +
+					                                '<dd>Современный<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+					                            '</dl>' +
+					                            '<dl class="list-1">' +
+					                                '<dt>Цвет</dt>' +
+					                                '<dd>Красный</dd>' +
+					                                '<dt>Форма</dt>' +
+					                                '<dd>Прямоугольный</dd>' +
+					                                '<dt>Узор</dt>' +
+					                                '<dd>Абстрактный</dd>' +
+					                                '<dt>Область применения</dt>' +
+					                                '<dd>Спальня</dd>' +
+					                            '</dl>' +
+					                            '<h2 class="title">ОПИСАНИЕ</h2>' +
+					                            '<p class="txt-1">Oxidize – дизайнерская коллекция шёлковых ковров, где каждый ковёр по сути является самостоятельным арт-объектом. Единственная коллекция в своём роде, где дизайнер начинает создавать дизайн уже после того как ковёр соткан. Секрет состоит в авторской технологии обработки ворса.</p>' +
+					                            '<ul class="tags-2 cfix">' +
+					                                '<li class="i-1"><img src="temp/tag_img_1.png" width="41" height="56">Произведен из экологически<br>чистых материалов</li>' +
+					                                '<li class="i-2"><img src="temp/tag_img_2.png" width="68" height="68">Данный ковер станет точкой<br>фокуса вашего интерьера</li>' +
+					                            '</ul>' +
+					                        '</div>' +
+					                        '<div class="r-c">' +
+					                            '<div class="img">' +
+					                                '<img src="temp/30.png">' +
+					                            '</div>' +
+					                        '</div>' +
+					                    '</div>' +
+					                    '<div class="b-item__tab item-2"></div>' +
+					                    '<div class="b-item__tab item-3"></div>' +
+					                    '<div class="b-item__tab item-4"></div>' +
+					                    '<div class="b-item__tab item-5"></div>' +
+					                '</div>' +
+					                
+					            '</div>' +
+					        '</div>';
+
+				$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+				setTimeout(function(){
+					$('.b-catalog__item-pop-up').remove();
+
+					$('.b-popup-wrapper__catalog').append(html);
+
+					if($(_settings.popupElementClass).height() < $(window).height())
+						$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px'});
+					else $(_settings.popupElementClass).css({'top': '0px'});
+
+					$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+					setTimeout(function(){
+						MagicZoom.refresh();
+
+						Modules.ItemTabs.init({
+							tabsWrapperClass: '.b-item-tabs',
+							tabsContentWrapperClass: '.b-item__middle',
+							tabElementClass: '.b-item-tabs > li',
+							tabContentElementClass: '.b-item__middle .b-item__tab'
+						});
+
+						$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				
+				}, 400);
+
+				return false;
+			});
+
+			return self;
+		}
+
+		self.showNextKeypressPopup = function(){
+			$(document).on('keydown', function(e){
+				if ( e.keyCode == 39 ) {
+					var html =  '<div class="b-catalog__item-pop-up">' + 
+						            '<div class="b-catalog__item-pop-up-i">' +
+						                '<div class="b-item__top cfix">' +
+						                    '<div class="b-item__l-c">' +
+						                        '<div class="b-item__gallery app-figure">' +
+						                            '<a href="temp/46.png" class="MagicZoom" id="product" data-options="zoomPosition: inner;expand: false;variableZoom: true;"><img src="temp/46.png?scale.height=400"></a>' +
+						                            '<div class="selectors">' +
+						                                '<a data-zoom-id="product" href="temp/46.png" data-image="temp/46.png?scale.height=400">' +
+						                                    '<img src="temp/46.png" src="temp/46.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                                '<a data-zoom-id="product" href="temp/54.png" data-image="temp/54.png?scale.height=400">' +
+						                                    '<img src="temp/54.png" src="temp/54.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                                '<a data-zoom-id="product" href="temp/55.png" data-image="temp/55.png?scale.height=400">' +
+						                                    '<img src="temp/55.png" src="temp/55.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                            '</div>' +
+						                        '</div>' +
+						                        '<ul class="tags-1">' +
+						                            '<li class="i-1">Ручная работа</li>' +
+						                            '<li class="i-2">Шелк</li>' +
+						                            '<li class="i-3">Иран</li>' +
+						                        '</ul>' +
+						                    '</div>' +
+						                    '<div class="b-item__r-c">' +
+						                        '<h2 class="title">Ковер из коллекции "GAZNI K" AF06-BGE-BRN</h2>' +
+						                        '<div class="price cfix">' +
+						                            '<strong>10 340 р.</strong>' +
+						                            '<span>Арт.: 345435GNN</span>' +
+						                        '</div>' +
+						                        '<dl class="size cfix">' +
+						                            '<dt>ВЫБЕРИТЕ РАЗМЕР<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dt>' +
+						                            '<dd class="active">' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                            '<dd>' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                            '<dd>' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                        '</dl>' +
+						                        '<div class="btns cfix">' +
+						                            '<a href="#" class="btn-1 add-item-lnk">Добавть в корзину</a>' +
+						                            '<a href="#" class="btn-2">Сохранить в список</a>' +
+						                        '</div>' +
+						                        '<dl class="address">' +
+						                            '<dt>' +
+						                                '<h3 class="title-2">В наличии в магазинах в <a href="#">Москве</a></h3>' +
+						                                '<p>Зарезервируйте ковер для просмотра в магазине и получите 10% скидку при его покупке </p>' +
+						                            '</dt>' +
+						                            '<dd class="cfix">' +
+						                                '<span>Мебельный центр «Гранд»</span>' +
+						                                '<a href="#">Зарезервировать</a>' +
+						                            '</dd>' +
+						                            '<dd class="cfix">' +
+						                                '<span>Ковры Персия</span> ' +
+						                                '<a href="#">Зарезервировать</a>' +
+						                            '</dd>' +
+						                            '<dd class="lnk">' +
+						                                '<a href="#">АДРЕСА ВСЕХ 5 МАГАЗИНОВ НА КАРТЕ</a>' +
+						                            '</dd>' +
+						                        '</dl>' +
+						                        '<ul class="info cfix">' +
+						                            '<li class="i-1">' +
+						                                '<p>Привезем до 5-х ковров на примерку.</p>' +
+						                                '<a href="#">Подробнее</a>' +
+						                            '</li>' +
+						                            '<li class="i-2">' +
+						                                '<p>10% скидка при оплате ковра онлайн</p>' +
+						                                '<a href="#">Подробнее</a>' +
+						                            '</li>' +
+						                            '<li class="i-3">' +
+						                                '<a href="#">Перейти на страницу ковра ›</a>' +
+						                            '</li>' +
+						                        '</ul>' +
+						                    '</div>' +
+						                '</div>' +
+						                '<div class="b-catalog__middle-banner-2 cfix">' +
+						                    '<div class="wrap cfix">' +
+						                        '<div class="img">' +
+						                            '<img src="temp/22.png" width="138" height="167">' +
+						                        '</div>' +
+						                        '<h2 class="title-1">Не знаете какой ковер выбрать?<br />Звоните! +7 (495) 123-45-67</h2>' +
+						                        '<p class="txt"><span>Получите бесплатную консультацию<br/> опытного декоратора по телефону</span></p>' +
+						                        '<div class="btn">' +
+						                            '<a href="#">ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК</a>' +
+						                        '</div>' +
+						                    '</div>' +
+						                '</div>' +
+						                '<div class="b-item__tabs">' +
+						                    '<ul class="b-tabs b-item-tabs">' +
+						                        '<li class="active">' +
+						                            '<a href="#">Описание</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Оплата и доставка</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Уход за ковром</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Как выбрать ковер</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Почему нам доверяют</a>' +
+						                        '</li>' +
+						                    '</ul>' +
+						                '</div>' +
+						                '<div class="b-item__middle">' +
+						                    '<div class="b-item__tab active b-item__middle-i item-1 cfix">' +
+						                        '<div class="l-c">' +
+						                            '<h2 class="title">ХАРАКТЕРИСТИКИ КОВРА</h2>' +
+						                            '<dl class="list-1">' +
+						                                '<dt>Страна производства</dt>' +
+						                                '<dd>Китай<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Способ производства</dt>' +
+						                                '<dd>Ручная работа<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Материал</dt>' +
+						                                '<dd>100% шерсть<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Коллекция</dt>' +
+						                                '<dd>Kasib</dd>' +
+						                                '<dt>Стиль</dt>' +
+						                                '<dd>Современный<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                            '</dl>' +
+						                            '<dl class="list-1">' +
+						                                '<dt>Цвет</dt>' +
+						                                '<dd>Красный</dd>' +
+						                                '<dt>Форма</dt>' +
+						                                '<dd>Прямоугольный</dd>' +
+						                                '<dt>Узор</dt>' +
+						                                '<dd>Абстрактный</dd>' +
+						                                '<dt>Область применения</dt>' +
+						                                '<dd>Спальня</dd>' +
+						                            '</dl>' +
+						                            '<h2 class="title">ОПИСАНИЕ</h2>' +
+						                            '<p class="txt-1">Oxidize – дизайнерская коллекция шёлковых ковров, где каждый ковёр по сути является самостоятельным арт-объектом. Единственная коллекция в своём роде, где дизайнер начинает создавать дизайн уже после того как ковёр соткан. Секрет состоит в авторской технологии обработки ворса.</p>' +
+						                            '<ul class="tags-2 cfix">' +
+						                                '<li class="i-1"><img src="temp/tag_img_1.png" width="41" height="56">Произведен из экологически<br>чистых материалов</li>' +
+						                                '<li class="i-2"><img src="temp/tag_img_2.png" width="68" height="68">Данный ковер станет точкой<br>фокуса вашего интерьера</li>' +
+						                            '</ul>' +
+						                        '</div>' +
+						                        '<div class="r-c">' +
+						                            '<div class="img">' +
+						                                '<img src="temp/30.png">' +
+						                            '</div>' +
+						                        '</div>' +
+						                    '</div>' +
+						                    '<div class="b-item__tab item-2"></div>' +
+						                    '<div class="b-item__tab item-3"></div>' +
+						                    '<div class="b-item__tab item-4"></div>' +
+						                    '<div class="b-item__tab item-5"></div>' +
+						                '</div>' +
+						                
+						            '</div>' +
+						        '</div>';
+
+					$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+					setTimeout(function(){
+						$('.b-catalog__item-pop-up').remove();
+
+						$('.b-popup-wrapper__catalog').append(html);
+
+						if($(_settings.popupElementClass).height() < $(window).height())
+							$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px'});
+						else $(_settings.popupElementClass).css({'top': '0px'});
+
+						$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+						setTimeout(function(){
+							MagicZoom.refresh();
+							
+							Modules.ItemTabs.init({
+								tabsWrapperClass: '.b-item-tabs',
+								tabsContentWrapperClass: '.b-item__middle',
+								tabElementClass: '.b-item-tabs > li',
+								tabContentElementClass: '.b-item__middle .b-item__tab'
+							});
+
+							$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+						}, 400);
+					
+					}, 400);
+
+					return false;
+				}
+			});
+
+			return self;
+		}
+
+		self.showPrevKeypressPopup = function(){
+			$(document).on('keydown', function(e){
+				if ( e.keyCode == 37 ) {
+					var html = '<div class="b-catalog__item-pop-up">' + 
+						            '<div class="b-catalog__item-pop-up-i">' +
+						                '<div class="b-item__top cfix">' +
+						                    '<div class="b-item__l-c">' +
+						                        '<div class="b-item__gallery app-figure">' +
+						                            '<a href="temp/46.png" class="MagicZoom" id="product" data-options="zoomPosition: inner;expand: false;variableZoom: true;"><img src="temp/46.png?scale.height=400"></a>' +
+						                            '<div class="selectors">' +
+						                                '<a data-zoom-id="product" href="temp/46.png" data-image="temp/46.png?scale.height=400">' +
+						                                    '<img src="temp/46.png" src="temp/46.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                                '<a data-zoom-id="product" href="temp/54.png" data-image="temp/54.png?scale.height=400">' +
+						                                    '<img src="temp/54.png" src="temp/54.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                                '<a data-zoom-id="product" href="temp/55.png" data-image="temp/55.png?scale.height=400">' +
+						                                    '<img src="temp/55.png" src="temp/55.png?scale.width=112 2x">' +
+						                                '</a>' +
+						                            '</div>' +
+						                        '</div>' +
+						                        '<ul class="tags-1">' +
+						                            '<li class="i-1">Ручная работа</li>' +
+						                            '<li class="i-2">Шелк</li>' +
+						                            '<li class="i-3">Иран</li>' +
+						                        '</ul>' +
+						                    '</div>' +
+						                    '<div class="b-item__r-c">' +
+						                        '<h2 class="title">Ковер из коллекции "GAZNI K" AF06-BGE-BRN</h2>' +
+						                        '<div class="price cfix">' +
+						                            '<strong>10 340 р.</strong>' +
+						                            '<span>Арт.: 345435GNN</span>' +
+						                        '</div>' +
+						                        '<dl class="size cfix">' +
+						                            '<dt>ВЫБЕРИТЕ РАЗМЕР<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dt>' +
+						                            '<dd class="active">' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                            '<dd>' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                            '<dd>' +
+						                                '<a href="#">99 × 141</a>' +
+						                            '</dd>' +
+						                        '</dl>' +
+						                        '<div class="btns cfix">' +
+						                            '<a href="#" class="btn-1 add-item-lnk">Добавть в корзину</a>' +
+						                            '<a href="#" class="btn-2">Сохранить в список</a>' +
+						                        '</div>' +
+						                        '<dl class="address">' +
+						                            '<dt>' +
+						                                '<h3 class="title-2">В наличии в магазинах в <a href="#">Москве</a></h3>' +
+						                                '<p>Зарезервируйте ковер для просмотра в магазине и получите 10% скидку при его покупке </p>' +
+						                            '</dt>' +
+						                            '<dd class="cfix">' +
+						                                '<span>Мебельный центр «Гранд»</span>' +
+						                                '<a href="#">Зарезервировать</a>' +
+						                            '</dd>' +
+						                            '<dd class="cfix">' +
+						                                '<span>Ковры Персия</span> ' +
+						                                '<a href="#">Зарезервировать</a>' +
+						                            '</dd>' +
+						                            '<dd class="lnk">' +
+						                                '<a href="#">АДРЕСА ВСЕХ 5 МАГАЗИНОВ НА КАРТЕ</a>' +
+						                            '</dd>' +
+						                        '</dl>' +
+						                        '<ul class="info cfix">' +
+						                            '<li class="i-1">' +
+						                                '<p>Привезем до 5-х ковров на примерку.</p>' +
+						                                '<a href="#">Подробнее</a>' +
+						                            '</li>' +
+						                            '<li class="i-2">' +
+						                                '<p>10% скидка при оплате ковра онлайн</p>' +
+						                                '<a href="#">Подробнее</a>' +
+						                            '</li>' +
+						                            '<li class="i-3">' +
+						                                '<a href="#">Перейти на страницу ковра ›</a>' +
+						                            '</li>' +
+						                        '</ul>' +
+						                    '</div>' +
+						                '</div>' +
+						                '<div class="b-catalog__middle-banner-2 cfix">' +
+						                    '<div class="wrap cfix">' +
+						                        '<div class="img">' +
+						                            '<img src="temp/22.png" width="138" height="167">' +
+						                        '</div>' +
+						                        '<h2 class="title-1">Не знаете какой ковер выбрать?<br />Звоните! +7 (495) 123-45-67</h2>' +
+						                        '<p class="txt"><span>Получите бесплатную консультацию<br/> опытного декоратора по телефону</span></p>' +
+						                        '<div class="btn">' +
+						                            '<a href="#">ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК</a>' +
+						                        '</div>' +
+						                    '</div>' +
+						                '</div>' +
+						                '<div class="b-item__tabs">' +
+						                    '<ul class="b-tabs b-item-tabs">' +
+						                        '<li class="active">' +
+						                            '<a href="#">Описание</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Оплата и доставка</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Уход за ковром</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Как выбрать ковер</a>' +
+						                        '</li>' +
+						                        '<li>' +
+						                            '<a href="#">Почему нам доверяют</a>' +
+						                        '</li>' +
+						                    '</ul>' +
+						                '</div>' +
+						                '<div class="b-item__middle">' +
+						                    '<div class="b-item__tab active b-item__middle-i item-1 cfix">' +
+						                        '<div class="l-c">' +
+						                            '<h2 class="title">ХАРАКТЕРИСТИКИ КОВРА</h2>' +
+						                            '<dl class="list-1">' +
+						                                '<dt>Страна производства</dt>' +
+						                                '<dd>Китай<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Способ производства</dt>' +
+						                                '<dd>Ручная работа<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Материал</dt>' +
+						                                '<dd>100% шерсть<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                                '<dt>Коллекция</dt>' +
+						                                '<dd>Kasib</dd>' +
+						                                '<dt>Стиль</dt>' +
+						                                '<dd>Современный<i class="b-question">?<div>Ковры, созданные в лучших традициях иранского ковроткачества, выполненные с высоким мастерством и вниманием к деталям</div></i></dd>' +
+						                            '</dl>' +
+						                            '<dl class="list-1">' +
+						                                '<dt>Цвет</dt>' +
+						                                '<dd>Красный</dd>' +
+						                                '<dt>Форма</dt>' +
+						                                '<dd>Прямоугольный</dd>' +
+						                                '<dt>Узор</dt>' +
+						                                '<dd>Абстрактный</dd>' +
+						                                '<dt>Область применения</dt>' +
+						                                '<dd>Спальня</dd>' +
+						                            '</dl>' +
+						                            '<h2 class="title">ОПИСАНИЕ</h2>' +
+						                            '<p class="txt-1">Oxidize – дизайнерская коллекция шёлковых ковров, где каждый ковёр по сути является самостоятельным арт-объектом. Единственная коллекция в своём роде, где дизайнер начинает создавать дизайн уже после того как ковёр соткан. Секрет состоит в авторской технологии обработки ворса.</p>' +
+						                            '<ul class="tags-2 cfix">' +
+						                                '<li class="i-1"><img src="temp/tag_img_1.png" width="41" height="56">Произведен из экологически<br>чистых материалов</li>' +
+						                                '<li class="i-2"><img src="temp/tag_img_2.png" width="68" height="68">Данный ковер станет точкой<br>фокуса вашего интерьера</li>' +
+						                            '</ul>' +
+						                        '</div>' +
+						                        '<div class="r-c">' +
+						                            '<div class="img">' +
+						                                '<img src="temp/30.png">' +
+						                            '</div>' +
+						                        '</div>' +
+						                    '</div>' +
+						                    '<div class="b-item__tab item-2"></div>' +
+						                    '<div class="b-item__tab item-3"></div>' +
+						                    '<div class="b-item__tab item-4"></div>' +
+						                    '<div class="b-item__tab item-5"></div>' +
+						                '</div>' +
+						                
+						            '</div>' +
+						        '</div>';
+
+					$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+					setTimeout(function(){
+						$('.b-catalog__item-pop-up').remove();
+
+						$('.b-popup-wrapper__catalog').append(html);
+
+						if($(_settings.popupElementClass).height() < $(window).height())
+							$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px'});
+						else $(_settings.popupElementClass).css({'top': '0px'});
+
+						$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+						setTimeout(function(){
+							MagicZoom.refresh();
+
+							Modules.ItemTabs.init({
+								tabsWrapperClass: '.b-item-tabs',
+								tabsContentWrapperClass: '.b-item__middle',
+								tabElementClass: '.b-item-tabs > li',
+								tabContentElementClass: '.b-item__middle .b-item__tab'
+							});
+
+							$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+						}, 400);
+					
+					}, 400);
+
+					return false;
+				}
+			});
+
+			return self;
+		}
+
+		self.scrollEvent = function(){
+			var element = $('.b-catalog__item-pop-up__r-arr, .b-catalog__item-pop-up__l-arr');
+			$(_settings.popupWrapperClass).on('scroll', function(e) {
+			    element.css('top', $(_settings.popupWrapperClass).scrollTop() + $(window).height()/2 - element.height()/2);
+			});
+			
+			return self;
+		}
+
 		self.showPopupEvent = function(){
-			_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
-			_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+			$(_settings.popupWrapperClass).addClass('pt-page-current pt-page-current-wrapper');
+			$(_settings.popupElementClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
 
 			setTimeout(function(){
-				_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				$(_settings.popupElementClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
 			}, 400);
 			
 			return self;
 		}
 		
 		self.hidePopupEvent = function(){
-			_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+			$(_settings.popupElementClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
 
 			setTimeout(function(){
-				_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
-				_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				$(_settings.popupWrapperClass).removeClass('pt-page-current pt-page-current-wrapper');
+				$(_settings.popupElementClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
 			}, 400);
 			
 			return self;
@@ -495,15 +1313,15 @@ Modules.CatalogItemPopup = (function(self, $){
 				self.hidePopupEvent();
 
 				setTimeout(function(){
-					if(_data.$popupElementCity.height() < $(window).height())
-						_data.$popupElementCity.css({'margin-top': '-' + (_data.$popupElementCity.height() / 2) + 'px'});
-					else _data.$popupElementCity.css({'top': '0px'});
+					if($(_settings.popupElementCityClass).height() < $(window).height())
+						$(_settings.popupElementCityClass).css({'margin-top': '-' + ($(_settings.popupElementCityClass).height() / 2) + 'px'});
+					else $(_settings.popupElementCityClass).css({'top': '0px'});
 
-					_data.$popupWrapperCity.addClass('pt-page-current pt-page-current-wrapper');
-					_data.$popupElementCity.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+					$(_settings.popupWrapperCityClass).addClass('pt-page-current pt-page-current-wrapper');
+					$(_settings.popupElementCityClass).addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
 
 					setTimeout(function(){
-						_data.$popupElementCity.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+						$(_settings.popupElementCityClass).removeClass('pt-page-moveToLeft pt-page-moveFromRight');
 					}, 400);
 				}, 400);
 				return false;
@@ -513,11 +1331,11 @@ Modules.CatalogItemPopup = (function(self, $){
 		}
 
 		self.closeCityPopup = function(){		
-			_data.$popupElementCity.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+			$(_settings.popupElementCityClass).addClass('pt-page-moveToRight pt-page-moveFromLeft');
 
 			setTimeout(function(){
-				_data.$popupWrapperCity.removeClass('pt-page-current pt-page-current-wrapper');
-				_data.$popupElementCity.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				$(_settings.popupWrapperCityClass).removeClass('pt-page-current pt-page-current-wrapper');
+				$(_settings.popupElementCityClass).removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
 				self.showPopupEvent();
 			}, 400);
 		
@@ -553,7 +1371,7 @@ Modules.CatalogItemPopup = (function(self, $){
 
 		self.chooseCityEvent = function(){
 			$(document).on('click', _settings.popupElementCityClass + ' ul a', function(){
-				_data.$cityElementCity.text($(this).text());
+				$(_settings.cityElementCityClass).text($(this).text());
 
 				self.closeCityPopup().closeCityTopLine();
 				return false;
@@ -585,7 +1403,9 @@ Modules.CatalogItemPopup = (function(self, $){
 		
 		return {
 			init: function(params){
-				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().openCityPopupEvent().closeCityPopupEvent().chooseCityEvent().closeCityTopLineEvent();
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().openCityPopupEvent()
+				.closeCityPopupEvent().chooseCityEvent().closeCityTopLineEvent().closePopupKeypressEvent()
+				.showNextPopup().showPrevPopup().scrollEvent().showPrevKeypressPopup().showNextKeypressPopup();
 
 				return self;
 			}
@@ -629,7 +1449,8 @@ Modules.FullBasketPopup = (function(self, $){
 			$popupWrapperResult: '',
 			$popupElementResult: '',
 			$openClickElementResult: '',
-			$closeClickElementResult: ''
+			$closeClickElementResult: '',
+			resultTrigger: false
 		}
 			
 		self.setSettings = function(params){
@@ -661,9 +1482,13 @@ Modules.FullBasketPopup = (function(self, $){
 		
 		self.openPopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
-				if(_data.$popupElement.height() < $(window).height())
-					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
-				else _data.$popupElement.css({'top': '0px'});
+
+				console.log($(_settings.popupElementClass).height());
+				console.log($(window).height());
+
+				if($(_settings.popupElementClass).height() < $(window).height())
+					$(_settings.popupElementClass).css({'margin-top': '-' + ($(_settings.popupElementClass).height() / 2) + 'px', 'top': '50%'});
+				else $(_settings.popupElementClass).css({'top': '0px', 'margin-top': 'auto'});
 
 				$('body').width($('body').width());
 				$('body').addClass('html_noscroll');
@@ -780,46 +1605,64 @@ Modules.FullBasketPopup = (function(self, $){
 
 		self.openResultPopupEvent = function(){
 			$(document).on('click', _settings.openClickElementResultClass, function(){
-				self.hidePopupEvent();
+				console.log($(this).data('additionalbuy'));
+				if(_data.resultTrigger == false) {
+					_data.$popupElement.find($('.' + $(this).data('additionalbuy'))).show();
+					_data.resultTrigger = true;
+				} else {
+					$('.' + $(this).data('additionalbuy')).hide();
+					
+					_data.resultTrigger = false;
+				}
+
+				return false;
+			});
+
+			return self;
+		}
+
+		// self.openResultPopupEvent = function(){
+		// 	$(document).on('click', _settings.openClickElementResultClass, function(){
+		// 		self.hidePopupEvent();
 				
-				setTimeout(function(){
-					if(_data.$popupElementResult.height() < $(window).height())
-						_data.$popupElementResult.css({'margin-top': '-' + (_data.$popupElementResult.height() / 2) + 'px'});
-					else _data.$popupElementResult.css({'top': '0px'});
+		// 		setTimeout(function(){
+		// 			if(_data.$popupElementResult.height() < $(window).height())
+		// 				_data.$popupElementResult.css({'margin-top': '-' + (_data.$popupElementResult.height() / 2) + 'px'});
+		// 			else _data.$popupElementResult.css({'top': '0px'});
 
-					_data.$popupWrapperResult.addClass('pt-page-current pt-page-current-wrapper');
-					// _data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
-					_data.$popupElementResult.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+		// 			_data.$popupWrapperResult.addClass('pt-page-current pt-page-current-wrapper');
+		// 			// _data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+		// 			_data.$popupElementResult.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
 
-					setTimeout(function(){
-						// _data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
-						_data.$popupElementResult.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
-					}, 400);
-				}, 400);
-				return false;
-			});
+		// 			setTimeout(function(){
+		// 				// _data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+		// 				_data.$popupElementResult.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+		// 			}, 400);
+		// 		}, 400);
+		// 		return false;
+		// 	});
 			
-			return self;
-		}
+		// 	return self;
+		// }
 		
-		self.closeResultPopupEvent = function(){
-			$(document).on('click', _settings.closeClickElementResultClass, function(e){
-				if(e.target != this) return;
+		// self.closeResultPopupEvent = function(){
+		// 	$(document).on('click', _settings.closeClickElementResultClass, function(e){
+		// 		if(e.target != this) return;
 
-				_data.$popupElementResult.addClass('pt-page-moveToRight pt-page-moveFromLeft');
-				// _data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
+		// 		_data.$popupElementResult.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+		// 		// _data.$popupOverlay.addClass('pt-page-moveToBottomFade pt-page-moveFromTopFade');
 
-				setTimeout(function(){
-					_data.$popupWrapperResult.removeClass('pt-page-current pt-page-current-wrapper');
-					_data.$popupElementResult.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
-					// _data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
-					self.showPopupEvent();
-				}, 400);
-				return false;
-			});
+		// 		setTimeout(function(){
+		// 			_data.$popupWrapperResult.removeClass('pt-page-current pt-page-current-wrapper');
+		// 			_data.$popupElementResult.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+		// 			// _data.$popupOverlay.removeClass('pt-page-current pt-page-moveToBottomFade pt-page-moveFromTopFade');
+		// 			self.showPopupEvent();
+		// 		}, 400);
+		// 		return false;
+		// 	});
 			
-			return self;
-		}
+		// 	return self;
+		// }
 		
 		self.sendAjax = function(){
 			$.ajax({
@@ -844,7 +1687,9 @@ Modules.FullBasketPopup = (function(self, $){
 		
 		return {
 			init: function(params){
-				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().chooseDeliveryEvent().openBuyPopupEvent().closeBuyPopupEvent().openResultPopupEvent().closeResultPopupEvent();
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().chooseDeliveryEvent().openBuyPopupEvent().closeBuyPopupEvent()
+				.openResultPopupEvent();
+				//.closeResultPopupEvent();
 
 				return self;
 			}
@@ -2018,6 +2863,13 @@ Modules.FixedButton = (function(self, $){
 			_data.$offset = offset.top - parseInt(_data.$buttonElement.css('padding-top'));
 			_data.$offsetLeft = offset.left;
 
+			if($(window).width() < 1024){
+				_data.$buttonElement.css({
+					'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
+					'left': '50%'
+				})
+	    	}
+
 			return self;
 		}
 		
@@ -2025,34 +2877,33 @@ Modules.FixedButton = (function(self, $){
 			$(window).on('scroll', function(e){
 				e.preventDefault();
 
-			    if ($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < $('footer').offset().top - _data.$buttonElement.outerHeight()){
+			    if($(window).scrollTop() >= _data.$offset && $(window).scrollTop() < ($('footer').offset().top - _data.$buttonElement.outerHeight())){
 			      _data.$buttonElement.css({
 			        'position': 'fixed',
 			        'top': '0',
 			        'left': _data.$offsetLeft,
-			        'z-index': '150'
+			        'z-index': '150',
+			        'margin-left': 0
 			      });
 
 			      if($(window).width() < 1024)
-					_data.$buttonElement.children().css({'font-size': 0, 'background-position': '50%'});
+					_data.$buttonElement.children().eq(0).css({'font-size': 0, 'background-position': '50%'});
 
-			    }else if($(window).scrollTop() > $('footer').offset().top - _data.$buttonElement.outerHeight()){
-			      _data.$buttonElement.css({
-			        'position': 'absolute',
-			        'top': $('footer').offset().top - _data.$buttonElement.outerHeight() + 'px',
-			        'left': _data.$offsetLeft,
-			        'z-index': '1500'
-			      });
-				} else {
-					_data.$buttonElement.css({
-				        'position': 'relative',
-				        'top': 'auto',
-				        'left': 'auto'
+			    } else if( $(window).scrollTop() + _data.$buttonElement.outerHeight() > $('footer').offset().top || $(window).scrollTop() < _data.$offset) {
+			    	_data.$buttonElement.css({
+				        'position': 'absolute',
+				        'top': '0',
+				        'left': '0'
 				      });
 
-					if($(window).width() < 1024)
-						_data.$buttonElement.children().css({'font-size': '12px', 'background-position': '12px 50%'});
-				}
+			    	if($(window).width() < 1024){
+						_data.$buttonElement.children().eq(0).css({'font-size': '12px', 'background-position': '12px 50%'});
+						_data.$buttonElement.css({
+							'margin-left': '-' + _data.$buttonElement.width()/2 + 'px',
+							'left': '50%'
+						})
+			    	}
+			    }
 			});
 		
 			return self;
@@ -4186,9 +5037,11 @@ Modules.SizeProductButton = (function(self, $){
 			closeClickElementClass: '.b-catalog-premium__banner .close'
 		});
 
-		var yandexMap = new Modules.YandexMaps.init({
-			mapWrapperId: 'map'
-		});
+		if($('#map').length > 0){
+			var yandexMap = new Modules.YandexMaps.init({
+				mapWrapperId: 'map'
+			});
+		}
 
 		var profileTabs = new Modules.ProfileTabs.init({
 			tabsWrapperClass: '.b-profile__tabs',
@@ -4317,9 +5170,11 @@ Modules.SizeProductButton = (function(self, $){
 				ajaxUrl: ''
 			});
 		} else {
-			var yandexMap = new Modules.YandexMaps.init({
-				mapWrapperId: 'contact-map'
-			});
+			if($('#contactmap').length > 0){
+				var yandexMap = new Modules.YandexMaps.init({
+					mapWrapperId: 'contactmap'
+				});
+			}
 			
 			var topBottomButton = new Modules.TopBottomButton.init({
 			});
@@ -4354,7 +5209,7 @@ Modules.SizeProductButton = (function(self, $){
 				popupOverlayClass: '.b-overlay',
 				popupWrapperClass: '.b-popup-wrapper__catalog',
 				popupElementClass: '.g-catalog .b-catalog__item-pop-up',
-				openClickElementClass: '.b-catalog__item-i',
+				openClickElementClass: '.b-catalog__item-i .img',
 				closeClickElementClass: '.g-catalog .b-catalog__item-pop-up-i, .b-popup-wrapper__catalog',
 				popupOverlayCityClass: '.b-overlay',
 				popupWrapperCityClass: '.b-popup-wrapper__city-item',
