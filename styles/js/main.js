@@ -2146,7 +2146,11 @@ Modules.BasketPopup = (function(self, $){
 		self.openClosePopupEvent = function(){
 			$(document).on('click', _settings.openClickElementClass, function(){
 				if(_data.trigger == false){
-					_data.$popupElement.addClass('pt-page-current pt-page-visible');
+
+					_data.$popupElement.addClass('pt-page-current pt-page-visible').css({
+						'left': $('.b-main-nav-i').offset().left + $('.b-main-nav-i').width() - _data.$popupElement.width(),
+						'top': $('.b-main-nav-i').offset().top + $('.b-main-nav-i').height()
+					});
 					_data.trigger = true;
 
 					// setTimeout(function(){
@@ -2161,6 +2165,20 @@ Modules.BasketPopup = (function(self, $){
 					// 	_data.$popupElement.removeClass('pt-page-current pt-page-visible');
 					// }, 400);
 				}
+				return false;
+			});
+		
+			return self;
+		}
+
+		self.resizePageEvent = function(){
+			$(window).on('resize', function(){
+				_data.$popupElement.addClass('pt-page-current pt-page-visible').css({
+					'left': $('.b-main-nav-i').offset().left + $('.b-main-nav-i').width() - _data.$popupElement.width(),
+					'top': $('.b-main-nav-i').offset().top + $('.b-main-nav-i').height()
+				});
+				_data.trigger = true;
+
 				return false;
 			});
 		
@@ -2236,7 +2254,7 @@ Modules.BasketPopup = (function(self, $){
 		
 		return {
 			init: function(params){
-				self.setSettings(params).setConfig().openClosePopupEvent().countPlusItemEvent().countMinusItemEvent().deleteItemEvent();
+				self.setSettings(params).setConfig().openClosePopupEvent().countPlusItemEvent().countMinusItemEvent().deleteItemEvent().resizePageEvent();
 
 				return self;
 			}
