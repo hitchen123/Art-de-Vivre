@@ -1504,8 +1504,20 @@ body.main{background:#fff}
 .g-item-premium{}
 .b-item-premium{}
  
-.b-item-premium .b-item__gallery{margin:-65px 0 43px;padding:0 0 43px}
-.b-item-premium .b-item__gallery a{margin:0 auto}
+.b-item-premium .b-item__gallery{margin:-63px auto 0;text-align:center}
+.b-item-premium .b-item__gallery .selectors{position:relative;width:auto;padding:36px 0 43px}
+
+.g-item-premium  .magic-thumbs ul li{position:relative}
+.g-item-premium .mz-expand-thumbnails{padding:0}
+.g-item-premium  .mz-expand-thumbnails .magic-thumbs .magic-thumb{padding:0;height:74px;width:74px;overflow:hidden}
+.g-item-premium  .mz-expand-thumbnails .magic-thumbs .magic-thumb img{width:100%;height:auto;border-radius:3px}
+.mz-expand-thumbnails .magic-thumb.magic-thumb-selected:before{left:0;right:0;bottom:0;top:0;position:absolute;border:3px solid #EB8A1C;content:" ";border-radius:3px;z-index:1}
+
+.g-item-premium .mz-button.mz-button-next{}
+.g-item-premium .mz-expand-controls.mz-fade.mz-visible button.mz-button:hover{border-color:#EB8A1C !important}
+.g-item-premium button.mz-button:hover:before{color:#EB8A1C !important}
+
+.b-item-premium .b-item__gallery a{margin:0 10px}
 .b-item-premium .b-item__gallery .fotorama__nav.fotorama__nav--thumbs{padding:36px 0 0;position:relative;left:0;width:auto !important}
 .b-item-premium .b-item__gallery .fotorama__nav__frame.fotorama__nav__frame--thumb{display:inline-block;padding:0 10px !important}
 
