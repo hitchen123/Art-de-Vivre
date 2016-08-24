@@ -832,8 +832,8 @@ body.main{background:#fff}
 .b-catalog__nav-item dd.check-item-1{padding:0 0 15px}
 .b-catalog__nav-item .check-item-1 label{color:#211D1A;cursor:pointer;display:inline-block;vertical-align:middle;position:relative;-webkit-user-select:none}
 .b-catalog__nav-item .check-item-1 input{display:inline-block;vertical-align:middle;cursor:pointer;width:23px;height:23px;margin:0 12px 0 0;opacity:0;position:relative;z-index:1}
-.b-catalog__nav-item .check-item-1 span:after{transition:font-size 0.3s ease;width:23px;height:23px;content:" ";position:absolute;left:0;top:0;border:1px solid #E1E6E9;background:#fff;box-sizing:border-box;text-align:center;line-height:23px;font-size:0}
-.b-catalog__nav-item .check-item-1 input:checked + span:after{color:#EB8A1C;content:"✓";font-size:18px}
+.b-catalog__nav-item .check-item-1 span:after{transition:font-size 0.3s ease,transform 0.3s ease;width:23px;height:23px;content:" ";position:absolute;left:0;top:0;border:1px solid #E1E6E9;background:#fff;box-sizing:border-box;text-align:center;line-height:23px;font-size:0;transform: scale(-1, 1)}
+.b-catalog__nav-item .check-item-1 input:checked + span:after{color:#EB8A1C;content:"✓";font-size:18px;transform: scale(1, 1)}
 
 .b-catalog__nav-item .check-item-2{padding:0 8px 8px 0;float:left}
 .b-catalog__nav-item .check-item-2 label{cursor:pointer;display:inline-block;vertical-align:top;position:relative;-webkit-user-select:none}
