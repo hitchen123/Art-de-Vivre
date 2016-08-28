@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="styles/css/structure.css" />
     <link rel="stylesheet" type="text/css" href="styles/css/animations.css" />
     <link href="styles/css/magiczoomplus.css" rel="stylesheet">
+    <link href="styles/css/magicscroll.css" rel="stylesheet">
     <link href="styles/css/owl.carousel.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -551,7 +552,7 @@
                     <div class="b-item__l-c">
                         <div class="b-item__gallery app-figure mz-desktop">
                             <a href="temp/46.png" class="MagicZoom" data-options="zoomPosition:inner;textHoverZoomHint:Наведите для увелечения;textExpandHint:Нажмите для увелечения;" id="product"><img src="temp/46.png?scale.height=400"></a>
-                            <div class="selectors">
+                            <div class="selectors MagicScroll" data-options="items: 5; orientation: vertical; draggable: true;">
                                 <a data-zoom-id="product" href="temp/46.png" data-image="temp/46.png?scale.height=400">
                                     <img src="temp/46.png" src="temp/46.png?scale.width=112 2x">
                                 </a>
@@ -560,6 +561,15 @@
                                 </a>
                                 <a data-zoom-id="product" href="temp/55.png" data-image="temp/55.png?scale.height=400">
                                     <img src="temp/55.png" src="temp/55.png?scale.width=112 2x">
+                                </a>
+                                <a data-zoom-id="product" href="temp/50.png" data-image="temp/50.png?scale.height=400">
+                                    <img src="temp/50.png" src="temp/50.png?scale.width=112 2x">
+                                </a>
+                                <a data-zoom-id="product" href="temp/39.png" data-image="temp/39.png?scale.height=400">
+                                    <img src="temp/39.png" src="temp/39.png?scale.width=112 2x">
+                                </a>
+                                <a data-zoom-id="product" href="temp/41.png" data-image="temp/41.png?scale.height=400">
+                                    <img src="temp/41.png" src="temp/41.png?scale.width=112 2x">
                                 </a>
                             </div>
                         </div>
@@ -1342,9 +1352,45 @@
         </section>
     </div>
 
+    <div class="b-liked">
+        <h3 class="title">Сохраненные в список ковры</h3>
+        <ul class="cfix">
+            <li>
+                <a href="#">
+                    <div class="img">
+                        <img src="temp/17.png" />
+                    </div>  
+                    <span class="del">Удалить</span> 
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img">
+                        <img src="temp/18.png" />
+                    </div>  
+                    <span class="del">Удалить</span> 
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="img">
+                        <img src="temp/17.png" />
+                    </div>  
+                    <span class="del">Удалить</span> 
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="#">Смотреть все  ковры списком</a>    
+                </div>
+            </li>
+        </ul>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script> var mzOptions = { textHoverZoomHint: "Наведите для увелечения", textExpandHint: "Нажмите для увелечения", textClickZoomHint: "Двойной клик для увеличения" }; </script>
     <script src="styles/js/magiczoomplus.js"></script>
+    <script src="styles/js/magicscroll.js"></script>
     <script src="styles/js/owl.carousel.min.js"></script>
     <script src="styles/js/jquery.zoom.min.js"></script>
     <script src="styles/js/jquery.maskedinput.min.js"></script>
