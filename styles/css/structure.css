@@ -1973,8 +1973,8 @@ body.main{background:#fff}
     .b-order-sum-i .b-main-nav__bag-item .count{float:none;padding-left:0;width:auto;height:auto;line-height:15px}
     .b-order-sum-i .b-main-nav__bag-item .sum{float:none}
 
-    .b-item__gallery .selectors{bottom:0;left:0;right:0;top:auto;width:100%;padding:0;margin:0}
-    .b-item__gallery .selectors a{margin:0 3px}
+    .b-item__gallery .selectors{position:relative;bottom:0;left:0;right:0;top:auto;width:auto;padding:0;margin:0}
+    .b-item__gallery .selectors a{margin:0 3px;display:inline-block}
     .b-item__gallery.mz-mobile{padding:0 0 90px;margin:0 auto 10px}
     .b-item__gallery.mz-desktop{display:none}
     .b-item__gallery.mz-mobile{display:block}
