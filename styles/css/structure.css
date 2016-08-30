@@ -1358,7 +1358,7 @@ body.main{background:#fff}
 .b-item__gallery > a{width:auto}
 .b-item__gallery .mz-figure > img{max-height:750px}
 .b-item__gallery .selectors{position:absolute;left:0;top:0;width:80px;display:block;padding:0 0 22px}
-.b-item__gallery .selectors a{height:74px;overflow:hidden;margin:0 0 18px}
+.b-item__gallery .selectors a{height:auto;overflow:hidden;margin:0 0 18px}
 .b-item__gallery .selectors .mz-thumb{border-radius:3px}
 .b-item__gallery .selectors .mz-thumb img{max-width:100%;height:auto;border-radius:3px}
 .b-item__gallery .selectors .mz-thumb-selected.mz-thumb{position:relative}
@@ -1483,6 +1483,8 @@ body.main{background:#fff}
 .b-small-gallery .item{padding:0 54px;text-align:center}
 .b-small-gallery .item img{margin:0 0 49px}
 .b-small-gallery .item span{font-size:13px;line-height:15px}
+
+.b-small-gallery .owl-carousel .owl-item{float:none;display:inline-block;vertical-align:bottom}
 
 
 .b-item__middle-mob-tab{display:none}
