@@ -592,6 +592,16 @@ Modules.CatalogItemPopup = (function(self, $){
 			openClickElementCityClass: '',
 			closeClickElementCityClass: '',
 			cityElementCityClass: '',
+			popupOverlayFittingClass: '',
+			popupWrapperFittingClass: '',
+			popupElementFittingClass: '',
+			openClickElementFittingClass: '',
+			closeClickElementFittingClass: '',
+			popupOverlaySaleClass: '',
+			popupWrapperSaleClass: '',
+			popupElementSaleClass: '',
+			openClickElementSaleClass: '',
+			closeClickElementSaleClass: '',
 			topLineCityClass: '',
 			topLineCityCloseClass: '',
 			ajaxUrl: ''
@@ -608,16 +618,26 @@ Modules.CatalogItemPopup = (function(self, $){
 			$openClickElementCity: '',
 			$closeClickElementCity: '',
 			$cityElementCity: '',
+			$popupOverlayFitting: '',
+			$popupWrapperFitting: '',
+			$popupElementFitting: '',
+			$openClickElementFitting: '',
+			$closeClickElementFitting: '',
+			$popupOverlaySale: '',
+			$popupWrapperSale: '',
+			$popupElementSale: '',
+			$openClickElementSale: '',
+			$closeClickElementSale: '',
 			$topLineCloseCity: '',
 			$topLineCity: ''
 		}
-			
+
 		self.setSettings = function(params){
 			$.extend(_settings, params);
 
 			return self;
 		}
-		
+
 		self.setConfig = function(){
 			_data.$popupOverlay = $( _settings.popupOverlayClass );
 			_data.$popupWrapper = $( _settings.popupWrapperClass );
@@ -632,6 +652,18 @@ Modules.CatalogItemPopup = (function(self, $){
 			_data.$cityElementCity = $( _settings.cityElementCityClass );
 			_data.$topLineCity = $( _settings.topLineCityClass );
 			_data.$topLineCloseCity = $( _settings.topLineCloseCityClass );
+
+			_data.$popupOverlayFitting = $( _settings.popupOverlayFittingClass );
+			_data.$popupWrapperFitting = $( _settings.popupWrapperFittingClass );
+			_data.$popupElementFitting = $( _settings.popupElementFittingClass );
+			_data.$openClickElementFitting = $( _settings.openClickElementFittingClass );
+			_data.$closeClickElementFitting = $( _settings.closeClickElementFittingClass );
+
+			_data.$popupOverlaySale = $( _settings.popupOverlaySaleClass );
+			_data.$popupWrapperSale = $( _settings.popupWrapperSaleClass );
+			_data.$popupElementSale = $( _settings.popupElementSaleClass );
+			_data.$openClickElementSale = $( _settings.openClickElementSaleClass );
+			_data.$closeClickElementSale = $( _settings.closeClickElementSaleClass );
 
 			return self;
 		}
@@ -1594,6 +1626,90 @@ Modules.CatalogItemPopup = (function(self, $){
 			
 			return self;
 		}
+
+		self.openFittingPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementFittingClass, function(){
+				self.hidePopupEvent();
+				
+				setTimeout(function(){
+					if(_data.$popupElementFitting.height() < $(window).height())
+						_data.$popupElementFitting.css({'margin-top': '-' + (_data.$popupElementFitting.height() / 2) + 'px'});
+					else _data.$popupElementFitting.css({'top': '0px'});
+
+					_data.$popupWrapperFitting.addClass('pt-page-current pt-page-current-wrapper');
+					// _data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElementFitting.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+					setTimeout(function(){
+						// _data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+						_data.$popupElementFitting.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+
+		self.closeFittingPopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementFittingClass, function(e){
+				if(e.target != this) return;
+
+				_data.$popupElementFitting.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+				setTimeout(function(){
+					_data.$popupWrapperFitting.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElementFitting.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+					self.showPopupEvent();
+				}, 400);
+
+				return false;
+			});
+			
+			return self;
+		}
+
+		self.openSalePopupEvent = function(){
+			$(document).on('click', _settings.openClickElementSaleClass, function(){
+				self.hidePopupEvent();
+
+				setTimeout(function(){
+					if(_data.$popupElementSale.height() < $(window).height())
+						_data.$popupElementSale.css({'margin-top': '-' + (_data.$popupElementSale.height() / 2) + 'px'});
+					else _data.$popupElementSale.css({'top': '0px'});
+
+					_data.$popupWrapperSale.addClass('pt-page-current pt-page-current-wrapper');
+					// _data.$popupOverlay.addClass('pt-page-current pt-page-moveToTopFade pt-page-moveFromBottomFade');
+					_data.$popupElementSale.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+					setTimeout(function(){
+						// _data.$popupOverlay.removeClass('pt-page-moveToTopFade pt-page-moveFromBottomFade');
+						_data.$popupElementSale.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+					}, 400);
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+
+		self.closeSalePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementSaleClass, function(e){
+				if(e.target != this) return;
+
+				_data.$popupElementSale.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+
+				setTimeout(function(){
+					_data.$popupWrapperSale.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElementSale.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+
+					self.showPopupEvent();
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
 		
 		self.sendAjax = function(){
 			$.ajax({
@@ -1620,7 +1736,9 @@ Modules.CatalogItemPopup = (function(self, $){
 			init: function(params){
 				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent().openCityPopupEvent()
 				.closeCityPopupEvent().chooseCityEvent().closeCityTopLineEvent().closePopupKeypressEvent()
-				.showNextPopup().showPrevPopup().scrollEvent().showPrevKeypressPopup().showNextKeypressPopup();
+				.openFittingPopupEvent().openSalePopupEvent().closeFittingPopupEvent().closeSalePopupEvent()
+				.showNextPopup().showPrevPopup()
+				.scrollEvent().showPrevKeypressPopup().showNextKeypressPopup();
 
 				return self;
 			}
@@ -5338,23 +5456,23 @@ Modules.SizeProductButton = (function(self, $){
 			ajaxUrl: ''
 		});
 
-		var fittingPopup = new Modules.FittingPopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupWrapperClass: '.b-popup-wrapper__fitting',
-			popupElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up',
-			openClickElementClass: '.g-item .b-item__r-c .info .i-1 a',
-			closeClickElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up .close, .b-popup-wrapper__fitting',
-			ajaxUrl: ''
-		});
+		// var fittingPopup = new Modules.FittingPopup.init({
+		// 	popupOverlayClass: '.b-overlay',
+		// 	popupWrapperClass: '.b-popup-wrapper__fitting',
+		// 	popupElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up',
+		// 	openClickElementClass: '.g-item .b-item__r-c .info .i-1 a',
+		// 	closeClickElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up .close, .b-popup-wrapper__fitting',
+		// 	ajaxUrl: ''
+		// });
 
-		var salePopup = new Modules.SalePopup.init({
-			popupOverlayClass: '.b-overlay',
-			popupWrapperClass: '.b-popup-wrapper__sale',
-			popupElementClass: '.b-popup-wrapper__sale .b-sale-pop-up',
-			openClickElementClass: '.g-item .b-item__r-c .info .i-2 a',
-			closeClickElementClass: '.b-popup-wrapper__sale .b-sale-pop-up .close, .b-popup-wrapper__sale',
-			ajaxUrl: ''
-		});
+		// var salePopup = new Modules.SalePopup.init({
+		// 	popupOverlayClass: '.b-overlay',
+		// 	popupWrapperClass: '.b-popup-wrapper__sale',
+		// 	popupElementClass: '.b-popup-wrapper__sale .b-sale-pop-up',
+		// 	openClickElementClass: '.g-item .b-item__r-c .info .i-2 a',
+		// 	closeClickElementClass: '.b-popup-wrapper__sale .b-sale-pop-up .close, .b-popup-wrapper__sale',
+		// 	ajaxUrl: ''
+		// });
 
 		var consultPopup = new Modules.ConsultPopup.init({
 			popupOverlayClass: '.b-overlay',
@@ -5721,6 +5839,16 @@ Modules.SizeProductButton = (function(self, $){
 				cityElementCityClass: '.b-top__reg-i a, .b-contacts__title a, .b-item__r-c .title-2 a',
 				topLineCityClass: '.b-top__yellow-line',
 				topLineCloseCityClass: '.b-top__yes',
+				popupOverlayFittingClass: '.b-overlay',
+				popupWrapperFittingClass: '.b-popup-wrapper__fitting',
+				popupElementFittingClass: '.b-fitting-pop-up',
+				openClickElementFittingClass: '.b-catalog__item-pop-up-i .b-item__r-c .info .i-1 a',
+				closeClickElementFittingClass: '.b-popup-wrapper__fitting .b-fitting-pop-up .close, .b-popup-wrapper__fitting',
+				popupOverlaySaleClass: '.b-overlay',
+				popupWrapperSaleClass: '.b-popup-wrapper__sale',
+				popupElementSaleClass: '.b-sale-pop-up',
+				openClickElementSaleClass: '.b-catalog__item-pop-up-i .b-item__r-c .info .i-2 a',
+				closeClickElementSaleClass: '.b-popup-wrapper__sale .b-sale-pop-up .close, .b-popup-wrapper__sale',
 				ajaxUrl: ''
 			});
 		}
