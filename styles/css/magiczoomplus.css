@@ -969,10 +969,10 @@ a[data-zoom-id] img,
     -webkit-filter: brightness(75%);
             filter: brightness(75%);
 }
-.mz-thumb-selected img {
+/*.mz-thumb-selected img {
     -webkit-filter: brightness(60%);
             filter: brightness(60%);
-}
+}*/
 .no-cssfilters-magic .mz-thumb {
     background: #000;
 }

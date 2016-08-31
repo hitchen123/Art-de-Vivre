@@ -105,6 +105,214 @@ Modules.CouponPopup = (function(self, $){
 		}
 }(Modules.CouponPopup || {}, jQuery));
 
+Modules.FittingPopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupWrapperClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupWrapper: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupWrapper = $( _settings.popupWrapperClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				if(_data.$popupElement.height() < $(window).height())
+					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
+				else _data.$popupElement.css({'top': '0px'});
+
+				$('body').width($('body').width());
+				$('body').addClass('html_noscroll');
+				_data.$popupOverlay.addClass('pt-page-current');
+				_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
+				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(e){
+				if(e.target != this) return;
+
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.removeClass('pt-page-current');
+
+				setTimeout(function(){
+					$('body').removeClass('html_noscroll');
+					$('body').width('auto');
+					_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.FittingPopup || {}, jQuery));
+
+Modules.SalePopup = (function(self, $){
+	
+	var _settings = {
+			popupOverlayClass: '',
+			popupWrapperClass: '',
+			popupElementClass: '',
+			openClickElementClass: '',
+			closeClickElementClass: '',
+			ajaxUrl: ''
+		},
+		_data = {
+			$popupOverlay: '',
+			$popupWrapper: '',
+			$popupElement: '',
+			$openClickElement: '',
+			$closeClickElement: ''
+		}
+			
+		self.setSettings = function(params){
+			$.extend(_settings, params);
+
+			return self;
+		}
+		
+		self.setConfig = function(){
+			_data.$popupOverlay = $( _settings.popupOverlayClass );
+			_data.$popupWrapper = $( _settings.popupWrapperClass );
+			_data.$popupElement = $( _settings.popupElementClass );
+			_data.$openClickElement = $( _settings.openClickElementClass );
+			_data.$closeClickElement = $( _settings.closeClickElementClass );
+
+			return self;
+		}
+		
+		self.openPopupEvent = function(){
+			$(document).on('click', _settings.openClickElementClass, function(){
+				if(_data.$popupElement.height() < $(window).height())
+					_data.$popupElement.css({'margin-top': '-' + (_data.$popupElement.height() / 2) + 'px'});
+				else _data.$popupElement.css({'top': '0px'});
+
+				$('body').width($('body').width());
+				$('body').addClass('html_noscroll');
+				_data.$popupOverlay.addClass('pt-page-current');
+				_data.$popupWrapper.addClass('pt-page-current pt-page-current-wrapper');
+				_data.$popupElement.addClass('pt-page-current pt-page-visible pt-page-moveToLeft pt-page-moveFromRight');
+
+				setTimeout(function(){
+					_data.$popupElement.removeClass('pt-page-moveToLeft pt-page-moveFromRight');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.closePopupEvent = function(){
+			$(document).on('click', _settings.closeClickElementClass, function(e){
+				if(e.target != this) return;
+
+				_data.$popupElement.addClass('pt-page-moveToRight pt-page-moveFromLeft');
+				_data.$popupOverlay.removeClass('pt-page-current');
+
+				setTimeout(function(){
+					$('body').removeClass('html_noscroll');
+					$('body').width('auto');
+					_data.$popupWrapper.removeClass('pt-page-current pt-page-current-wrapper');
+					_data.$popupElement.removeClass('pt-page-current pt-page-visible pt-page-moveToRight pt-page-moveFromLeft');
+				}, 400);
+				return false;
+			});
+			
+			return self;
+		}
+		
+		self.sendAjax = function(){
+			$.ajax({
+				type : "post",
+				url : _settings.ajaxUrl,
+				data : {data: {}}	
+			}).done(function(data){
+				if(data){
+					var response = $.parseJSON(data);
+					
+				}
+			}).fail(function(){
+
+			}).error(function(jqXHR, status, errorThrown){
+				console.log(jqXHR);
+				console.log(status);
+				console.log(errorThrown);
+			});
+
+			return false;
+		}
+		
+		return {
+			init: function(params){
+				self.setSettings(params).setConfig().openPopupEvent().closePopupEvent();
+
+				return self;
+			}
+		}
+}(Modules.SalePopup || {}, jQuery));
+
 Modules.PhoneMask = (function(self, $){
 	
 	var _settings = {
@@ -5127,6 +5335,24 @@ Modules.SizeProductButton = (function(self, $){
 			popupElementClass: '.b-popup-wrapper__coupon .b-coupon-pop-up',
 			openClickElementClass: '.b-middle-store__img a, .b-contacts__promo a, .coupon-menu-item a',
 			closeClickElementClass: '.b-popup-wrapper__coupon .b-coupon-pop-up .close, .b-popup-wrapper__coupon',
+			ajaxUrl: ''
+		});
+
+		var fittingPopup = new Modules.FittingPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupWrapperClass: '.b-popup-wrapper__fitting',
+			popupElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up',
+			openClickElementClass: '.g-item .b-item__r-c .info .i-1 a',
+			closeClickElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up .close, .b-popup-wrapper__fitting',
+			ajaxUrl: ''
+		});
+
+		var salePopup = new Modules.SalePopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupWrapperClass: '.b-popup-wrapper__sale',
+			popupElementClass: '.b-popup-wrapper__sale .b-sale-pop-up',
+			openClickElementClass: '.g-item .b-item__r-c .info .i-2 a',
+			closeClickElementClass: '.b-popup-wrapper__sale .b-sale-pop-up .close, .b-popup-wrapper__sale',
 			ajaxUrl: ''
 		});
 
