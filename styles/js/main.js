@@ -5456,23 +5456,23 @@ Modules.SizeProductButton = (function(self, $){
 			ajaxUrl: ''
 		});
 
-		// var fittingPopup = new Modules.FittingPopup.init({
-		// 	popupOverlayClass: '.b-overlay',
-		// 	popupWrapperClass: '.b-popup-wrapper__fitting',
-		// 	popupElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up',
-		// 	openClickElementClass: '.g-item .b-item__r-c .info .i-1 a',
-		// 	closeClickElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up .close, .b-popup-wrapper__fitting',
-		// 	ajaxUrl: ''
-		// });
+		var fittingPopup = new Modules.FittingPopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupWrapperClass: '.b-popup-wrapper__fitting',
+			popupElementClass: '.b-popup-wrapper__fitting .b-fitting-pop-up',
+			openClickElementClass: '.g-item .b-item__r-c .info .i-1 a',
+			closeClickElementClass: '.g-item .b-popup-wrapper__fitting .b-fitting-pop-up .close, .g-item .b-popup-wrapper__fitting',
+			ajaxUrl: ''
+		});
 
-		// var salePopup = new Modules.SalePopup.init({
-		// 	popupOverlayClass: '.b-overlay',
-		// 	popupWrapperClass: '.b-popup-wrapper__sale',
-		// 	popupElementClass: '.b-popup-wrapper__sale .b-sale-pop-up',
-		// 	openClickElementClass: '.g-item .b-item__r-c .info .i-2 a',
-		// 	closeClickElementClass: '.b-popup-wrapper__sale .b-sale-pop-up .close, .b-popup-wrapper__sale',
-		// 	ajaxUrl: ''
-		// });
+		var salePopup = new Modules.SalePopup.init({
+			popupOverlayClass: '.b-overlay',
+			popupWrapperClass: '.b-popup-wrapper__sale',
+			popupElementClass: '.b-popup-wrapper__sale .b-sale-pop-up',
+			openClickElementClass: '.g-item .b-item__r-c .info .i-2 a',
+			closeClickElementClass: '.g-item .b-popup-wrapper__sale .b-sale-pop-up .close, .g-item .b-popup-wrapper__sale',
+			ajaxUrl: ''
+		});
 
 		var consultPopup = new Modules.ConsultPopup.init({
 			popupOverlayClass: '.b-overlay',
